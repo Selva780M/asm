@@ -1,2 +1,3 @@
 PyQt5
 PyQtWebEngine
+python3-pyqt5
