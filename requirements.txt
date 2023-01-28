@@ -1,3 +1,6 @@
 PyQt5
 PyQtWebEngine
 opencv-contrib-python
+freeglut3-dev
+libgtk2.0-dev
+libgl1
