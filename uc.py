@@ -61,18 +61,18 @@ with st.form("opt_form"):
 		st.write('pass')
 		if user_STOCK == "NIFTY":			
 			m = alice.get_scrip_info(alice.get_instrument_by_symbol("NFO",user_STOCK))
-			ltp = m['LTP']
-			spot = round((float(ltp)) / 50) * 50
+			n_ltp = m['LTP']
+			spot = round((float(n_ltp)) / 50) * 50
 			expiry_date = expiry[0]
 			if user_OPTION == "call":
 				call_strike = spot - (50)
-				call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)
-				st.write(call.name)
+				n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)
+				st.write(n_call.name)
 				st.balloons()
 			if  user_OPTION == "put":
 				put_strike = spot + (50)
-				put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
-				st.write(call.name)
+				n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
+				st.write(n_put.name)
 				st.balloons()			
 		if user_STOCK == "BANKNIFTY":
 			m = alice.get_scrip_info(alice.get_instrument_by_symbol("NFO",user_STOCK))
@@ -87,7 +87,7 @@ with st.form("opt_form"):
 			if  user_OPTION == "put":
 				put_strike = spot + (100)
 				put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
-				st.write(call.name)
+				st.write(put.name)
 				st.balloons()
 	if EXIT:
 		st.write('exit')
