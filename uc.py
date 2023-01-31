@@ -30,7 +30,6 @@ df = pd.DataFrame(alice.get_historical(instrument,from_datetime,to_datetime,inte
 df = df.set_index(pd.DatetimeIndex(df['datetime']))
 df = df.groupby(pd.Grouper(freq='5Min')).agg({"open":"first","high":"max","low":"min","close":"last","volume":'sum'})
 df.dropna(inplace=True)
-# Load the historical market data for the stock you want to trade
 data = df
 
 st.dataframe(df)
@@ -38,8 +37,8 @@ st.dataframe(df)
 # Create a function that implements your trading strategy
 def trading_strategy(data):
     # Example strategy: buy when the 50-day moving average crosses above the 200-day moving average
-    data['50_day_ma'] = data['close'].rolling(window=50).mean()
-    data['200_day_ma'] = data['close'].rolling(window=200).mean()
+    data['50_day_ma'] = data['close'].rolling(window=10).mean()
+    data['200_day_ma'] = data['close'].rolling(window=50).mean()
     data['buy'] = (data['50_day_ma'] > data['200_day_ma']) & (data['50_day_ma'].shift(1) < data['200_day_ma'].shift(1))
     return data
 
