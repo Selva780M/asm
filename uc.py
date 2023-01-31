@@ -1,78 +1,78 @@
+from pya3 import *
 import streamlit as st
+from datetime import datetime, timedelta
+from pytz import timezone 
+day = datetime.now(timezone("Asia/Kolkata"))
+day = day.strftime('%Y-%m-%d %H:%M:%S')
+alice = Aliceblue(user_id='627742',api_key='BPk1mFAXB9ByTFFQnm87HhieLFo3Fy5J3PCaae2g252DiLCNB9BK7hF0LpSg3d9fNO698r32IAsEt0lWm3hmuZMWW9tJC6r6A7xGkZWGmY1Hcdys1q9ITC1pRjYaklRQ')
+alice.get_session_id()
+exchange = "NFO"
+symbol = "NIFTY"
+st.write(day)
+ticker = ["NIFTY 50","BANK NIFTY"]
+while True:
+  try:
+    for i in len(ticker):
+      m = alice.get_scrip_info(alice.get_instrument_by_symbol('INDICES', i))  
+    print(f"Nifty50:{m['LTP']}Change:{m['Change']} %{m['PerChange']}")
+  except:
+    print("Error")
+  sleep(1)
 
-st.write("Paper Trading Account User Simulation")
 
-# initialize portfolios
-portfolios = {'user': [], 'portfolio': []}
+def get_ltp(symbol):
+    # Get the current price of the stock
+    m=alice.get_scrip_info(alice.get_instrument_by_symbol('INDICES', symbol))
+    stock = m['LTP']
+    return stock
 
-# add user and portfolio
-def add_user(user, portfolio):
-    portfolios['user'].append(user)
-    portfolios['portfolio'].append(portfolio)
+def paper_trade():
+    st.title("Paper Trading Simulator")
 
-# remove user and portfolio
-def remove_user(user):
-    idx = portfolios['user'].index(user)
-    portfolios['user'].pop(idx)
-    portfolios['portfolio'].pop(idx)
+    # Define the symbol
+    symbol = st.text_input("Enter the symbol of the stock you want to trade:")
 
-# initialize portfolio
-def init_portfolio():
-    return {'symbol': [], 'shares': [], 'price': [], 'total': []}
+    # Get the LTP
+    ltp = get_ltp(symbol)
 
-# add stocks to portfolio
-def add_stock(portfolio, symbol, shares, price):
-    portfolio['symbol'].append(symbol)
-    portfolio['shares'].append(shares)
-    portfolio['price'].append(price)
-    portfolio['total'].append(shares * price)
+    st.write(f"The LTP of {symbol} is {ltp}")
 
-# remove stocks from portfolio
-def remove_stock(portfolio, symbol):
-    idx = portfolio['symbol'].index(symbol)
-    portfolio['symbol'].pop(idx)
-    portfolio['shares'].pop(idx)
-    portfolio['price'].pop(idx)
-    portfolio['total'].pop(idx)
+    # Define the number of shares
+    shares = st.number_input("Enter the number of shares you want to buy:")
 
-# calculate current portfolio value
-def calculate_value(portfolio):
-    return sum(portfolio['total'])
+    # Calculate the cost of the trade
+    cost = ltp * shares
 
-# UI for adding users
-if st.checkbox("Add User"):
-    user = st.text_input("Username")
-    portfolio = init_portfolio()
-    add_user(user, portfolio)
+    st.write(f"The cost of the trade is {cost}")
 
-# UI for removing users
-if st.checkbox("Remove User"):
-    user = st.text_input("Username")
-    remove_user(user)
+    # Define the action
+    action = st.selectbox("What action do you want to take?", ["Buy", "Sell"])
 
-# UI for adding stocks
-if st.checkbox("Add Stock"):
-    user = st.text_input("Username")
-    idx = portfolios['user'].index(user)
-    portfolio = portfolios['portfolio'][idx]
-    symbol = st.text_input("Symbol")
-    shares = int(st.text_input("Shares"))
-    price = float(st.text_input("Price"))
-    add_stock(portfolio, symbol, shares, price)
+    # Check if the action is Buy or Sell
+    if action == "Buy":
+        # Get the current account balance
+        balance = float(st.text_input("Enter your current account balance:"))
 
-# UI for removing stocks
-if st.checkbox("Remove Stock"):
-    user = st.text_input("Username")
-    idx = portfolios['user'].index(user)
-    portfolio = portfolios['portfolio'][idx]
-    symbol = st.text_input("Symbol")
-    remove_stock(portfolio, symbol)
+        # Check if the balance is sufficient
+        if balance < cost:
+            st.write("Insufficient funds.")
+        else:
+            st.write("The trade has been executed successfully.")
+            # Update the balance
+            balance -= cost
+            st.write(f"Your new balance is {balance}")
+    else:
+        # Get the current number of shares
+        current_shares = float(st.text_input("Enter your current number of shares:"))
 
-# display portfolios
-st.write("Portfolios")
-for i in range(len(portfolios['user'])):
-    user = portfolios['user'][i]
-    portfolio = portfolios['portfolio'][i]
-    st.write("User:", user)
-    st.write(portfolio)
-    st.write("Value: $", calculate_value(portfolio))
+        # Check if the shares are sufficient
+        if current_shares < shares:
+            st.write("Insufficient shares.")
+        else:
+            st.write("The trade has been executed successfully.")
+            # Update the shares
+            current_shares -= shares
+            st.write(f"Your new number of shares is {current_shares}")
+
+if __name__ == "__main__":
+    paper_trade()
