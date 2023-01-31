@@ -54,7 +54,7 @@ with st.form("opt_form",clear_on_submit=False):
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Hi 👋 {user_USER}"}</h1>', unsafe_allow_html=True)
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f"Enter Data 👉"}</h1>', unsafe_allow_html=True)
 	with col11:		
-		user_STOCK = st.radio("Stock",("NIFTY 50","NIFTY BANK"), horizontal=True)
+		user_STOCK = st.radio("Stock",("NIFTY","BANKNIFTY"), horizontal=True)
 		user_OPTION = st.radio("Option",("call","put"), horizontal=True)
 		user_LOT = st.number_input('Qty', min_value=25, max_value=1000, value=25, step=25, format=None, key=None)
 	with col22:		
@@ -70,25 +70,35 @@ with st.form("opt_form",clear_on_submit=False):
 		#df = df.append(new_data, ignore_index = True)
 		#df.to_csv('token.csv',index = False)
 		st.write('pass')
-		if user_STOCK == "NIFTY 50":
-			exchange = "NFO"
-			symbol = "NIFTY"
-			base = 50
-			m = alice.get_scrip_info(alice.get_instrument_by_symbol(exchange,symbol))
+		if user_STOCK == "NIFTY":			
+			m = alice.get_scrip_info(alice.get_instrument_by_symbol("NFO",user_STOCK))
 			ltp = m['LTP']
-			spot = round((float(ltp)) / base) * base
-			strike_difference = 1
+			spot = round((float(ltp)) / 50) * 50
 			expiry_date = expiry[0]
-			Dir()
-		if user_STOCK == "NIFTY BANK":
-			exchange = "NFO"
-			symbol = "BANKNIFTY"
-			base = 100
-			m = alice.get_scrip_info(alice.get_instrument_by_symbol(exchange,symbol))
+			if user_OPTION == "call":
+				call_strike = spot - (50)
+				call = alice.get_instrument_for_fno(exch=exchange, symbol=symbol, expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)
+				st.write(call.name)
+				st.balloons()
+			if  user_OPTION == "put":
+				put_strike = spot + (50)
+				put = alice.get_instrument_for_fno(exch=exchange, symbol=symbol, expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
+				st.write(call.name)
+				st.balloons()			
+		if user_STOCK == "BANKNIFTY":
+			m = alice.get_scrip_info(alice.get_instrument_by_symbol("NFO",user_STOCK))
 			ltp = m['LTP']
-			spot = round((float(ltp)) / base) * base
-			strike_difference = 1
+			spot = round((float(ltp)) / 100) * 100			
 			expiry_date = expiry[0]
-			Dir()
+			if user_OPTION == "call":
+				call_strike = spot - (100)
+				call = alice.get_instrument_for_fno(exch=exchange, symbol=symbol, expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)
+				st.write(call.name)
+				st.balloons()
+			if  user_OPTION == "put":
+				put_strike = spot + (100)
+				put = alice.get_instrument_for_fno(exch=exchange, symbol=symbol, expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
+				st.write(call.name)
+				st.balloons()
 	if EXIT:
 		st.write('exit')
