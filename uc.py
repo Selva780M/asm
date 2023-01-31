@@ -24,10 +24,10 @@ import streamlit as st
 
 
 instrument = alice.get_instrument_by_symbol("NSE","SBIN")
-from_datetime = day - timedelta(days=2)
+from_datetime = day - timedelta(days=5)
 to_datetime = day 
 interval = "1" 
-indices = True
+indices = False
 df = pd.DataFrame(alice.get_historical(instrument,from_datetime,to_datetime,interval,indices))  
 df = df.set_index(pd.DatetimeIndex(df['datetime']))
 df = df.groupby(pd.Grouper(freq='5Min')).agg({"open":"first","high":"max","low":"min","close":"last","volume":'sum'})
