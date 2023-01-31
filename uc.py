@@ -1,12 +1,12 @@
-# from pya3 import *
+ from pya3 import *
 # import streamlit as st
-# from datetime import datetime, timedelta
-# from pytz import timezone 
-# import time
-# day = datetime.now(timezone("Asia/Kolkata"))
-# day = day.strftime('%Y-%m-%d %H:%M:%S')
-# alice = Aliceblue(user_id='627742',api_key='BPk1mFAXB9ByTFFQnm87HhieLFo3Fy5J3PCaae2g252DiLCNB9BK7hF0LpSg3d9fNO698r32IAsEt0lWm3hmuZMWW9tJC6r6A7xGkZWGmY1Hcdys1q9ITC1pRjYaklRQ')
-# alice.get_session_id()
+ from datetime import datetime, timedelta
+ from pytz import timezone 
+ import time
+ day = datetime.now(timezone("Asia/Kolkata"))
+ day = day.strftime('%Y-%m-%d %H:%M:%S')
+ alice = Aliceblue(user_id='627742',api_key='BPk1mFAXB9ByTFFQnm87HhieLFo3Fy5J3PCaae2g252DiLCNB9BK7hF0LpSg3d9fNO698r32IAsEt0lWm3hmuZMWW9tJC6r6A7xGkZWGmY1Hcdys1q9ITC1pRjYaklRQ')
+ alice.get_session_id()
 # exchange = "NFO"
 # symbol = "NIFTY"
 # st.write(day)
@@ -22,8 +22,19 @@ import pytvchart
 import pandas as pd
 import streamlit as st
 
+
+instrument = alice.get_instrument_by_symbol("NSE","SBIN")
+from_datetime = day - timedelta(days=2)
+to_datetime = day 
+interval = "1" 
+indices = True
+df = pd.DataFrame(alice.get_historical(instrument,from_datetime,to_datetime,interval,indices))  
+df = df.set_index(pd.DatetimeIndex(df['datetime']))
+df = df.groupby(pd.Grouper(freq='5Min')).agg({"open":"first","high":"max","low":"min","close":"last","volume":'sum'})
+df.dropna(inplace=True)
 # Load the historical market data for the stock you want to trade
-data = pytvchart.Chart().get_data('AAPL', 'D', '2y')
+data = df
+st.dataframe(df)
 
 # Create a function that implements your trading strategy
 def trading_strategy(data):
