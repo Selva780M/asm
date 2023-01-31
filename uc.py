@@ -81,13 +81,13 @@ with st.form("opt_form"):
 			expiry_date = expiry[0]
 			if user_OPTION == "call":
 				call_strike = spot - (100)
-				call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)
-				st.write(call.name)
+				b_call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)
+				st.write(b_call.name)
 				st.balloons()
 			if  user_OPTION == "put":
 				put_strike = spot + (100)
-				put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
-				st.write(put.name)
+				b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
+				st.write(b_put.name)
 				st.balloons()
 	if EXIT:
 		st.write('exit')
