@@ -1,5 +1,1 @@
-PyQt5
-PyQtWebEngine
-opencv-python-headless==4.5.3.56
-apt-get update && apt-get install libgl1
-sudo yum install mesa-libGL -y
+pya3
