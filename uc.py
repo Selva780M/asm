@@ -13,15 +13,12 @@ def Dir():
 	if user_OPTION == "call":		
 		call_strike = spot - (base * strike_difference)
 		call = alice.get_instrument_for_fno(exch=exchange, symbol=symbol, expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)
-		i = call.name
-		st.write(i)        
+		st.write(call.name)
 		st.balloons()
 	if  user_OPTION == "put":
-		result = "put"
 		put_strike = spot + (base * strike_difference)
 		put = alice.get_instrument_for_fno(exch=exchange, symbol=symbol, expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
-		i = call.name
-		st.write(i)		
+		st.write(call.name)
 		st.balloons()
 
 # def main():
