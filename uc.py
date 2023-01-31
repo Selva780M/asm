@@ -48,7 +48,7 @@ traded_data = trading_strategy(data)
 
 # Initialize variables to keep track of your simulated trades
 cash = 10000
-shares = st.input_number("Share",1)
+shares = st.number_input('Insert a number',1)
 total_value = cash
 
 # Create a dataframe to store the trade statements
