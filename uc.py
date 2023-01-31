@@ -9,17 +9,6 @@ DATE = day.strftime('%Y-%m-%d %H:%M:%S')
 alice = Aliceblue(user_id='627742',api_key='BPk1mFAXB9ByTFFQnm87HhieLFo3Fy5J3PCaae2g252DiLCNB9BK7hF0LpSg3d9fNO698r32IAsEt0lWm3hmuZMWW9tJC6r6A7xGkZWGmY1Hcdys1q9ITC1pRjYaklRQ')
 alice.get_session_id()
 
-def Dir():
-	if user_OPTION == "call":		
-		call_strike = spot - (base * strike_difference)
-		call = alice.get_instrument_for_fno(exch=exchange, symbol=symbol, expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)
-		st.write(call.name)
-		st.balloons()
-	if  user_OPTION == "put":
-		put_strike = spot + (base * strike_difference)
-		put = alice.get_instrument_for_fno(exch=exchange, symbol=symbol, expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
-		st.write(call.name)
-		st.balloons()
 
 # def main():
 #        try:
@@ -77,12 +66,12 @@ with st.form("opt_form",clear_on_submit=False):
 			expiry_date = expiry[0]
 			if user_OPTION == "call":
 				call_strike = spot - (50)
-				call = alice.get_instrument_for_fno(exch=exchange, symbol=symbol, expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)
+				call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)
 				st.write(call.name)
 				st.balloons()
 			if  user_OPTION == "put":
 				put_strike = spot + (50)
-				put = alice.get_instrument_for_fno(exch=exchange, symbol=symbol, expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
+				put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
 				st.write(call.name)
 				st.balloons()			
 		if user_STOCK == "BANKNIFTY":
@@ -92,12 +81,12 @@ with st.form("opt_form",clear_on_submit=False):
 			expiry_date = expiry[0]
 			if user_OPTION == "call":
 				call_strike = spot - (100)
-				call = alice.get_instrument_for_fno(exch=exchange, symbol=symbol, expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)
+				call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)
 				st.write(call.name)
 				st.balloons()
 			if  user_OPTION == "put":
 				put_strike = spot + (100)
-				put = alice.get_instrument_for_fno(exch=exchange, symbol=symbol, expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
+				put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
 				st.write(call.name)
 				st.balloons()
 	if EXIT:
