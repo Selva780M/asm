@@ -87,24 +87,24 @@ with st.form("opt_form",clear_on_submit=True):
 	with col22:
 		ENTRY = st.form_submit_button('Entry')
 		EXIT = st.form_submit_button('Exit')
-		if ENTRY:
-			#new_data = {"DATE" : op ,"NAME": user_name, "VEHICLE NO" : user_vehicleNo,  "FUEL" : user_fuel, "LITER" : float(user_Liter), "AMOUNT" : float(user_amount), "DEPT" : user_Dept, "REASON" : user_reason}
-            		#df = df.append(new_data, ignore_index = True)
-            		#df.to_csv('token.csv',index = False)
-            		st.write('pass')
-            		if user_STOCK == "NIFTY 50":
-				exchange = "NFO"
-				symbol = "NIFTY"
-				base = 50
-				spot = round((float(ltp)) / base) * base
-				strike_difference = 1
-				expiry_date = expiry[0]
-				result = Dir()
-			if user_STOCK == "NIFTY BANK":
-				exchange = "NFO"
-				symbol = "BANKNIFTY"
-				base = 100
-				spot = round((float(ltp)) / base) * base
-				strike_difference = 1
-				expiry_date = expiry[0]
-				result = Dir()
+	if ENTRY:
+		#new_data = {"DATE" : op ,"NAME": user_name, "VEHICLE NO" : user_vehicleNo,  "FUEL" : user_fuel, "LITER" : float(user_Liter), "AMOUNT" : float(user_amount), "DEPT" : user_Dept, "REASON" : user_reason}
+		#df = df.append(new_data, ignore_index = True)
+		#df.to_csv('token.csv',index = False)
+		st.write('pass')
+		if user_STOCK == "NIFTY 50":
+			exchange = "NFO"
+			symbol = "NIFTY"
+			base = 50
+			spot = round((float(ltp)) / base) * base
+			strike_difference = 1
+			expiry_date = expiry[0]
+			result = Dir()
+		if user_STOCK == "NIFTY BANK":
+			exchange = "NFO"
+			symbol = "BANKNIFTY"
+			base = 100
+			spot = round((float(ltp)) / base) * base
+			strike_difference = 1
+			expiry_date = expiry[0]
+			result = Dir()
