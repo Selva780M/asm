@@ -94,17 +94,17 @@ with st.form("opt_form",clear_on_submit=True):
             		st.write('pass')
             		if user_STOCK == "NIFTY 50":
 				exchange = "NFO"
-                		symbol = "NIFTY"
-                		base = 50 
-                		spot = round((float(ltp)) / base) * base					
-                		strike_difference = 1
+				symbol = "NIFTY"
+				base = 50
+				spot = round((float(ltp)) / base) * base
+				strike_difference = 1
 				expiry_date = expiry[0]
 				result = Dir()
 			if user_STOCK == "NIFTY BANK":
 				exchange = "NFO"
 				symbol = "BANKNIFTY"
-				base = 100 
-				spot = round((float(ltp)) / base) * base					
+				base = 100
+				spot = round((float(ltp)) / base) * base
 				strike_difference = 1
 				expiry_date = expiry[0]
 				result = Dir()
