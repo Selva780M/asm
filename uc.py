@@ -12,7 +12,7 @@ st.write(day)
 ticker = ["NIFTY 50","BANK NIFTY"]
 def main():
        try:
-              for i, values in ticker.items():
+              for i in ticker():
                      m = alice.get_scrip_info(alice.get_instrument_by_symbol('INDICES', i))
                      st.write(f"Nifty50:{m['LTP']}Change:{m['Change']} %{m['PerChange']}")
        except Exception as e:              
