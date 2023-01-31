@@ -64,9 +64,12 @@ with st.form("opt_form",clear_on_submit=False):
 		user_LOT = st.number_input('Qty', min_value=25, max_value=1000, value=25, step=25, format=None, key=None)
 	with col22:		
 		user_STOP = st.number_input('Stoploss', min_value=5, max_value=50, value=10, step=5, format=None, key=None)
-		user_TARGET = st.number_input('Target', min_value=5, max_value=50, value=10, step=5, format=None, key=None)
+		user_TARGET = st.number_input('Target', min_value=5, max_value=50, value=10, step=5, format=None, key=None)		
+	col1, col2= st.columns(2)
+	with col1:
+		ENTRY = st.form_submit_button('Entry')
+	with col2:
 		EXIT = st.form_submit_button('Exit')
-	ENTRY = st.form_submit_button('Entry')	
 	if ENTRY:
 		#new_data = {"DATE" : op ,"NAME": user_name, "VEHICLE NO" : user_vehicleNo,  "FUEL" : user_fuel, "LITER" : float(user_Liter), "AMOUNT" : float(user_amount), "DEPT" : user_Dept, "REASON" : user_reason}
 		#df = df.append(new_data, ignore_index = True)
