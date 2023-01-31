@@ -18,21 +18,44 @@
 #                      st.write(f"{i} : {m['LTP']} Change: {m['Change']} % {m['PerChange']}")
 #        except Exception as e:              
 #               st.write(f"Error",{e})       
-
+import pytvchart
+import pandas as pd
 import streamlit as st
-import pyessl
 
-def fetch_data_from_essl_device():
-  # Connect to the ESSL biometric device
-  biometric = pyessl.device('192.168.1.201', port=80)
+# Load the historical market data for the stock you want to trade
+data = pytvchart.Chart().get_data('AAPL', 'D', '2y')
 
-  # Fetch data from the device
-  data = biometric.get_data()
+# Create a function that implements your trading strategy
+def trading_strategy(data):
+    # Example strategy: buy when the 50-day moving average crosses above the 200-day moving average
+    data['50_day_ma'] = data['close'].rolling(window=50).mean()
+    data['200_day_ma'] = data['close'].rolling(window=200).mean()
+    data['buy'] = (data['50_day_ma'] > data['200_day_ma']) & (data['50_day_ma'].shift(1) < data['200_day_ma'].shift(1))
+    return data
 
-  return data
+# Apply the trading strategy to the data
+traded_data = trading_strategy(data)
 
-# Example Usage: Display the fetched data in a Streamlit app
-st.title("ESSL Biometric Data")
+# Initialize variables to keep track of your simulated trades
+cash = 10000
+shares = 0
+total_value = cash
 
-data = fetch_data_from_essl_device()
-st.write("Fetched data from ESSL biometric device:", data)
+# Create a dataframe to store the trade statements
+trade_statements = pd.DataFrame(columns=['Date', 'Action', 'Shares', 'Price', 'Total Value'])
+
+# Loop through the data and make trades based on your strategy
+for index, row in traded_data.iterrows():
+    if row['buy']:
+        shares = cash / row['close']
+        cash = 0
+        total_value = shares * row['close']
+        trade_statements = trade_statements.append({'Date': index, 'Action': 'Buy', 'Shares': shares, 'Price': row['close'], 'Total Value': total_value}, ignore_index=True)
+    else:
+        total_value = shares * row['close']
+    trade_statements = trade_statements.append({'Date': index, 'Action': 'Hold', 'Shares': shares, 'Price': row['close'], 'Total Value': total_value}, ignore_index=True)
+
+# Display the trade statements in a Streamlit app
+st.write("TradeView Paper Trading Example")
+st.write("Trade Statements:")
+st.table(trade_statements)
