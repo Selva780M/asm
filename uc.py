@@ -2,6 +2,7 @@ from pya3 import *
 import streamlit as st
 from datetime import datetime, timedelta
 from pytz import timezone 
+import time
 day = datetime.now(timezone("Asia/Kolkata"))
 day = day.strftime('%Y-%m-%d %H:%M:%S')
 alice = Aliceblue(user_id='627742',api_key='BPk1mFAXB9ByTFFQnm87HhieLFo3Fy5J3PCaae2g252DiLCNB9BK7hF0LpSg3d9fNO698r32IAsEt0lWm3hmuZMWW9tJC6r6A7xGkZWGmY1Hcdys1q9ITC1pRjYaklRQ')
@@ -14,10 +15,10 @@ def main():
        try:
               for i in ticker:
                      m = alice.get_scrip_info(alice.get_instrument_by_symbol('INDICES',i))
-                     st.write(f"Nifty50:{m['LTP']}Change:{m['Change']} %{m['PerChange']}")
+                     st.write(f"Nifty50: {m['LTP']} Change: {m['Change']} % {m['PerChange']}")
        except Exception as e:              
               st.write(f"Error",{e})
-       sleep(1)
+       time.sleep(1)
 
 
 def get_ltp(symbol):
