@@ -9,7 +9,7 @@ alice.get_session_id()
 exchange = "NFO"
 symbol = "NIFTY"
 st.write(day)
-ticker = "NIFTY 50","BANK NIFTY"
+ticker = ["NIFTY 50","BANK NIFTY"]
 def main():
        try:
               for i in ticker:
