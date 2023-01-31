@@ -56,7 +56,7 @@ expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index
 col11, col22 = st.columns(2)		
 user_USER = st.sidebar.radio('USER',('ARUN','SELVA','VIJAY','VASANTH'))
 if user_USER:
-	st.sidebar.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Hi {user_USER} Enter Data 👇"}</h1>', unsafe_allow_html=True)
+	st.sidebar.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Hi 👋 {user_USER} Enter Data 👉"}</h1>', unsafe_allow_html=True)
 with col11:
 	#user_STOCK = st.selectbox("Stock",("NIFTY 50","NIFTY BANK"))
 	st.radio("Stock",("NIFTY 50","NIFTY BANK"), horizontal=True)
@@ -65,8 +65,8 @@ with col11:
 	user_STOP = st.number_input('Stoploss', min_value=5, max_value=50, value=10, step=5, format=None, key=None)
 	user_TARGET = st.number_input('Target', min_value=5, max_value=50, value=10, step=5, format=None, key=None)
 with col22:
-	ENTRY = st.submit_button('Entry')
-	EXIT = st.submit_button('Exit')
+	ENTRY = st.button('Entry')
+	EXIT = st.button('Exit')
 if ENTRY:
 	#new_data = {"DATE" : op ,"NAME": user_name, "VEHICLE NO" : user_vehicleNo,  "FUEL" : user_fuel, "LITER" : float(user_Liter), "AMOUNT" : float(user_amount), "DEPT" : user_Dept, "REASON" : user_reason}
 	#df = df.append(new_data, ignore_index = True)
