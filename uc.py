@@ -54,7 +54,7 @@ expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index
 #------------------------------------------
 with st.form("opt_form",clear_on_submit=True):
 	col11, col22, = st.columns(2)
-	user_USER = st.selectbox("USER",("ARUN","SELVA","VIJAY","VASANTH"))
+	user_USER = st.selectbox('USER',('ARUN','SELVA','VIJAY','VASANTH'))
 	st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Hi {user_USER} Enter Data 👇"}</h1>', unsafe_allow_html=True)
 	with col11:
 		user_STOCK = st.selectbox("Stock",("NIFTY 50","NIFTY BANK"))
