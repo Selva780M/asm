@@ -9,16 +9,12 @@ DATE = day.strftime('%Y-%m-%d %H:%M:%S')
 alice = Aliceblue(user_id='627742',api_key='BPk1mFAXB9ByTFFQnm87HhieLFo3Fy5J3PCaae2g252DiLCNB9BK7hF0LpSg3d9fNO698r32IAsEt0lWm3hmuZMWW9tJC6r6A7xGkZWGmY1Hcdys1q9ITC1pRjYaklRQ')
 alice.get_session_id()
 
-
-    
-
 def Dir():
 	if user_OPTION == "call":		
 		call_strike = spot - (base * strike_difference)
 		call = alice.get_instrument_for_fno(exch=exchange, symbol=symbol, expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)
 		i = call.name
-		st.write(i)
-        #option_trade.append(i)
+		st.write(i)        
 		st.balloons()
 		kl = "call"  
 	if  user_OPTION == "put":
@@ -26,8 +22,7 @@ def Dir():
 		put_strike = spot + (base * strike_difference)
 		put = alice.get_instrument_for_fno(exch=exchange, symbol=symbol, expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
 		i = call.name
-		st.write(i)
-        option_trade.append(i)		
+		st.write(i)		
 		st.balloons()
 		kl = "put"
 	return kl
