@@ -18,7 +18,7 @@ alice.get_session_id()
 #                      st.write(f"{i} : {m['LTP']} Change: {m['Change']} % {m['PerChange']}")
 #        except Exception as e:              
 #               st.write(f"Error",{e})       
-import pytvchart
+
 import pandas as pd
 import streamlit as st
 
