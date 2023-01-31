@@ -16,7 +16,6 @@ def Dir():
 		i = call.name
 		st.write(i)        
 		st.balloons()
-		kl = "call"  
 	if  user_OPTION == "put":
 		result = "put"
 		put_strike = spot + (base * strike_difference)
@@ -24,8 +23,7 @@ def Dir():
 		i = call.name
 		st.write(i)		
 		st.balloons()
-		kl = "put"
-	return kl
+
 # def main():
 #        try:
 #               for i in ticker:
@@ -84,7 +82,7 @@ with st.form("opt_form",clear_on_submit=False):
 			spot = round((float(ltp)) / base) * base
 			strike_difference = 1
 			expiry_date = expiry[0]
-			result = Dir()
+			Dir()
 		if user_STOCK == "NIFTY BANK":
 			exchange = "NFO"
 			symbol = "BANKNIFTY"
@@ -94,6 +92,6 @@ with st.form("opt_form",clear_on_submit=False):
 			spot = round((float(ltp)) / base) * base
 			strike_difference = 1
 			expiry_date = expiry[0]
-			result = Dir()
+			Dir()
 	if EXIT:
 		st.write('exit')
