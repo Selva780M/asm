@@ -54,13 +54,13 @@ expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index
 #------------------------------------------
 #with st.form("opt_form",clear_on_submit=False):
 col11, col22 = st.columns(2)		
-#user_USER = st.selectbox('USER',('ARUN','SELVA','VIJAY','VASANTH'))
-#if user_USER:
-#	st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Hi {user_USER} Enter Data 👇"}</h1>', unsafe_allow_html=True)
+user_USER = st.sidebar.radio('USER',('ARUN','SELVA','VIJAY','VASANTH'))
+if user_USER:
+	st.sidebar.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Hi {user_USER} Enter Data 👇"}</h1>', unsafe_allow_html=True)
 with col11:
 	#user_STOCK = st.selectbox("Stock",("NIFTY 50","NIFTY BANK"))
-	st.sidebar.radio("Stock",("NIFTY 50","NIFTY BANK"), horizontal=True)
-	user_OPTION = st.selectbox("Option",("call","put"))
+	st.radio("Stock",("NIFTY 50","NIFTY BANK"), horizontal=True)
+	user_OPTION = st.radio("Option",("call","put"))
 	user_LOT = st.number_input('Qty', min_value=25, max_value=1000, value=25, step=25, format=None, key=None)
 	user_STOP = st.number_input('Stoploss', min_value=5, max_value=50, value=10, step=5, format=None, key=None)
 	user_TARGET = st.number_input('Target', min_value=5, max_value=50, value=10, step=5, format=None, key=None)
