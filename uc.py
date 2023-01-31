@@ -38,7 +38,7 @@ def paper_trade():
     st.write(f"The LTP of {symbol} is {ltp}")
 
     # Define the number of shares
-    shares = st.number_input("Enter the number of shares you want to buy:",int(2)
+    shares = st.number_input("Enter the number of shares you want to buy:",int(2))
 
     # Calculate the cost of the trade
     cost = ltp * shares
