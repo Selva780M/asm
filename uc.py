@@ -1,5 +1,5 @@
 from pya3 import *
-# import streamlit as st
+import streamlit as st
 from datetime import datetime, timedelta
 from pytz import timezone 
 import time
@@ -20,8 +20,6 @@ alice.get_session_id()
 #               st.write(f"Error",{e})       
 
 import pandas as pd
-import streamlit as st
-
 
 instrument = alice.get_instrument_by_symbol("NSE","SBIN")
 from_datetime = day - timedelta(days=5)
@@ -34,6 +32,7 @@ df = df.groupby(pd.Grouper(freq='5Min')).agg({"open":"first","high":"max","low":
 df.dropna(inplace=True)
 # Load the historical market data for the stock you want to trade
 data = df
+
 st.dataframe(df)
 
 # Create a function that implements your trading strategy
@@ -49,7 +48,7 @@ traded_data = trading_strategy(data)
 
 # Initialize variables to keep track of your simulated trades
 cash = 10000
-shares = 0
+shares = st.input_number("Share",1)
 total_value = cash
 
 # Create a dataframe to store the trade statements
