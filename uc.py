@@ -67,44 +67,44 @@ with placeholder1.container():
 		
 #Get Expiry-------------------------------------------
 try:
-    contract_master= pd.read_csv('NFO.csv')
+	contract_master= pd.read_csv('NFO.csv')
 except:
-    alice.get_contract_master('NFO')
+	alice.get_contract_master('NFO')
 	contract_master = pd.read_csv('NFO.csv')
 all_contract=contract_master[contract_master['Symbol']=='NIFTY']
 expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
 #------------------------------------------
 with st.form("opt_form",clear_on_submit=True):
-    col11, col22, = st.columns(2)
-    user_USER = st.selectbox('USER',("ARUN","SELVA","VIJAY","VASANTH"))
-    st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Hi {user_USER} Enter Data 👇"}</h1>', unsafe_allow_html=True)
-    with col11:
-        user_STOCK = st.selectbox = ["NIFTY 50","NIFTY BANK"]
-        user_OPTION = st.selectbox = ["call","put"]
-        user_LOT = st.number_input('Qty', min_value=25, max_value=1000, value=25, step=25, format=None, key=None)
-        user_STOP = st.number_input('Stoploss', min_value=5, max_value=50, value=10, step=5, format=None, key=None)
-        user_TARGET = st.number_input('Target', min_value=5, max_value=50, value=10, step=5, format=None, key=None)
-    with col22:
-        ENTRY = st.form_submit_button('Entry')
-        EXIT = st.form_submit_button('Exit')
-        if ENTRY:
-            #new_data = {"DATE" : op ,"NAME": user_name, "VEHICLE NO" : user_vehicleNo,  "FUEL" : user_fuel, "LITER" : float(user_Liter), "AMOUNT" : float(user_amount), "DEPT" : user_Dept, "REASON" : user_reason}
-            #df = df.append(new_data, ignore_index = True)
-            #df.to_csv('token.csv',index = False)
-            st.write('pass')
-            if user_STOCK == "NIFTY 50":
-                exchange = "NFO"
-                symbol = "NIFTY"
-                base = 50 
-                spot = round((float(ltp)) / base) * base					
-                strike_difference = 1
-                expiry_date = expiry[0]
-                result = Dir()
-            if user_STOCK == "NIFTY BANK":
-                exchange = "NFO"
-                symbol = "BANKNIFTY"
-                base = 100 
-                spot = round((float(ltp)) / base) * base					
-                strike_difference = 1
-                expiry_date = expiry[0]
-                result = Dir()
+	col11, col22, = st.columns(2)
+	user_USER = st.selectbox('USER',("ARUN","SELVA","VIJAY","VASANTH"))
+	st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Hi {user_USER} Enter Data 👇"}</h1>', unsafe_allow_html=True)
+	with col11:
+        	user_STOCK = st.selectbox = ["NIFTY 50","NIFTY BANK"]
+        	user_OPTION = st.selectbox = ["call","put"]
+        	user_LOT = st.number_input('Qty', min_value=25, max_value=1000, value=25, step=25, format=None, key=None)
+        	user_STOP = st.number_input('Stoploss', min_value=5, max_value=50, value=10, step=5, format=None, key=None)
+        	user_TARGET = st.number_input('Target', min_value=5, max_value=50, value=10, step=5, format=None, key=None)
+    	with col22:
+	        ENTRY = st.form_submit_button('Entry')
+	        EXIT = st.form_submit_button('Exit')
+	        if ENTRY:
+			#new_data = {"DATE" : op ,"NAME": user_name, "VEHICLE NO" : user_vehicleNo,  "FUEL" : user_fuel, "LITER" : float(user_Liter), "AMOUNT" : float(user_amount), "DEPT" : user_Dept, "REASON" : user_reason}
+            		#df = df.append(new_data, ignore_index = True)
+            		#df.to_csv('token.csv',index = False)
+            		st.write('pass')
+            		if user_STOCK == "NIFTY 50":
+				exchange = "NFO"
+                		symbol = "NIFTY"
+                		base = 50 
+                		spot = round((float(ltp)) / base) * base					
+                		strike_difference = 1
+				expiry_date = expiry[0]
+				result = Dir()
+			if user_STOCK == "NIFTY BANK":
+				exchange = "NFO"
+				symbol = "BANKNIFTY"
+				base = 100 
+				spot = round((float(ltp)) / base) * base					
+				strike_difference = 1
+				expiry_date = expiry[0]
+				result = Dir()
