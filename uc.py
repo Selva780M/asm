@@ -15,10 +15,9 @@ def main():
        try:
               for i in ticker:
                      m = alice.get_scrip_info(alice.get_instrument_by_symbol('INDICES',i))
-                     st.write(f"Nifty50: {m['LTP']} Change: {m['Change']} % {m['PerChange']}")
+                     st.write(f"{i} : {m['LTP']} Change: {m['Change']} % {m['PerChange']}")
        except Exception as e:              
-              st.write(f"Error",{e})
-       time.sleep(1)
+              st.write(f"Error",{e})       
 
 
 def get_ltp(symbol):
