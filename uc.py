@@ -61,11 +61,10 @@ with placeholder1.container():
 	st.success(f"Welcome !!!!⏰⏰")
 	con1, con2 ,con3 = st.columns(3)
 	with con1:
-		st.markdown(f""" *_Date:_* {DATE}	""")
+		st.markdown(f""" *_Date:_* {DATE}""")
 	with con3:
 		st.markdown(f""" *_ALGO PAPER TRADE:_* """)
-	
-
+		
 #Get Expiry-------------------------------------------
 try:
     contract_master= pd.read_csv('NFO.csv')
