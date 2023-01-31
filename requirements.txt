@@ -1,2 +1,1 @@
 pya3
-pytvchart
