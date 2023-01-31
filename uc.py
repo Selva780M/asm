@@ -10,14 +10,14 @@ exchange = "NFO"
 symbol = "NIFTY"
 st.write(day)
 ticker = ["NIFTY 50","BANK NIFTY"]
-def main():    
+def main():
        try:
-            for i in len(ticker):
-                m = alice.get_scrip_info(alice.get_instrument_by_symbol('INDICES', i))
-                st.write(f"Nifty50:{m['LTP']}Change:{m['Change']} %{m['PerChange']}")
-        except:
-            st.write("Error"{e})
-        sleep(1)
+              for i in len(ticker):
+                     m = alice.get_scrip_info(alice.get_instrument_by_symbol('INDICES', i))
+                     st.write(f"Nifty50:{m['LTP']}Change:{m['Change']} %{m['PerChange']}")
+       except as e:
+              st.write("Error"{e})
+              sleep(1)
 
 
 def get_ltp(symbol):
