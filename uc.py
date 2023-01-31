@@ -75,7 +75,7 @@ with st.form("opt_form"):
 				st.write(n_put.name)
 				st.balloons()			
 		if user_STOCK == "BANKNIFTY":
-			m = alice.get_scrip_info(alice.get_instrument_by_symbol("NFO",user_STOCK))
+			m = alice.get_scrip_info(alice.get_instrument_by_symbol("NFO","NIFTYBANK"))
 			ltp = m['LTP']
 			spot = round((float(ltp)) / 100) * 100			
 			expiry_date = expiry[0]
