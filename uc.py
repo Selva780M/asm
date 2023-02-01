@@ -104,11 +104,9 @@ if len(df['STOCK']) > 0:
 				lt = m['LTP'] 								
 				em.append(lt)				
 			st.write(em)
-			st.write(list(em.values()))
-			#df['ltp'] = list(em.values())
+			df = df.append(em, ignore_index = True)
 			#df = df.append(em, ignore_index = True)
-			#df = df.append(em, ignore_index = True)
-			df.to_csv('token.csv',index = False)
+			#df.to_csv('token.csv',index = False)
 			st.table(df)
 		except Exception as e:
 			st.write(f"Er.",{e}) 
