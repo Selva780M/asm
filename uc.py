@@ -8,7 +8,7 @@ day = datetime.now(timezone("Asia/Kolkata"))
 DATE = day.strftime('%Y-%m-%d %H:%M:%S')
 alice = Aliceblue(user_id='627742',api_key='BPk1mFAXB9ByTFFQnm87HhieLFo3Fy5J3PCaae2g252DiLCNB9BK7hF0LpSg3d9fNO698r32IAsEt0lWm3hmuZMWW9tJC6r6A7xGkZWGmY1Hcdys1q9ITC1pRjYaklRQ')
 alice.get_session_id()
-
+df = pd.read_csv('./token.csv')
 
 # def main():
 #        try:
@@ -46,17 +46,14 @@ with st.form("opt_form"):
 		user_STOCK = st.radio("Stock",("NIFTY","BANKNIFTY"), horizontal=True)
 		user_OPTION = st.radio("Option",("call","put"), horizontal=True)
 		st.write('')
-		st.write('')		
+		st.write('')
+		st.write('')
 		ENTRY = st.form_submit_button('👉 Order Placed')
 	with col22:		
 		user_LOT = st.number_input('Qty', min_value=25, max_value=1000, value=25, step=25, format=None, key=None)
 		user_STOP = st.number_input('Stoploss', min_value=5, max_value=50, value=10, step=5, format=None, key=None)
 		user_TARGET = st.number_input('Target', min_value=5, max_value=50, value=10, step=5, format=None, key=None)			
-	if ENTRY:
-		#new_data = {"DATE" : op ,"NAME": user_name, "VEHICLE NO" : user_vehicleNo,  "FUEL" : user_fuel, "LITER" : float(user_Liter), "AMOUNT" : float(user_amount), "DEPT" : user_Dept, "REASON" : user_reason}
-		#df = df.append(new_data, ignore_index = True)
-		#df.to_csv('token.csv',index = False)
-		st.write('pass')
+	if ENTRY:		
 		if user_STOCK == "NIFTY":			
 			n = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
 			n_ltp = n['LTP']
@@ -88,3 +85,8 @@ with st.form("opt_form"):
 				st.write(b_put.name)
 				st.balloons()
 		
+		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"POSITION TABLE"}</h1>', unsafe_allow_html=True)
+		#new_data = {"DATE" : op ,"NAME": user_name, "VEHICLE NO" : user_vehicleNo,  "FUEL" : user_fuel, "LITER" : float(user_Liter), "AMOUNT" : float(user_amount), "DEPT" : user_Dept, "REASON" : user_reason}
+		#df = df.append(new_data, ignore_index = True)
+		#df.to_csv('token.csv',index = False)
+		st.table(df)
