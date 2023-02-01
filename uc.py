@@ -38,21 +38,21 @@ expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index
 #------------------------------------------
 with st.form("opt_form"):	
 	col11, col22, col33 = st.columns(3)	
-	user_USER = st.sidebar.radio('*_USER_*',('ARUN','SELVA','VIJAY','VASANTH'))
+	user_USER = st.sidebar.radio('*_USER_*',('*_ARUN_*','*_SELVA_*','*_VIJAY_*','*_VASANTH_*'))
 	if user_USER:
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f"Hi 👋 {user_USER}"}</h1>', unsafe_allow_html=True)
-		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:20px;">{f"Enter Data 👉"}</h1>', unsafe_allow_html=True)
+		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:20px;">{f"_*Pls Enter Details_* 👉"}</h1>', unsafe_allow_html=True)
 	with col11:		
-		user_STOCK = st.radio("Stock",("NIFTY","BANKNIFTY"), horizontal=True)
-		user_OPTION = st.radio("Option",("call","put"), horizontal=True)
+		user_STOCK = st.radio("*_Stock_*",("NIFTY_*","BANKNIFTY_*"), horizontal=True)
+		user_OPTION = st.radio("*_Option_*",("*_call_*","*_put_*"), horizontal=True)
 		st.write('')
 		st.write('')
 		st.write('')
-		ENTRY = st.form_submit_button('👉 Order Placed')
+		ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 	with col22:		
-		user_LOT = st.number_input('Qty', min_value=25, max_value=1000, value=25, step=25, format=None, key=None)
-		user_STOP = st.number_input('Stoploss', min_value=5, max_value=50, value=10, step=5, format=None, key=None)
-		user_TARGET = st.number_input('Target', min_value=5, max_value=50, value=10, step=5, format=None, key=None)			
+		user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=None)
+		user_STOP = st.number_input('*_Stoploss_*', min_value=5, max_value=50, value=10, step=5, format=None, key=None)
+		user_TARGET = st.number_input('*_Target_*', min_value=5, max_value=50, value=10, step=5, format=None, key=None)			
 	with col33:
 		placeholder01 = st.empty()
 	if ENTRY:		
