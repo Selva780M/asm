@@ -105,7 +105,7 @@ if len(df['STOCK']) > 0:
 				em.append(lt)				
 			st.write(em)			
 			df1 = pd.Series(em,name='ltp')
-			df = pd.concat([df,df1],axis=1)
+			pd.concat([df,df1],axis=1)
 			#df = pandas.concat([df, em], axis=1)
 			#df = df.append(em)
 			#df = df.append(em, ignore_index = True)
