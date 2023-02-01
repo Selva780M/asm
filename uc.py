@@ -131,11 +131,9 @@ with st.form("opt_form"):
 					if(df100.iloc[i,7]) >= (df100.iloc[i,6]):						
 						df5 = df5.append(df100, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
-					elif(df100.iloc[i,5]) <= (df100.iloc[i,7]):
+					if(df100.iloc[i,5]) <= (df100.iloc[i,7]):
 						df5 = df5.append(df100, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
-					else:
-						pass
 				with placeholder101.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
 					st.table(df5)	
