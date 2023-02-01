@@ -49,11 +49,7 @@ with st.form("opt_form"):
 	with col22:		
 		user_STOP = st.number_input('Stoploss', min_value=5, max_value=50, value=10, step=5, format=None, key=None)
 		user_TARGET = st.number_input('Target', min_value=5, max_value=50, value=10, step=5, format=None, key=None)		
-	col1, col2= st.columns(2)
-	with col1:
 		ENTRY = st.form_submit_button('Entry')
-	with col2:
-		EXIT = st.form_submit_button('Exit')
 	if ENTRY:
 		#new_data = {"DATE" : op ,"NAME": user_name, "VEHICLE NO" : user_vehicleNo,  "FUEL" : user_fuel, "LITER" : float(user_Liter), "AMOUNT" : float(user_amount), "DEPT" : user_Dept, "REASON" : user_reason}
 		#df = df.append(new_data, ignore_index = True)
@@ -89,5 +85,4 @@ with st.form("opt_form"):
 				b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
 				st.write(b_put.name)
 				st.balloons()
-	if EXIT:
-		st.write('exit')
+		
