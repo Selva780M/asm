@@ -115,6 +115,6 @@ if len(df['STOCK']) > 0:
 			st.table(df100)
 		with col33:
 			with placeholder100.container():
-				t.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Profit/Loss"}</h1>', unsafe_allow_html=True)
+				t.write(f'<h1 style="color:#33ff33;font-size:40px;">{"(P/L)"}</h1>', unsafe_allow_html=True)
 		time.sleep(1)
 		#df100.to_csv('token.csv',index = False)
