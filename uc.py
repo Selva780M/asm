@@ -24,8 +24,8 @@ with placeholder1.container():
 
 		
 #--------------------------------------------
-def col(val):
-	color='red' if val < -1 else 'green'
+def col(df100['P_L']):
+	color='red' if df100['P_L'] < -1 else 'green'
 	return 'color: %s' % color
 #Get Expiry-------------------------------------------
 try:
