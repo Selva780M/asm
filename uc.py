@@ -104,13 +104,13 @@ if len(df['STOCK']) > 0:
 				lt ={'ltp' : float(m['LTP'])} 								
 				em.append(lt)				
 			st.write(em)
-			df100 = pd.DataFrame()
-			df100 = pd.concat([df,em], ignore_index=True)
+			df1 = pd.Series(em)
+			df = pd.concat([df,df1],axis=1)
 			#df = pandas.concat([df, em], axis=1)
 			#df = df.append(em)
 			#df = df.append(em, ignore_index = True)
 			#df.to_csv('token.csv',index = False)
-			st.table(df100)
+			st.table(df)
 		except Exception as e:
 			st.write(f"Er.",{e}) 
 		time.sleep(1)
