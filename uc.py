@@ -131,7 +131,8 @@ with st.form("opt_form"):
 				df100 = pd.concat([df,df1],axis=1)
 				df100['P_L'] = (df100['LTP'] - 1000) #*df100['ENTRY']) * df100['QTY']
 				with placeholder12.container():
-					ab = df[['NAME','P_L']]
+					a = df[['NAME','P_L']]
+					ab = pd.concat([ab, a], ignore_index=True)
 					st.table(ab.style.applymap(col))
 				A = df100.style.applymap(col)
 				with placeholder100.container():
