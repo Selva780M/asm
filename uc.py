@@ -60,7 +60,7 @@ with st.form("opt_form"):
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name,  "ENTRY" : entry, "QTY" : int(user_LOT), "STOPLOSS" : float(entry - user_STOP), "TARGET" : float(entry + user_TARGET)}
 				df = df.append(new_data, ignore_index = True)
-				df.to_csv('token.csv',index = False)
+				#df.to_csv('token.csv',index = False)
 				st.balloons()
 			if  user_OPTION == "put":
 				put_strike = spot + (50)
@@ -69,7 +69,7 @@ with st.form("opt_form"):
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name,  "ENTRY" : entry, "QTY" : int(user_LOT), "STOPLOSS" : float(entry - user_STOP), "TARGET" : float(entry + user_TARGET)}
 				df = df.append(new_data, ignore_index = True)
-				df.to_csv('token.csv',index = False)
+				#df.to_csv('token.csv',index = False)
 				st.balloons()			
 		if user_STOCK == "BANKNIFTY":
 			b = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
@@ -83,7 +83,7 @@ with st.form("opt_form"):
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name,  "ENTRY" : entry, "QTY" : int(user_LOT), "STOPLOSS" : float(entry - user_STOP), "TARGET" : float(entry + user_TARGET)}
 				df = df.append(new_data, ignore_index = True)
-				df.to_csv('token.csv',index = False)
+				#df.to_csv('token.csv',index = False)
 				st.balloons()
 			if  user_OPTION == "put":
 				put_strike = spot + (100)
@@ -92,7 +92,7 @@ with st.form("opt_form"):
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name,  "ENTRY" : entry, "QTY" : int(user_LOT), "STOPLOSS" : float(entry - user_STOP), "TARGET" : float(entry + user_TARGET)}
 				df = df.append(new_data, ignore_index = True)
-				df.to_csv('token.csv',index = False)
+				#df.to_csv('token.csv',index = False)
 				st.balloons()
 placeholder100 = st.empty()	
 if len(df['STOCK']) > 0:
