@@ -38,7 +38,7 @@ expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index
 #------------------------------------------
 with st.form("opt_form"):	
 	col11, col22, col33 = st.columns(3)	
-	user_USER = st.sidebar.radio('*_USER_*',('*_ARUN ,SELVA ,VIJAY,VASANTH_*'))
+	user_USER = st.sidebar.radio('*_USER_*',('*_ARUN_*' ,'*_SELVA_*' ,'*_VIJAY_*','*_VASANTH_*'))
 	if user_USER:
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f"Hi 👋 {user_USER}"}</h1>', unsafe_allow_html=True)
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:20px;">{f"_*Pls Enter Details_* 👉"}</h1>', unsafe_allow_html=True)
