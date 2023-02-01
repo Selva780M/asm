@@ -32,8 +32,8 @@ all_contract=contract_master[contract_master['Symbol']=='NIFTY']
 expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
 #------------------------------------------
 with st.form("opt_form"):
-	col11, col22, col33 = st.columns(3)	
 	placeholder1 = st.empty()
+	col11, col22, col33 = st.columns(3)		
 	user_USER = st.sidebar.radio('USER',('ARUN','SELVA','VIJAY','VASANTH'))
 	if user_USER:
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f"Hi 👋 {user_USER}"}</h1>', unsafe_allow_html=True)
