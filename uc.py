@@ -109,10 +109,9 @@ if len(df['STOCK']) > 0:
 		df100 = pd.DataFrame()
 		df1 = pd.Series(em,name='ltp')
 		df100 = pd.concat([df,df1],axis=1)
-		#df = pandas.concat([df, em], axis=1)
-		#df = df.append(em)
-		#df = df.append(em, ignore_index = True)
-		#df.to_csv('token.csv',index = False)
-		st.table(df100)
+		df100.to_csv('token.csv',index = False)
+		placeholder100 = st.empty()	
+		with placeholder100.container():
+			st.table(df100)
 		time.sleep(1)
 
