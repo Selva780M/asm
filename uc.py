@@ -66,9 +66,7 @@ with st.form("opt_form"):
 		user_TARGET = st.number_input('*_Target_*', min_value=5, max_value=50, value=10, step=5, format=None, key=None)			
 	with col33:
 		placeholder01 = st.empty()
-	if ENTRY:		
-		A = df.style.applymap(col)
-		st.table(A)
+	if ENTRY:
 		if user_STOCK == "NIFTY":			
 			n = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
 			n_ltp = n['LTP']
@@ -153,6 +151,7 @@ with st.form("opt_form"):
 						df100 = df100.drop(index=i)
 				with placeholder101.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
-					st.table(df5)	
+					B = df5.style.applymap(col)
+					st.table(B)	
 				time.sleep(1)
 		
