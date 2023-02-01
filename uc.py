@@ -104,7 +104,7 @@ with st.form("opt_form"):
 st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"POSITION"}</h1>', unsafe_allow_html=True)		
 if len(df['STOCK']) > 0:
 	try:
-		for i in range(df['STOCK'].all()):
+		for i in df['STOCK'].all():
 			#m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))
 			st.write(i)
 			#st.write(f"{i} {m['LTP']}")
