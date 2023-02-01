@@ -24,9 +24,20 @@ with placeholder1.container():
 
 		
 #--------------------------------------------
-def col(df100['P_L']):
-	color='red' if df100['P_L'] < -1 else 'green'
+def col(val):
+	try:
+		if val > 0:
+			color = 'green'
+		elif val < 0 :
+			color = 'red'				
+		else:			
+			color = 'white'
+	except:
+		color = 'white'
+	
 	return 'color: %s' % color
+
+
 #Get Expiry-------------------------------------------
 try:
 	contract_master= pd.read_csv('NFO.csv')
