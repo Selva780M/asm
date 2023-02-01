@@ -31,8 +31,7 @@ except:
 all_contract=contract_master[contract_master['Symbol']=='NIFTY']
 expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
 #------------------------------------------
-with st.form("opt_form"):
-	placeholder01 = st.empty()
+with st.form("opt_form"):	
 	col11, col22, col33 = st.columns(3)		
 	user_USER = st.sidebar.radio('USER',('ARUN','SELVA','VIJAY','VASANTH'))
 	if user_USER:
@@ -97,6 +96,7 @@ with st.form("opt_form"):
 				df.to_csv('token.csv',index = False)
 				st.balloons()
 placeholder100 = st.empty()
+placeholder01 = st.empty()
 if len(df['STOCK']) > 0:
 	while True:
 		em = []
