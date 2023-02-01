@@ -103,13 +103,14 @@ with st.form("opt_form"):
 				st.balloons()
 st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"POSITION"}</h1>', unsafe_allow_html=True)		
 if len(df['STOCK']) > 0:
-	try:
-		for i in df['STOCK']:
-			#m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))
-			st.write(i)
-			#st.write(f"{i} {m['LTP']}")
-			time.sleep(1)
-	except Exception as e:
-		st.write(f"Er.",{e}) 
-			
+	while True:
+		try:
+			for i in df['STOCK']:
+				#m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))
+				st.write(i)
+				#st.write(f"{i} {m['LTP']}")
+		
+		except Exception as e:
+			st.write(f"Er.",{e}) 
+		time.sleep(1)
 st.table(df)
