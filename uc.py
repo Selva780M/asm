@@ -129,10 +129,10 @@ with st.form("opt_form"):
 						st.metric("Rs", f"{PL}", f"{PL}")
 				for i in range(len(df100)):
 					if(df100.iloc[i,7]) >= (df100.iloc[i,6]):						
-						df5 = df.append(df100, ignore_index = True)
+						df5 = df5.append(df100, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
 					elif(df100.iloc[i,5]) <= (df100.iloc[i,7]):
-						df5 = df.append(df100, ignore_index = True)
+						df5 = df5.append(df100, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
 					else:
 						pass
