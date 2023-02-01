@@ -12,7 +12,7 @@ alice = Aliceblue(user_id='627742',api_key='BPk1mFAXB9ByTFFQnm87HhieLFo3Fy5J3PCa
 alice.get_session_id()
 df = pd.read_csv('./token.csv')
 #------------------------------------------------------
-	
+placeholder1 = st.empty()	
 with placeholder1.container():
 	st.success(f"Welcome !!!!⏰⏰")
 	con1, con2 ,con3 = st.columns(3)
@@ -21,7 +21,7 @@ with placeholder1.container():
 	with con3:
 		st.markdown(f""" *_ALGO PAPER TRADE_* """)
 
-placeholder01 = st.empty()
+
 #Get Expiry-------------------------------------------
 try:
 	contract_master= pd.read_csv('NFO.csv')
@@ -32,7 +32,7 @@ all_contract=contract_master[contract_master['Symbol']=='NIFTY']
 expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
 #------------------------------------------
 with st.form("opt_form"):
-	placeholder1 = st.empty()
+	placeholder01 = st.empty()
 	col11, col22, col33 = st.columns(3)		
 	user_USER = st.sidebar.radio('USER',('ARUN','SELVA','VIJAY','VASANTH'))
 	if user_USER:
