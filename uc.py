@@ -105,15 +105,11 @@ with st.form("opt_form"):
 st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"POSITION"}</h1>', unsafe_allow_html=True)		
 if len(df['STOCK']) > 0:
 	while True:
-		em = []
-		lt = []
 		try:
 			for i in df['STOCK']:				
 				m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
-				lt = float(m['LTP']) 
-				st.write(lt)
-				em.append(lt)
-				em = em.extend(lt)
+				lt = float(m['LTP']) 				
+				em = em.append(lt)				
 			st.write(em)
 			df = df.append(em, ignore_index = True)
 			#df = df.append(em, ignore_index = True)
