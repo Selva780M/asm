@@ -108,7 +108,8 @@ if len(df['STOCK']) > 0:
 			for i in df['STOCK']:
 				em = []
 				m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
-				d = em.append(m)
+				ltp = m['LTP']
+				ltp = em.append(ltp)
 				#st.write(f"{i} {m['LTP']}")
 			df['ltp'] = d
 			#df = df.append(df['ltp'], ignore_index = True)
