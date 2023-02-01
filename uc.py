@@ -104,7 +104,7 @@ if len(df['STOCK']) > 0:
 				lt ={'ltp' : float(m['LTP'])} 								
 				em.append(lt)				
 			st.write(em)
-			df.join(em)
+			df.join(em[0])
 			#df = pandas.concat([df, em], axis=1)
 			#df = df.append(em, ignore_index = True)
 			#df = df.append(em, ignore_index = True)
