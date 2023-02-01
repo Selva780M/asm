@@ -104,7 +104,8 @@ if len(df['STOCK']) > 0:
 				lt = m['LTP'] 								
 				em.append(lt)				
 			st.write(em)
-			df['ltp'] = list(em.values())
+			st.write(list(em.values()))
+			#df['ltp'] = list(em.values())
 			#df = df.append(em, ignore_index = True)
 			#df = df.append(em, ignore_index = True)
 			df.to_csv('token.csv',index = False)
