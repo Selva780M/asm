@@ -64,7 +64,7 @@ with st.form("opt_form"):
 				n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)
 				st.write(n_call.name)				
 				st.balloons()
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name,  "ENTRY" : float(0.00), "QTY" : int(user_LOT), "STOPLOSS" : float(0.00 - user_STOP), "TARGET" : float(0 + user_TARGET), "P/L" : 0, str("%":0}
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name,  "ENTRY" : float(0.00), "QTY" : int(user_LOT), "STOPLOSS" : float(0.00 - user_STOP), "TARGET" : float(0.00 + user_TARGET), str("P/L") : 0, str("%":0}
 				df = df.append(new_data, ignore_index = True)
 				df.to_csv('token.csv',index = False)
 			if  user_OPTION == "put":
