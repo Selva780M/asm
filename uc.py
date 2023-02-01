@@ -66,8 +66,9 @@ with st.form("opt_form"):
 		user_TARGET = st.number_input('*_Target_*', min_value=5, max_value=50, value=10, step=5, format=None, key=None)			
 	with col33:
 		placeholder01 = st.empty()
-	if ENTRY:
-		st.table(df)
+	if ENTRY:		
+		A = df.style.applymap(col)
+		st.table(A)
 		if user_STOCK == "NIFTY":			
 			n = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
 			n_ltp = n['LTP']
