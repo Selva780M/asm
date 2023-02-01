@@ -106,7 +106,7 @@ if len(df['STOCK']) > 0:
 	try:
 		for i in len(df['STOCK']):
 			m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))
-                      	st.write(f"{i} : {m['LTP']} Change: {m['Change']} % {m['PerChange']}")
+			st.write(f"{i} : {m['LTP']} Change: {m['Change']} % {m['PerChange']}")
 			time.sleep(1)
 	except Exception as e:
 		st.write(f"Error",{e}) 
