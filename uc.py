@@ -11,6 +11,7 @@ DATE = day.strftime('%Y-%m-%d %H:%M:%S')
 alice = Aliceblue(user_id='627742',api_key='BPk1mFAXB9ByTFFQnm87HhieLFo3Fy5J3PCaae2g252DiLCNB9BK7hF0LpSg3d9fNO698r32IAsEt0lWm3hmuZMWW9tJC6r6A7xGkZWGmY1Hcdys1q9ITC1pRjYaklRQ')
 alice.get_session_id()
 df = pd.read_csv('./token.csv')
+df5 = pd.read_csv('./trade.csv')
 #------------------------------------------------------
 placeholder1 = st.empty()	
 with placeholder1.container():
@@ -101,29 +102,29 @@ with st.form("opt_form"):
 				df = df.append(new_data, ignore_index = True)
 				df.to_csv('token.csv',index = False)
 				st.balloons()
-placeholder100 = st.empty()
-if len(df['STOCK']) > 0:
-	while True:
-		em = []
-		try:
-			for i in df['STOCK']:
-				m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
-				lt = float(m['LTP'])								
-				em.append(lt)
-		except Exception as e:
-			st.write(f"Er.",{e})					
-		df100 = pd.DataFrame()
-		df1 = pd.Series(em,name='LTP')
-		df100 = pd.concat([df,df1],axis=1)
-		df100['P_L'] = (df100['LTP'] - df100['ENTRY']) * df100['QTY'] 								
-		with placeholder100.container():
-			st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)
-			st.table(df100)		
-		with col33:
-			with placeholder01.container():
-				st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"(Profit/Loss)"}</h1>', unsafe_allow_html=True)
-				PL = df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()
-				st.metric("Rs", f"{PL}", f"{PL}")				
-				
-		time.sleep(1)
+		placeholder100 = st.empty()
+		if len(df['STOCK']) > 0:
+			while True:
+				em = []
+				try:
+					for i in df['STOCK']:
+						m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
+						lt = float(m['LTP'])								
+						em.append(lt)
+				except Exception as e:
+					st.write(f"Er.",{e})					
+				df100 = pd.DataFrame()
+				df1 = pd.Series(em,name='LTP')
+				df100 = pd.concat([df,df1],axis=1)
+				df100['P_L'] = (df100['LTP'] - df100['ENTRY']) * df100['QTY'] 								
+				with placeholder100.container():
+					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)
+					st.table(df100)		
+				with col33:
+					with placeholder01.container():
+						st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"(Profit/Loss)"}</h1>', unsafe_allow_html=True)
+						PL = df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()
+						st.metric("Rs", f"{PL}", f"{PL}")				
+
+				time.sleep(1)
 		
