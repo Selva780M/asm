@@ -2,6 +2,7 @@ from pya3 import *
 import streamlit as st
 st.set_page_config(layout="wide")
 import pandas as pd
+import numpy as np
 from datetime import datetime, timedelta
 from pytz import timezone 
 import time
@@ -104,15 +105,15 @@ with st.form("opt_form"):
 st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"POSITION"}</h1>', unsafe_allow_html=True)		
 if len(df['STOCK']) > 0:
 	while True:
+		em = []
 		try:
-			for i in df['STOCK']:
-				em = []
+			for i in df['STOCK']:				
 				m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
 				lt = m['LTP']
-				ltp = em.append(lt)
-				#st.write(f"{i} {m['LTP']}")
-			df['ltp'] = ltp
-			#df = df.append(df['ltp'], ignore_index = True)
+				sign = np.where( lt > 0 , float(lt) , 0 )
+				ltp = em.append(sign)
+				#st.write(f"{i} {m['LTP']}")			
+			df = df.append(ltp, ignore_index = True)
 			df.to_csv('token.csv',index = False)
 			st.table(df)
 		except Exception as e:
