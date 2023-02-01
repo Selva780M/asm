@@ -58,7 +58,7 @@ with st.form("opt_form"):
 				n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
 				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name,  "ENTRY" : entry, "QTY" : int(user_LOT), "STOPLOSS" : float(entry - user_STOP), "TARGET" : float(entry + user_TARGET), "P/L" : 0, "%" : 0 }
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name,  "ENTRY" : entry, "QTY" : int(user_LOT), "STOPLOSS" : float(entry - user_STOP), "TARGET" : float(entry + user_TARGET)}
 				df = df.append(new_data, ignore_index = True)
 				df.to_csv('token.csv',index = False)
 				st.balloons()
@@ -67,7 +67,7 @@ with st.form("opt_form"):
 				n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_put.name)))
 				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name,  "ENTRY" : entry, "QTY" : int(user_LOT), "STOPLOSS" : float(entry - user_STOP), "TARGET" : float(entry + user_TARGET), "P/L" : 0, "%" : 0 }
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name,  "ENTRY" : entry, "QTY" : int(user_LOT), "STOPLOSS" : float(entry - user_STOP), "TARGET" : float(entry + user_TARGET)}
 				df = df.append(new_data, ignore_index = True)
 				df.to_csv('token.csv',index = False)
 				st.balloons()			
@@ -81,7 +81,7 @@ with st.form("opt_form"):
 				b_call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_call.name)))
 				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name,  "ENTRY" : entry, "QTY" : int(user_LOT), "STOPLOSS" : float(entry - user_STOP), "TARGET" : float(entry + user_TARGET), "P/L" : 0, "%" : 0 }
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name,  "ENTRY" : entry, "QTY" : int(user_LOT), "STOPLOSS" : float(entry - user_STOP), "TARGET" : float(entry + user_TARGET)}
 				df = df.append(new_data, ignore_index = True)
 				df.to_csv('token.csv',index = False)
 				st.balloons()
@@ -90,7 +90,7 @@ with st.form("opt_form"):
 				b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_put.name)))
 				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name,  "ENTRY" : entry, "QTY" : int(user_LOT), "STOPLOSS" : float(entry - user_STOP), "TARGET" : float(entry + user_TARGET), "P/L" : 0, "%" : 0 }
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name,  "ENTRY" : entry, "QTY" : int(user_LOT), "STOPLOSS" : float(entry - user_STOP), "TARGET" : float(entry + user_TARGET)}
 				df = df.append(new_data, ignore_index = True)
 				df.to_csv('token.csv',index = False)
 				st.balloons()
@@ -108,9 +108,10 @@ if len(df['STOCK']) > 0:
 		df100 = pd.DataFrame()
 		df1 = pd.Series(em,name='ltp')
 		df100 = pd.concat([df,df1],axis=1)
+		df100['P_L'] = df100['ltp'] - df100['ENTRY']
 		#df100.to_csv('token.csv',index = False)						
 		with placeholder100.container():
-			st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"POSITION"}</h1>', unsafe_allow_html=True)
+			st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)
 			st.table(df100)
 		time.sleep(1)
 
