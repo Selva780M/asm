@@ -11,15 +11,7 @@ DATE = day.strftime('%Y-%m-%d %H:%M:%S')
 alice = Aliceblue(user_id='627742',api_key='BPk1mFAXB9ByTFFQnm87HhieLFo3Fy5J3PCaae2g252DiLCNB9BK7hF0LpSg3d9fNO698r32IAsEt0lWm3hmuZMWW9tJC6r6A7xGkZWGmY1Hcdys1q9ITC1pRjYaklRQ')
 alice.get_session_id()
 df = pd.read_csv('./token.csv')
-
-# def main():
-#        try:
-#               for i in ticker:
-#                      m = alice.get_scrip_info(alice.get_instrument_by_symbol('INDICES',i))
-#                      st.write(f"{i} : {m['LTP']} Change: {m['Change']} % {m['PerChange']}")
-#        except Exception as e:              
-#               st.write(f"Error",{e})       
-
+#------------------------------------------------------
 placeholder1 = st.empty()	
 with placeholder1.container():
 	st.success(f"Welcome !!!!⏰⏰")
@@ -108,7 +100,7 @@ if len(df['STOCK']) > 0:
 		try:			
 			for i in df['STOCK']:				
 				m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
-			lt ={'ltp':float(m['LTP'])} 				
+				lt ={'ltp':float(m['LTP'])} 				
 			df = df.append(lt, ignore_index = True)				
 			st.write(lt)			
 			#df = df.append(em, ignore_index = True)
