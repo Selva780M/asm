@@ -98,19 +98,19 @@ placeholder100 = st.empty()
 if len(df['STOCK']) > 0:
 	while True:
 		em = []
-		for i in df['STOCK']:
-			try:
+		try:
+			for i in df['STOCK']:
 				m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
 				lt = float(m['LTP'])								
-				em.append(lt)				
-			except Exception as e:
-				st.write(f"Er.",{e})					
-			df100 = pd.DataFrame()
-			df1 = pd.Series(em,name='ltp')
-			df100 = pd.concat([df,df1],axis=1)
-			#df100.to_csv('token.csv',index = False)						
-			with placeholder100.container():
-				st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"POSITION"}</h1>', unsafe_allow_html=True)
-				st.table(df100)
-			time.sleep(1)
+				em.append(lt)
+		except Exception as e:
+			st.write(f"Er.",{e})					
+		df100 = pd.DataFrame()
+		df1 = pd.Series(em,name='ltp')
+		df100 = pd.concat([df,df1],axis=1)
+		#df100.to_csv('token.csv',index = False)						
+		with placeholder100.container():
+			st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"POSITION"}</h1>', unsafe_allow_html=True)
+			st.table(df100)
+		time.sleep(1)
 
