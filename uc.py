@@ -45,6 +45,8 @@ with st.form("opt_form"):
 	with col11:		
 		user_STOCK = st.radio("Stock",("NIFTY","BANKNIFTY"), horizontal=True)
 		user_OPTION = st.radio("Option",("call","put"), horizontal=True)
+		st.write('')
+		st.write('')		
 		ENTRY = st.form_submit_button('👉 Order Placed')
 	with col22:		
 		user_LOT = st.number_input('Qty', min_value=25, max_value=1000, value=25, step=25, format=None, key=None)
