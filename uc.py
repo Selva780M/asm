@@ -114,9 +114,9 @@ if len(df['STOCK']) > 0:
 				record = {"ltp": sign}
 				em.append(record)
 				st.table(em)
-			df1 = df.append(em, ignore_index = True)
-			df1.to_csv('token.csv',index = False)
-			st.table(df1)
+			df = df.append(em, ignore_index = True)
+			df.to_csv('token.csv',index = False)
+			st.table(df)
 		except Exception as e:
 			st.write(f"Er.",{e}) 
 		time.sleep(1)
