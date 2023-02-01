@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from pytz import timezone 
 import time
 day = datetime.now(timezone("Asia/Kolkata"))
-DATE = day.strftime('%Y-%m-%d %H:%M:%S')
+DATE = day.strftime('%d-%m-%Y %H:%M:%S')
 alice = Aliceblue(user_id='627742',api_key='BPk1mFAXB9ByTFFQnm87HhieLFo3Fy5J3PCaae2g252DiLCNB9BK7hF0LpSg3d9fNO698r32IAsEt0lWm3hmuZMWW9tJC6r6A7xGkZWGmY1Hcdys1q9ITC1pRjYaklRQ')
 alice.get_session_id()
 df = pd.read_csv('./token.csv')
@@ -38,7 +38,7 @@ expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index
 #------------------------------------------
 with st.form("opt_form"):	
 	col11, col22, col33 = st.columns(3)	
-	user_USER = st.sidebar.radio('USER',('ARUN','SELVA','VIJAY','VASANTH'))
+	user_USER = st.sidebar.radio('*_USER_*',('ARUN','SELVA','VIJAY','VASANTH'))
 	if user_USER:
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f"Hi 👋 {user_USER}"}</h1>', unsafe_allow_html=True)
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:20px;">{f"Enter Data 👉"}</h1>', unsafe_allow_html=True)
