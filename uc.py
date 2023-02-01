@@ -62,8 +62,11 @@ with st.form("opt_form"):
 			if user_OPTION == "call":
 				call_strike = spot - (50)
 				n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)
-				st.write(n_call.name)
+				st.write(n_call.name)				
 				st.balloons()
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name,  "ENTRY" : float(0.00), "QTY" : int(user_LOT), "STOPLOSS" : float(0.00 - user_STOP), "TARGET" : float(0 + user_TARGET), "P/L" : 0, str("%":0}
+				df = df.append(new_data, ignore_index = True)
+				df.to_csv('token.csv',index = False)
 			if  user_OPTION == "put":
 				put_strike = spot + (50)
 				n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
@@ -85,8 +88,5 @@ with st.form("opt_form"):
 				st.write(b_put.name)
 				st.balloons()
 		
-st.sidebar.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"POSITION TABLE"}</h1>', unsafe_allow_html=True)
-		#new_data = {"DATE" : op ,"NAME": user_name, "VEHICLE NO" : user_vehicleNo,  "FUEL" : user_fuel, "LITER" : float(user_Liter), "AMOUNT" : float(user_amount), "DEPT" : user_Dept, "REASON" : user_reason}
-		#df = df.append(new_data, ignore_index = True)
-		#df.to_csv('token.csv',index = False)
+st.sidebar.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"POSITION TABLE"}</h1>', unsafe_allow_html=True)		
 st.table(df)
