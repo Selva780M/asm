@@ -76,8 +76,8 @@ with st.form("opt_form"):
 				st.balloons()			
 		if user_STOCK == "BANKNIFTY":
 			b = alice.get_scrip_info(alice.get_instrument_by_symbol("NFO","BANKNIFTY"))
-			ltp = b['LTP']
-			spot = round((float(ltp)) / 100) * 100			
+			b_ltp = b['LTP']
+			spot = round((float(b_ltp)) / 100) * 100			
 			expiry_date = expiry[0]
 			if user_OPTION == "call":
 				call_strike = spot - (100)
