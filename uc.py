@@ -110,7 +110,7 @@ if len(df['STOCK']) > 0:
 			for i in df['STOCK']:				
 				m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
 				lt = m['LTP']
-				sign = np.where(float(lt) > float(1.00) , float(lt) , float(lt) )
+				sign = float(lt)
 				record = {"ltp": sign}
 				em.append(record)
 				st.table(em)
