@@ -31,8 +31,7 @@ except:
 all_contract=contract_master[contract_master['Symbol']=='NIFTY']
 expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
 #------------------------------------------
-with st.form("opt_form"):
-	placeholder01 = st.empty()
+with st.form("opt_form"):	
 	col11, col22, col33 = st.columns(3)	
 	user_USER = st.sidebar.radio('USER',('ARUN','SELVA','VIJAY','VASANTH'))
 	if user_USER:
@@ -49,6 +48,8 @@ with st.form("opt_form"):
 		user_LOT = st.number_input('Qty', min_value=25, max_value=1000, value=25, step=25, format=None, key=None)
 		user_STOP = st.number_input('Stoploss', min_value=5, max_value=50, value=10, step=5, format=None, key=None)
 		user_TARGET = st.number_input('Target', min_value=5, max_value=50, value=10, step=5, format=None, key=None)			
+	with col33:
+		placeholder01 = st.empty()
 	if ENTRY:		
 		if user_STOCK == "NIFTY":			
 			n = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
