@@ -103,6 +103,7 @@ with st.form("opt_form"):
 				df.to_csv('token.csv',index = False)
 				st.balloons()
 		placeholder100 = st.empty()
+		placeholder101 = st.empty()
 		if len(df['STOCK']) > 0:
 			while True:
 				em = []
@@ -125,11 +126,18 @@ with st.form("opt_form"):
 					with placeholder01.container():
 						st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"(Profit/Loss)"}</h1>', unsafe_allow_html=True)
 						PL = df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()
-						st.metric("Rs", f"{PL}", f"{PL}")				
-				
-				
-				
-				
-				
+						st.metric("Rs", f"{PL}", f"{PL}")
+				for i in range(len(df100)):
+					if(df100.iloc[i,7]) >= (df100.iloc[i,6]):						
+						df5 = df.append(df100, ignore_index = True)
+						df5.to_csv('trade.csv',index = False)
+					elif(df100.iloc[i,5]) <= (df100.iloc[i,7]):
+						df5 = df.append(df100, ignore_index = True)
+						df5.to_csv('trade.csv',index = False)
+					else:
+						pass
+				with placeholder101.container():
+					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
+					st.table(df5)	
 				time.sleep(1)
 		
