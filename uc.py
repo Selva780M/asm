@@ -112,7 +112,7 @@ if len(df['STOCK']) > 0:
 				lt = m['LTP']
 				sign = float(lt)
 				record = {"ltp": sign}
-				em.append(record)
+				em.append(record,ignore_index = True)
 				st.table(em)
 			df = df.append(em, ignore_index = True)
 			df.to_csv('token.csv',index = False)
