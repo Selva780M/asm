@@ -110,7 +110,8 @@ if len(df['STOCK']) > 0:
 		try:
 			for i in df['STOCK']:				
 				m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
-				lt = float(m['LTP']) 			
+				lt = float(m['LTP']) 
+				st.write(lt)
 				em.append(lt)
 				em = em.extend(lt)
 			st.write(em)
