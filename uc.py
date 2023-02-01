@@ -113,4 +113,4 @@ if len(df['STOCK']) > 0:
 			st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)
 			st.table(df100)
 		time.sleep(1)
-		df100.to_csv('token.csv',index = False)
+		#df100.to_csv('token.csv',index = False)
