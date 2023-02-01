@@ -117,6 +117,7 @@ with st.form("opt_form"):
 				df1 = pd.Series(em,name='LTP')
 				df100 = pd.concat([df,df1],axis=1)
 				df100['P_L'] = (df100['LTP'] - df100['ENTRY']) * df100['QTY'] 								
+				df100['RESULT'] = np.where(df100[(df100['LTP'] > df100['TARGET'] ) | (df100['STOPLOSS'] < df100['LTP']], 'Complte', 'Process')
 				with placeholder100.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)
 					st.table(df100)		
@@ -125,6 +126,10 @@ with st.form("opt_form"):
 						st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"(Profit/Loss)"}</h1>', unsafe_allow_html=True)
 						PL = df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()
 						st.metric("Rs", f"{PL}", f"{PL}")				
-
+				
+				
+				
+				
+				
 				time.sleep(1)
 		
