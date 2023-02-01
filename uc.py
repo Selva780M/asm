@@ -104,8 +104,7 @@ if len(df['STOCK']) > 0:
 				lt = float(m['LTP'])								
 				em.append(lt)				
 			except Exception as e:
-				st.write(f"Er.",{e})
-		st.write(em)			
+				st.write(f"Er.",{e})					
 		df100 = pd.DataFrame()
 		df1 = pd.Series(em,name='ltp')
 		df100 = pd.concat([df,df1],axis=1)
