@@ -99,7 +99,7 @@ if len(df['STOCK']) > 0:
 	while True:		
 		try:			
 			for i in df['STOCK']:
-				em = []
+				em = pd.DataFrame()
 				m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
 				lt = m['LTP'] 								
 				em.append(lt)				
