@@ -106,11 +106,13 @@ if len(df['STOCK']) > 0:
 	while True:
 		try:
 			for i in df['STOCK']:
-				#m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))
-				st.write(i)
+				m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
 				#st.write(f"{i} {m['LTP']}")
-		
+				new_data = {"ltp" : float(m['LTP'])}
+				df = df.append(new_data, ignore_index = True)
+				df.to_csv('token.csv',index = False)
+				st.table(df)
 		except Exception as e:
 			st.write(f"Er.",{e}) 
 		time.sleep(1)
-st.table(df)
+
