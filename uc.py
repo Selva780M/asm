@@ -104,7 +104,8 @@ if len(df['STOCK']) > 0:
 				lt = m['LTP'] 								
 				em.append(lt)				
 			st.write(em)
-			df = df.append(em, ignore_index = True)
+			pandas.concat([df, em], axis=1)
+			#df = df.append(em, ignore_index = True)
 			#df = df.append(em, ignore_index = True)
 			#df.to_csv('token.csv',index = False)
 			st.table(df)
