@@ -1,6 +1,6 @@
-st.set_page_config(layout="wide")
 from pya3 import *
 import streamlit as st
+st.set_page_config(layout="wide")
 import pandas as pd
 from datetime import datetime, timedelta
 from pytz import timezone 
