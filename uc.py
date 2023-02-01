@@ -20,7 +20,8 @@ with placeholder1.container():
 		st.markdown(f""" *_Date:_* {DATE}""")
 	with con3:
 		st.markdown(f""" *_ALGO PAPER TRADE_* """)
-		
+
+placeholder01 = st.empty()
 #Get Expiry-------------------------------------------
 try:
 	contract_master= pd.read_csv('NFO.csv')
@@ -95,7 +96,6 @@ with st.form("opt_form"):
 				df.to_csv('token.csv',index = False)
 				st.balloons()
 placeholder100 = st.empty()
-placeholder101 = st.empty()
 if len(df['STOCK']) > 0:
 	while True:
 		em = []
@@ -114,7 +114,7 @@ if len(df['STOCK']) > 0:
 			st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)
 			st.table(df100)
 		with col33:
-			with placeholder101.container():
+			with placeholder01.container():
 				st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"(Profit/Loss)"}</h1>', unsafe_allow_html=True)
 		time.sleep(1)
 		#df100.to_csv('token.csv',index = False)
