@@ -96,23 +96,23 @@ with st.form("opt_form"):
 				st.balloons()
 st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"POSITION"}</h1>', unsafe_allow_html=True)		
 if len(df['STOCK']) > 0:	
-	while True:		
-		try:			
-			for i in df['STOCK']:
-				em = []
+	while True:
+		em = []
+		for i in df['STOCK']:
+			try:
 				m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
 				lt = float(m['LTP'])								
 				em.append(lt)				
-			st.write(em)			
-			df100 = pd.DataFrame()
-			df1 = pd.Series(em,name='ltp')
-			df100 = pd.concat([df,df1],axis=1)
-			#df = pandas.concat([df, em], axis=1)
-			#df = df.append(em)
-			#df = df.append(em, ignore_index = True)
-			#df.to_csv('token.csv',index = False)
-			st.table(df100)
-		except Exception as e:
-			st.write(f"Er.",{e}) 
+			except Exception as e:
+				st.write(f"Er.",{e})
+		st.write(em)			
+		df100 = pd.DataFrame()
+		df1 = pd.Series(em,name='ltp')
+		df100 = pd.concat([df,df1],axis=1)
+		#df = pandas.concat([df, em], axis=1)
+		#df = df.append(em)
+		#df = df.append(em, ignore_index = True)
+		#df.to_csv('token.csv',index = False)
+		st.table(df100)
 		time.sleep(1)
 
