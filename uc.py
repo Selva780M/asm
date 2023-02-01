@@ -103,12 +103,14 @@ if len(df['STOCK']) > 0:
 				m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
 				lt ={'ltp' : float(m['LTP'])} 								
 				em.append(lt)				
-			st.write(em)			
+			st.write(em)
+			df100 = pd.DataFrame()
+			df100 = pd.concat([df, em], ignore_index=True)
 			#df = pandas.concat([df, em], axis=1)
-			df = df.append(em)
+			#df = df.append(em)
 			#df = df.append(em, ignore_index = True)
 			#df.to_csv('token.csv',index = False)
-			st.table(df)
+			st.table(df100)
 		except Exception as e:
 			st.write(f"Er.",{e}) 
 		time.sleep(1)
