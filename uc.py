@@ -100,6 +100,8 @@ with st.form("opt_form"):
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name,  "ENTRY" : entry, "QTY" : int(user_LOT), "STOPLOSS" : float(entry - user_STOP), "TARGET" : float(entry + user_TARGET), "P/L" : 0, "%" : 0 }
 				df = df.append(new_data, ignore_index = True)
 				df.to_csv('token.csv',index = False)
-				st.balloons()		
+				st.balloons()
 st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"POSITION"}</h1>', unsafe_allow_html=True)		
+if len(df['STOCK']) > 0:
+	st.write('ok')
 st.table(df)
