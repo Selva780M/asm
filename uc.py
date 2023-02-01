@@ -103,5 +103,12 @@ with st.form("opt_form"):
 				st.balloons()
 st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"POSITION"}</h1>', unsafe_allow_html=True)		
 if len(df['STOCK']) > 0:
-	st.write('ok')
+	try:
+		for i in len(df['STOCK']):
+			m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))
+                      	st.write(f"{i} : {m['LTP']} Change: {m['Change']} % {m['PerChange']}")
+			time.sleep(1)
+	except Exception as e:
+		st.write(f"Error",{e}) 
+			
 st.table(df)
