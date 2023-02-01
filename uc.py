@@ -94,7 +94,8 @@ with st.form("opt_form"):
 				df = df.append(new_data, ignore_index = True)
 				df.to_csv('token.csv',index = False)
 				st.balloons()
-placeholder100 = st.empty()	
+placeholder100 = st.empty()
+placeholder101 = st.empty()
 if len(df['STOCK']) > 0:
 	while True:
 		em = []
@@ -113,6 +114,7 @@ if len(df['STOCK']) > 0:
 			st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)
 			st.table(df100)
 		with col33:
-			st.write('hi')
+			with placeholder100.container():
+				t.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Profit/Loss"}</h1>', unsafe_allow_html=True)
 		time.sleep(1)
 		#df100.to_csv('token.csv',index = False)
