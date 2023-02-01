@@ -85,8 +85,8 @@ with st.form("opt_form"):
 				st.write(b_put.name)
 				st.balloons()
 		
-		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"POSITION TABLE"}</h1>', unsafe_allow_html=True)
+st.sidebar.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"POSITION TABLE"}</h1>', unsafe_allow_html=True)
 		#new_data = {"DATE" : op ,"NAME": user_name, "VEHICLE NO" : user_vehicleNo,  "FUEL" : user_fuel, "LITER" : float(user_Liter), "AMOUNT" : float(user_amount), "DEPT" : user_Dept, "REASON" : user_reason}
 		#df = df.append(new_data, ignore_index = True)
 		#df.to_csv('token.csv',index = False)
-		st.table(df)
+st.table(df)
