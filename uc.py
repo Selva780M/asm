@@ -101,11 +101,10 @@ if len(df['STOCK']) > 0:
 			for i in df['STOCK']:
 				em = []
 				m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
-				lt ={'ltp' : float(m['LTP'])} 								
+				lt = float(m['LTP'])} 								
 				em.append(lt)				
-			st.write(em)
-			df1 = pd.DataFrame({'ltp': em })
-			#df1 = pd.Series(em)
+			st.write(em)			
+			df1 = pd.Series(em,'ltp')
 			df = pd.concat([df,df1],axis=1)
 			#df = pandas.concat([df, em], axis=1)
 			#df = df.append(em)
