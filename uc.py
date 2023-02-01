@@ -64,7 +64,7 @@ with st.form("opt_form"):
 				call_strike = spot - (50)
 				n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)
 				st.write(n_call.name)
-				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO', "n_call.name")))
+				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
 				entry = s['LTP']
 				st.balloons()				
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name,  "ENTRY" : float(entry), "QTY" : int(user_LOT), "STOPLOSS" : float(0.00 - user_STOP), "TARGET" : float(0.00 + user_TARGET), "P_L" : 0, "%" : 0 }
