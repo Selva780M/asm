@@ -66,7 +66,7 @@ with st.form("opt_form"):
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
 				entry = float(s['LTP'])
 				st.balloons()				
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name,  "ENTRY" : entry, "QTY" : int(user_LOT), "STOPLOSS" : float(entry - user_STOP), "TARGET" : float(entry + user_TARGET), "P_L" : 0, "%" : 0 }
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name,  "ENTRY" : entry, "QTY" : int(user_LOT), "STOPLOSS" : float(entry - user_STOP), "TARGET" : float(entry + user_TARGET), "P/L" : 0, "%" : 0 }
 				df = df.append(new_data, ignore_index = True)
 				df.to_csv('token.csv',index = False)
 			if  user_OPTION == "put":
