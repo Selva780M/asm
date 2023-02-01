@@ -106,13 +106,14 @@ st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"POSITION"}</h1>', unsafe
 if len(df['STOCK']) > 0:
 	while True:
 		em = []
+		lt = []
 		try:
 			for i in df['STOCK']:				
 				m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
-				lt = float(m['LTP'])			
+				lt = { 'ltp' : float(m['LTP']) }			
 				em.append(lt)
 			st.table(em)
-			df['ltp'] = df.append(em, ignore_index = True)
+			df = df.append(em, ignore_index = True)
 			#df = df.append(em, ignore_index = True)
 			df.to_csv('token.csv',index = False)
 			st.table(df)
