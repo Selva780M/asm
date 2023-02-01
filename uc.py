@@ -123,7 +123,7 @@ if len(df['STOCK']) > 0:
 			with placeholder01.container():
 				st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"(Profit/Loss)"}</h1>', unsafe_allow_html=True)
 				PL = df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()
-				p = col(PL)
+				p = PL.style.applymap(col)
 				st.success(p)
 				
 		time.sleep(1)
