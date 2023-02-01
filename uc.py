@@ -128,10 +128,10 @@ with st.form("opt_form"):
 						PL = df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()
 						st.metric("Rs", f"{PL}", f"{PL}")
 				for i in range(len(df100)):
-					if(df100.iloc[i,7]) >= (df100.iloc[i,6]):						
+					if(df100.iloc[i,8]) >= (df100.iloc[i,7]):						
 						df5 = df5.append(df100, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
-					if(df100.iloc[i,5]) <= (df100.iloc[i,7]):
+					if(df100.iloc[i,6]) <= (df100.iloc[i,8]):
 						df5 = df5.append(df100, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
 				with placeholder101.container():
