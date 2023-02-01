@@ -60,7 +60,7 @@ with st.form("opt_form"):
 		#df.to_csv('token.csv',index = False)
 		st.write('pass')
 		if user_STOCK == "NIFTY":			
-			n = alice.get_scrip_info(alice.get_instrument_by_symbol("NFO",user_STOCK))
+			n = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
 			n_ltp = n['LTP']
 			spot = round((float(n_ltp)) / 50) * 50
 			expiry_date = expiry[0]
@@ -75,7 +75,7 @@ with st.form("opt_form"):
 				st.write(n_put.name)
 				st.balloons()			
 		if user_STOCK == "BANKNIFTY":
-			b = alice.get_scrip_info(alice.get_instrument_by_symbol("NFO","BANKNIFTY"))
+			b = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","BANK NIFTY"))
 			b_ltp = b['LTP']
 			spot = round((float(b_ltp)) / 100) * 100			
 			expiry_date = expiry[0]
