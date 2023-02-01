@@ -12,7 +12,7 @@ alice = Aliceblue(user_id='627742',api_key='BPk1mFAXB9ByTFFQnm87HhieLFo3Fy5J3PCa
 alice.get_session_id()
 df = pd.read_csv('./token.csv')
 #------------------------------------------------------
-placeholder1 = st.empty()	
+	
 with placeholder1.container():
 	st.success(f"Welcome !!!!⏰⏰")
 	con1, con2 ,con3 = st.columns(3)
@@ -32,7 +32,8 @@ all_contract=contract_master[contract_master['Symbol']=='NIFTY']
 expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
 #------------------------------------------
 with st.form("opt_form"):
-	col11, col22, col33 = st.columns(3)		
+	col11, col22, col33 = st.columns(3)	
+	placeholder1 = st.empty()
 	user_USER = st.sidebar.radio('USER',('ARUN','SELVA','VIJAY','VASANTH'))
 	if user_USER:
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f"Hi 👋 {user_USER}"}</h1>', unsafe_allow_html=True)
@@ -113,8 +114,8 @@ if len(df['STOCK']) > 0:
 		with placeholder100.container():
 			st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)
 			st.table(df100)
-		with col33:
-			with placeholder01.container():
+		with placeholder01.container():
+			with col33:
 				st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"(Profit/Loss)"}</h1>', unsafe_allow_html=True)
 		time.sleep(1)
 		#df100.to_csv('token.csv',index = False)
