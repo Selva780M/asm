@@ -100,8 +100,7 @@ with st.form("opt_form"):
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name,  "ENTRY" : entry, "QTY" : int(user_LOT), "STOPLOSS" : float(entry - user_STOP), "TARGET" : float(entry + user_TARGET)}
 				df = df.append(new_data, ignore_index = True)
-				df.to_csv('token.csv',index = False)
-				st.balloons()
+				df.to_csv('token.csv',index = False)				
 			if  user_OPTION == "put":
 				put_strike = spot + (100)
 				b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
@@ -109,8 +108,7 @@ with st.form("opt_form"):
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name,  "ENTRY" : entry, "QTY" : int(user_LOT), "STOPLOSS" : float(entry - user_STOP), "TARGET" : float(entry + user_TARGET)}
 				df = df.append(new_data, ignore_index = True)
-				df.to_csv('token.csv',index = False)
-				st.balloons()
+				df.to_csv('token.csv',index = False)				
 		placeholder12 = st.sidebar.empty()
 		placeholder100 = st.empty()
 		placeholder101 = st.empty()
@@ -136,11 +134,13 @@ with st.form("opt_form"):
 						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
 						df5 = df5.append(df2, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
+						st.balloons()
 						#df100 = df100.drop(df.index[i])						
 					if(df100.iloc[i,5]) > (df100.iloc[i,7]) and (df100.iloc[i,1] not in df5['NAME'].tolist()) and (df100.iloc[i,2] not in df5['STOCK'].tolist()):						
 						df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
 						df5 = df5.append(df3, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
+						st.balloons()
 						#df100 = df100.drop(df.index[i])					
 				with col33:
 					with placeholder01.container():
@@ -152,7 +152,7 @@ with st.form("opt_form"):
 							except:
 								pm = round(0.0,1)
 							return pm
-						st.metric("Rs", f"{PL}", f"{im()}")
+						st.metric("Rs", f"{im()}" , f"{PL}")
 				with placeholder100.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)
 					A = df100.style.applymap(col)
