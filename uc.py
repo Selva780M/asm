@@ -121,7 +121,7 @@ with st.form("opt_form"):
 				except Exception as e:
 					st.write(f"Er.",{e})					
 				df100 = pd.DataFrame()
-				df1 = round(pd.Series(em,name='LTP'),1)
+				df1 = pd.Series(em,name='LTP')
 				df100 = pd.concat([df,df1],axis=1)
 				rt = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
 				df100['P_L'] = rt
