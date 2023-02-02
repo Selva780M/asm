@@ -138,6 +138,7 @@ with st.form("opt_form"):
 						with col2:
 							st.write('Margin Used')
 							st.write('Rs.5500')
+						clear = st.form_submit_button('👉 *_Reset Margin_*')
 				for i in range(0,len(df100.index)):					
 					if(df100.iloc[i,6]) < (df100.iloc[i,7]) and (df100.iloc[i,1] not in df5['NAME'].tolist()) and (df100.iloc[i,2] not in df5['STOCK'].tolist()):						
 						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
