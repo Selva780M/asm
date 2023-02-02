@@ -125,9 +125,9 @@ with st.form("opt_form"):
 				df100 = pd.concat([df,df1],axis=1)
 				rt = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
 				df100['P_L'] = rt
-				with placeholder12.container():					
-					ab = pd.DataFrame([df100.NAME, df100.P_L]).transpose()					
-					st.table(ab.style.applymap(col))								
+				#with placeholder12.container():					
+				#	ab = pd.DataFrame([df100.NAME, df100.P_L]).transpose()					
+				#	st.table(ab.style.applymap(col))								
 				for i in range(0,len(df100.index)):					
 					if(df100.iloc[i,6]) < (df100.iloc[i,7]) and (df100.iloc[i,1] not in df5['NAME'].tolist()) and (df100.iloc[i,2] not in df5['STOCK'].tolist()):						
 						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
@@ -153,9 +153,9 @@ with st.form("opt_form"):
 							return pm
 						st.metric("Rs", f"{im()}" , f"{PL}")
 				with placeholder100.container():
-					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)
+					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)					
+					A=df100.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.1f}")
 					A = df100.style.applymap(col)
-					st.table(df100.style.format(subset=["ENTRY" , "QTY" , "STOPLOSS", "TARGET" , "LTP" ,"P_L" ], formatter="{:.1f}"))
 					st.table(A)		
 				with placeholder101.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
