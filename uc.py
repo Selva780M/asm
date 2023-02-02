@@ -128,9 +128,9 @@ with st.form("opt_form"):
 				#	ab = pd.DataFrame([df100.NAME, df100.P_L]).transpose()					
 				#	st.table(ab.style.applymap(col))								
 					with st.form('hi'):						
-						col0, col11 = st.columns(2)
+						col0, col11 ,col12 = st.columns(3)
 						with col11:
-							st.write('Availble Margin')
+							st.write('Avl. Margin')
 							st.write('Rs.10000')
 						col1, col2 = st.columns(2)
 						with col1:
