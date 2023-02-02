@@ -127,14 +127,14 @@ with st.form("opt_form"):
 				with placeholder12.container():								
 					col0, col11 ,col12 = st.columns(3)
 					with col11:
-						st.write('Avl.Margin')
+						st.info('Avl.Margin')
 						st.write('Rs.10000')
 					col1, col2 = st.columns(2)
 					with col1:
-						st.write('Availble Cash')
+						st.success('Availble Cash')
 						st.write('Rs.10000')
 					with col2:
-						st.write('Margin Used')
+						st.error('Margin Used')
 						st.write('Rs.5500')					
 				for i in range(0,len(df100.index)):					
 					if(df100.iloc[i,6]) < (df100.iloc[i,7]) and (df100.iloc[i,1] not in df5['NAME'].tolist()) and (df100.iloc[i,2] not in df5['STOCK'].tolist()):						
