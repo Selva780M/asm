@@ -130,26 +130,29 @@ with st.form("opt_form"):
 				df100['P_L'] = (df100['LTP'] - df100['ENTRY']) * df100['QTY']
 				with placeholder12.container():					
 					ab = pd.DataFrame([df100.NAME, df100.P_L]).transpose()					
-					st.table(ab.style.applymap(col))
+					st.table(ab.style.applymap(col))								
+				for i in range(0,len(df100.index)):					
+					if(df100.iloc[i,6]) < (df100.iloc[i,7]) and (df100.iloc[i,1] not in df5['NAME'].tolist()) and (df100.iloc[i,2] not in df5['STOCK'].tolist()):						
+						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
+						df5 = df5.append(df2, ignore_index = True)
+						df5.to_csv('trade.csv',index = False)
+						#df100 = df100.drop(df.index[i])						
+					if(df100.iloc[i,5]) > (df100.iloc[i,7]) and (df100.iloc[i,1] not in df5['NAME'].tolist()) and (df100.iloc[i,2] not in df5['STOCK'].tolist()):						
+						df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
+						df5 = df5.append(df3, ignore_index = True)
+						df5.to_csv('trade.csv',index = False)
+						#df100 = df100.drop(df.index[i])					
 				with col33:
 					with placeholder01.container():
 						st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"(Profit/Loss)"}</h1>', unsafe_allow_html=True)
 						PL = round((df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()),1)
-						st.metric("Rs", f"{PL}", f"{PL}")				
-				for i in range(0,len(df100.index)):					
-					if(df100.iloc[i,6]) < (df100.iloc[i,7]) and (df100.iloc[i,1] not in df5['NAME'].tolist()) and (df100.iloc[i,2] not in df5['STOCK'].tolist()):
-						st.write('loop1')
-						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
-						df5 = df5.append(df2, ignore_index = True)
-						#df5.to_csv('trade.csv',index = False)
-						#df100 = df100.drop(df.index[i])						
-					if(df100.iloc[i,5]) > (df100.iloc[i,7]) and (df100.iloc[i,1] not in df5['NAME'].tolist()) and (df100.iloc[i,2] not in df5['STOCK'].tolist()):
-						st.write('loop2')
-						df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
-						df5 = df5.append(df3, ignore_index = True)
-						#df5.to_csv('trade.csv',index = False)
-						#df100 = df100.drop(df.index[i])
-					st.write('loopend')
+						def im():
+							try :
+								pm = round(df5.loc[df5['NAME'] == str(user_USER) , 'P_L'].sum(),1)
+							except:
+								pm = round(0.0,1)
+							return pm
+						st.metric("Rs", f"{PL}", f"{im()}")
 				with placeholder100.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)
 					A = df100.style.applymap(col)
