@@ -136,7 +136,7 @@ with st.form("opt_form"):
 						st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"(Profit/Loss)"}</h1>', unsafe_allow_html=True)
 						PL = round((df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()),1)
 						st.metric("Rs", f"{PL}", f"{PL}")
-				df5 = Pd.DataFrame()
+				df5 = pd.DataFrame()
 				for i in range(0,len(df100.index)):					
 					if(df100.iloc[i,6]) < (df100.iloc[i,7]) not in df5['STOCK']:
 						st.write('loop1')
