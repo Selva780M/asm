@@ -62,7 +62,7 @@ with st.form("opt_form"):
 		st.write('')
 		st.write('')
 		ENTRY = st.form_submit_button('👉 *_Order Placed_*')
-		clean = st.form_submit_button('👉 *_Restore File_*')
+		clean = st.button('👉 *_Restore File_*')
 	with col22:		
 		user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=None)
 		user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=50, value=10, step=5, format=None, key=None)
