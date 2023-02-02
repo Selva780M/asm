@@ -130,7 +130,7 @@ with st.form("opt_form"):
 				df100['P_L']  = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
 				M = df100['ENTRY'] * df100['QTY']				
 				with placeholder12.container():								
-					col0, col11 = st.columns(3)
+					col0, col11 = st.columns(2)
 					with col0:
 						st.info(f'"""_FUND 👉_"""')
 					with col11:
