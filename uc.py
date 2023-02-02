@@ -60,8 +60,8 @@ with st.form("opt_form"):
 		ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 	with col22:		
 		user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=None)
-		user_STOP = st.number_input('*_Stoploss_*', min_value=5, max_value=50, value=10, step=5, format=None, key=None)
-		user_TARGET = st.number_input('*_Target_*', min_value=5, max_value=50, value=10, step=5, format=None, key=None)			
+		user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=50, value=10, step=5, format=None, key=None)
+		user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=None)			
 	with col33:
 		placeholder01 = st.empty()
 	if ENTRY:
@@ -136,9 +136,7 @@ with st.form("opt_form"):
 						st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"(Profit/Loss)"}</h1>', unsafe_allow_html=True)
 						PL = round((df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()),1)
 						st.metric("Rs", f"{PL}", f"{PL}")
-				for i in range(0,len(df100.index)):
-					st.dataframe(df100)
-					st.write(df100.iloc[i,7])
+				for i in range(0,len(df100.index)):					
 					if(df100.iloc[i,6]) < (df100.iloc[i,7]):
 						st.write('loop1')
 						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
