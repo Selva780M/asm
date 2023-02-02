@@ -77,8 +77,7 @@ with st.form("opt_form"):
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name,  "ENTRY" : entry, "QTY" : int(user_LOT), "STOPLOSS" : float(entry - user_STOP), "TARGET" : float(entry + user_TARGET)}
 				df = df.append(new_data, ignore_index = True)
-				df.to_csv('token.csv',index = False)
-				st.balloons()
+				df.to_csv('token.csv',index = False)				
 			if  user_OPTION == "put":
 				put_strike = spot + (50)
 				n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
@@ -86,8 +85,7 @@ with st.form("opt_form"):
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name,  "ENTRY" : entry, "QTY" : int(user_LOT), "STOPLOSS" : float(entry - user_STOP), "TARGET" : float(entry + user_TARGET)}
 				df = df.append(new_data, ignore_index = True)
-				df.to_csv('token.csv',index = False)
-				st.balloons()			
+				df.to_csv('token.csv',index = False)							
 		if user_STOCK == "BANKNIFTY":
 			b = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
 			b_ltp = b['LTP']
