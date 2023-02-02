@@ -70,7 +70,7 @@ with st.form("opt_form"):
 	with col33:
 		placeholder01 = st.empty()
 	if clean:
-		dum = pd.dataframe()
+		dum = pd.DataFrame()
 		dum.to_csv('token.csv',index = False)		
 	if ENTRY:
 		if user_STOCK == "NIFTY":			
