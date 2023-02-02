@@ -127,10 +127,10 @@ with st.form("opt_form"):
 				with placeholder12.container():								
 					col0, col11 ,col12 = st.columns(3)
 					with col11:
-						st.info(f'_Availble\nMargin\nRs.10000_')						
+						st.info(f'_Availble\nCash\nRs.10000_')						
 					col1, col2 = st.columns(2)
 					with col1:
-						st.success(f'_Availble Cash\n Rs.10000_')						
+						st.success(f'_Availble Margin\n Rs.10000_')						
 					with col2:
 						st.error(f'_Margin Used\nRs.5500_')											
 				for i in range(0,len(df100.index)):					
