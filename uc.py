@@ -140,7 +140,7 @@ with st.form("opt_form"):
 				with col33:
 					with placeholder01.container():
 						st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"(Profit/Loss)"}</h1>', unsafe_allow_html=True)
-						PL = df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()
+						PL = round((df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum(),1)
 						st.metric("Rs", f"{PL}", f"{PL}")
 				for i in range(len(df100)):
 					if(df100.iloc[i,8]) >= (df100.iloc[i,7]):						
