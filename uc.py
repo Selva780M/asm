@@ -148,7 +148,8 @@ with st.form("opt_form"):
 						df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
 						df5 = df5.append(df3, ignore_index = True)
 						#df5.to_csv('trade.csv',index = False)
-						#df100 = df100.drop(df.index[i])						
+						#df100 = df100.drop(df.index[i])
+					st.write('loopend')
 				with placeholder100.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)
 					A = df100.style.applymap(col)
