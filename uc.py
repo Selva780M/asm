@@ -47,7 +47,7 @@ expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index
 #------------------------------------------
 with st.form("opt_form"):	
 	col11, col22, col33 = st.columns(3)	
-	user_USER = st.sidebar.radio('*_USER_*',('ARUN' ,'SELVA' ,'VIJAY','VASANTH'))
+	user_USER = st.sidebar.radio('*_USER_*',('SELVA'))
 	if user_USER:
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f"Hi 👋 {user_USER}"}</h1>', unsafe_allow_html=True)
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:20px;">{f"Pls Enter Details 👉"}</h1>', unsafe_allow_html=True)
@@ -125,9 +125,19 @@ with st.form("opt_form"):
 				df100 = pd.concat([df,df1],axis=1)
 				rt = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
 				df100['P_L'] = rt
-				#with placeholder12.container():					
+				with placeholder12.container():					
 				#	ab = pd.DataFrame([df100.NAME, df100.P_L]).transpose()					
 				#	st.table(ab.style.applymap(col))								
+					with st.form("Fund):
+						     col1, col2 = st.columns(2)
+						     st.write('Availble Margin')
+						     st.write('Rs.10000')						     
+						     with col1:
+						     	st.write('Availble Cash')
+						     	st.write('Rs.10000')
+						     with col2:
+						     	st.write('Margin Used')
+						     	st.write('Rs.5500')
 				for i in range(0,len(df100.index)):					
 					if(df100.iloc[i,6]) < (df100.iloc[i,7]) and (df100.iloc[i,1] not in df5['NAME'].tolist()) and (df100.iloc[i,2] not in df5['STOCK'].tolist()):						
 						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
