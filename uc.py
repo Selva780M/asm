@@ -132,7 +132,7 @@ with st.form("opt_form"):
 				with placeholder12.container():								
 					col0, col11 = st.columns(2)
 					with col0:
-						st.info(f'_FUND \n 👉_')
+						st.info(f'_FUND\n 👉_')
 					with col11:
 						st.info(f'_Availble\nCash\nRs.{(30000+im())}_')						
 					col1, col2 = st.columns(2)
