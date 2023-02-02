@@ -124,7 +124,7 @@ with st.form("opt_form"):
 				df1 = round(pd.Series(em,name='LTP'),1)
 				df100 = pd.concat([df,df1],axis=1)
 				rt = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
-				df100['P_L'] = round(rt,1)
+				df100['P_L'] = rt
 				with placeholder12.container():					
 					ab = pd.DataFrame([df100.NAME, df100.P_L]).transpose()					
 					st.table(ab.style.applymap(col))								
