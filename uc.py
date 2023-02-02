@@ -34,6 +34,12 @@ def col(val):
 		color = 'white'
 	
 	return 'color: %s' % color
+def im():
+	try :
+		pm = round(df5.loc[df5['NAME'] == str(user_USER) , 'P_L'].sum(),1)
+	except:
+		pm = round(0.0,1)
+	return pm
 
 
 #Get Expiry-------------------------------------------
@@ -150,12 +156,6 @@ with st.form("opt_form"):
 					with placeholder01.container():
 						st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"(Profit/Loss)"}</h1>', unsafe_allow_html=True)
 						PL = round((df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()),1)
-						def im():
-							try :
-								pm = round(df5.loc[df5['NAME'] == str(user_USER) , 'P_L'].sum(),1)
-							except:
-								pm = round(0.0,1)
-							return pm
 						st.metric("Rs", f"{im()}" , f"{PL}")
 				with placeholder100.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)					
