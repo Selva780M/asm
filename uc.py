@@ -135,7 +135,7 @@ with st.form("opt_form"):
 					st.table(ab.style.applymap(col))
 				A = df100.style.applymap(col)
 				for i in range(len(df100)):
-					df55 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
+					
 					st.write(df55)
 				with placeholder100.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)
@@ -147,13 +147,13 @@ with st.form("opt_form"):
 						st.metric("Rs", f"{PL}", f"{PL}")
 				for i in range(len(df100)):
 					if(df100.iloc[i,7]) >= (df100.iloc[i,6]):						
-						df = {"DATE" : df100.iloc[i][1] ,"NAME": df100.iloc[i][2], "STOCK" : df100.iloc[i][3],  "ENTRY" : df100.iloc[i][4], "QTY" : df100.iloc[i][5], "STOPLOSS" : df100.iloc[i][6], "TARGET" : df100.iloc[i][7], "LTP" : df100.iloc[i][8],"P_L" :df100.iloc[i][9]}						
-						df5.append(df, ignore_index = True)
+						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
+						df5.append(df2, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
 						df100 = df100.drop(index=i)
 					if(df100.iloc[i,5]) <= (df100.iloc[i,7]):
-						df = {"DATE" : df100.iloc[i][1] ,"NAME": df100.iloc[i][2], "STOCK" : df100.iloc[i][3],  "ENTRY" : df100.iloc[i][4], "QTY" : df100.iloc[i][5], "STOPLOSS" : df100.iloc[i][6], "TARGET" : df100.iloc[i][7], "LTP" : df100.iloc[i][8],"P_L" :df100.iloc[i][9]}
-						df5.append(df, ignore_index = True)
+						df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
+						df5.append(df3, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
 						df100 = df100.drop(index=i)
 				with placeholder101.container():
