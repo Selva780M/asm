@@ -140,13 +140,13 @@ with st.form("opt_form"):
 					if(df100.iloc[i,6]) < (df100.iloc[i,7]):
 						st.write('loop1')
 						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
-						df5.append(df2, ignore_index = True)
+						df5 = df5.append(df2, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
 						#df100 = df100.drop(df.index[i])						
 					if(df100.iloc[i,5]) > (df100.iloc[i,7]):
 						st.write('loop2')
 						df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
-						df5.append(df3, ignore_index = True)
+						df5 = df5.append(df3, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
 						#df100 = df100.drop(df.index[i])						
 				with placeholder100.container():
