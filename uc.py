@@ -21,8 +21,6 @@ with placeholder1.container():
 		st.markdown(f""" *_Date:_* {DATE}""")
 	with con3:
 		st.markdown(f""" *_ALGO PAPER TRADE_* """)
-
-		
 #--------------------------------------------
 def col(val):
 	try:
@@ -134,9 +132,6 @@ with st.form("opt_form"):
 					ab = pd.DataFrame([df100.NAME, df100.P_L]).transpose()					
 					st.table(ab.style.applymap(col))
 				A = df100.style.applymap(col)
-				for i in range(len(df100)):
-					
-					st.write(df55)
 				with placeholder100.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)
 					st.table(A)		
