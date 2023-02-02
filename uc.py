@@ -129,12 +129,8 @@ with st.form("opt_form"):
 				df100 = pd.concat([df,df1],axis=1)
 				df100['P_L']  = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
 				M = df100['ENTRY'] * df100['QTY']				
-				with placeholder12.container():								
-					col0, col11 = st.columns(2)
-					with col0:
-						st.info(f'_FUND\n 👉_')
-					with col11:
-						st.info(f'_Availble\nCash\nRs.{(30000+im())}_')						
+				with placeholder12.container():
+					st.info(f'_Availble\nCash\n👉Rs.{(30000+im())}_')						
 					col1, col2 = st.columns(2)
 					with col1:
 						st.success(f'_Availble Margin\n Rs.{(30000+im())-sum(M)}_')						
