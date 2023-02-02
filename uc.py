@@ -123,7 +123,7 @@ with st.form("opt_form"):
 				df1 = pd.Series(em,name='LTP')
 				df100 = pd.concat([df,df1],axis=1)
 				df100['P_L']  = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
-				M = df100.loc[df100['ENTRY'] * df100.loc['QTY']].sum())
+				M = df100.loc[df100['ENTRY'] * df100['QTY']].sum()
 				with placeholder12.container():								
 					col0, col11 ,col12 = st.columns(3)
 					with col11:
