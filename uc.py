@@ -123,15 +123,14 @@ with st.form("opt_form"):
 				df1 = pd.Series(em,name='LTP')
 				df100 = pd.concat([df,df1],axis=1)
 				df100['P_L']  = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
-				M = df100['ENTRY'] * df100['QTY']
-				
+				M = df100['ENTRY'] * df100['QTY']				
 				with placeholder12.container():								
 					col0, col11 ,col12 = st.columns(3)
 					with col11:
-						st.info(f'_Availble\nCash\nRs.10000_')						
+						st.info(f'_Availble\nCash\nRs.{(30000+im())}_')						
 					col1, col2 = st.columns(2)
 					with col1:
-						st.success(f'_Availble Margin\n Rs.10000_')						
+						st.success(f'_Availble Margin\n Rs.{(30000+im())-sum(M)}_')						
 					with col2:
 						st.error(f'_Margin Used\nRs.{sum(M)}_')											
 				for i in range(0,len(df100.index)):					
