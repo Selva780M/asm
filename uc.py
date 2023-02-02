@@ -131,7 +131,7 @@ with st.form("opt_form"):
 						st.write('Rs.10000')
 					col1, col2 = st.columns(2)
 					with col1:
-						st.success('Availble Cash\n.   Rs.10000')
+						st.success('Availble Cash\n___Rs.10000__')
 						st.write('Rs.10000')
 					with col2:
 						st.error('Margin Used')
