@@ -122,26 +122,20 @@ with st.form("opt_form"):
 				df100 = pd.DataFrame()
 				df1 = pd.Series(em,name='LTP')
 				df100 = pd.concat([df,df1],axis=1)
-				rt = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
-				df100['P_L'] = rt
-				with placeholder12.container():					
-				#	ab = pd.DataFrame([df100.NAME, df100.P_L]).transpose()					
-				#	st.table(ab.style.applymap(col))								
-					with st.table():						
-						col0, col11 ,col12 = st.columns(3)
-						with col11:
-							st.write('Avl. Margin')
-							st.write('Rs.10000')
-						col1, col2 = st.columns(2)
-						with col1:
-							st.write('Availble Cash')
-							st.write('Rs.10000')
-						with col2:
-							st.write('Margin Used')
-							st.write('Rs.5500')
-						#clear = st.form_submit_button('👉 *_Reset Margin_*')
-						#if clear:
-						#	st.write('')
+				df100['P_L']  = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
+				#PL = round((df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()),1
+				with placeholder12.container():								
+					col0, col11 ,col12 = st.columns(3)
+					with col11:
+						st.write('Avl.Margin')
+						st.write('Rs.10000')
+					col1, col2 = st.columns(2)
+					with col1:
+						st.write('Availble Cash')
+						st.write('Rs.10000')
+					with col2:
+						st.write('Margin Used')
+						st.write('Rs.5500')					
 				for i in range(0,len(df100.index)):					
 					if(df100.iloc[i,6]) < (df100.iloc[i,7]) and (df100.iloc[i,1] not in df5['NAME'].tolist()) and (df100.iloc[i,2] not in df5['STOCK'].tolist()):						
 						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
