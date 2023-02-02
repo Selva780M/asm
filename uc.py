@@ -128,7 +128,7 @@ with st.form("opt_form"):
 					col0, col11 ,col12 = st.columns(3)
 					with col11:
 						st.info(f'Availble\nMargin')
-						st.write('    Rs.10000')
+						st.write('Rs.10000')
 					col1, col2 = st.columns(2)
 					with col1:
 						st.success('Availble Cash')
