@@ -134,8 +134,9 @@ with st.form("opt_form"):
 					ab = pd.DataFrame([df100.NAME, df100.P_L]).transpose()					
 					st.table(ab.style.applymap(col))
 				A = df100.style.applymap(col)
-				df55 = {"DATE" : df100.iloc[i][1] ,"NAME": df100.iloc[i][2], "STOCK" : df100.iloc[i][3],  "ENTRY" : df100.iloc[i][4], "QTY" : df100.iloc[i][5], "STOPLOSS" : df100.iloc[i][6], "TARGET" : df100.iloc[i][7], "LTP" : df100.iloc[i][8],"P_L" :df100.iloc[i][9]}
-				st.write(df55)
+				for i in range(len(df100)):
+					df55 = {"DATE" : df100.iloc[i][1] ,"NAME": df100.iloc[i][2], "STOCK" : df100.iloc[i][3],  "ENTRY" : df100.iloc[i][4], "QTY" : df100.iloc[i][5], "STOPLOSS" : df100.iloc[i][6], "TARGET" : df100.iloc[i][7], "LTP" : df100.iloc[i][8],"P_L" :df100.iloc[i][9]}
+					st.write(df55)
 				with placeholder100.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)
 					st.table(A)		
