@@ -127,7 +127,7 @@ with st.form("opt_form"):
 				with placeholder12.container():					
 				#	ab = pd.DataFrame([df100.NAME, df100.P_L]).transpose()					
 				#	st.table(ab.style.applymap(col))								
-					with st.form():
+					with st.form('hi'):
 						col1, col2 = st.columns(2)
 						st.write('Availble Margin')
 						st.write('Rs.10000')
