@@ -144,12 +144,12 @@ with st.form("opt_form"):
 						st.metric("Rs", f"{PL}", f"{PL}")
 				for i in range(len(df100)):
 					if(df100.iloc[i,8]) >= (df100.iloc[i,7]):						
-						df = {"DATE" : df100.iloc[i][[1] ,"NAME": df100.iloc[i][[2], "STOCK" : df100.iloc[i][[3],  "ENTRY" : df100.iloc[i][[4], "QTY" : df100.iloc[i][[5], "STOPLOSS" : df100.iloc[i][[6], "TARGET" : df100.iloc[i][[7], "LTP" : df100.iloc[i][[8],"P_L" :df100.iloc[i][[9]}						
+						df = {"DATE" : df100.iloc[i][1] ,"NAME": df100.iloc[i][2], "STOCK" : df100.iloc[i][3],  "ENTRY" : df100.iloc[i][4], "QTY" : df100.iloc[i][5], "STOPLOSS" : df100.iloc[i][6], "TARGET" : df100.iloc[i][7], "LTP" : df100.iloc[i][8],"P_L" :df100.iloc[i][9]}						
 						df5.append(df, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
 						df100 = df100.drop(index=i)
 					if(df100.iloc[i,6]) <= (df100.iloc[i,8]):
-						df = {"DATE" : df100.iloc[i][[1] ,"NAME": df100.iloc[i][[2], "STOCK" : df100.iloc[i][[3],  "ENTRY" : df100.iloc[i][[4], "QTY" : df100.iloc[i][[5], "STOPLOSS" : df100.iloc[i][[6], "TARGET" : df100.iloc[i][[7], "LTP" : df100.iloc[i][[8],"P_L" :df100.iloc[i][[9]}
+						df = {"DATE" : df100.iloc[i][1] ,"NAME": df100.iloc[i][2], "STOCK" : df100.iloc[i][3],  "ENTRY" : df100.iloc[i][4], "QTY" : df100.iloc[i][5], "STOPLOSS" : df100.iloc[i][6], "TARGET" : df100.iloc[i][7], "LTP" : df100.iloc[i][8],"P_L" :df100.iloc[i][9]}
 						df5.append(df, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
 						df100 = df100.drop(index=i)
