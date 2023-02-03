@@ -114,8 +114,7 @@ with st.form("opt_form"):
 		placeholder12 = st.sidebar.empty()
 		placeholder100 = st.empty()
 		placeholder101 = st.empty()
-		if len(df['STOCK']) > 0:			
-			df.to_csv('token.csv',index = False)
+		if len(df['STOCK']) > 0:						
 			while True:
 				em = []
 				try:
@@ -166,5 +165,6 @@ with st.form("opt_form"):
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
 					B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
 					st.table(B)	
+				df.to_csv('token.csv',index = False)
 				time.sleep(1)
 		
