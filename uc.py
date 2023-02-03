@@ -65,8 +65,8 @@ with st.form("opt_form"):
 		#clean = st.form_submit_button('👉 *_Restore File_*')
 	with col22:		
 		user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=None)
-		user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=50, value=10, step=5, format=None, key=None)
-		user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=None)			
+		user_STOP = st.number_input('*_Stoploss_*', min_value=10, max_value=50, value=10, step=10, format=None, key=None)
+		user_TARGET = st.number_input('*_Target_*', min_value=10, max_value=50, value=10, step=10, format=None, key=None)			
 	with col33:
 		placeholder01 = st.empty()
 	#if clean:
@@ -133,7 +133,7 @@ with st.form("opt_form"):
 					c = df100.groupby(['NAME'])['P_L'].sum().reset_index()
 					AAA = c.style.format(subset=["P_L" ], formatter="{:.2f}").applymap(col)					
 					st.table(AAA)
-					st.info(f'_Availble\nCash\n👉Rs.{round((30000+im()),1)}_')						
+					st.info(f'_👉Availble Cash\nRs.{round((30000+im()),1)}_')						
 					col1, col2 = st.columns(2)
 					with col1:
 						st.success(f'_Availble Margin\n Rs.{round((30000+im())-sum(M),1)}_')						
