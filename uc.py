@@ -130,7 +130,7 @@ with st.form("opt_form"):
 				df100['P_L']  = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
 				M = df100['ENTRY'] * df100['QTY']				
 				with placeholder12.container():					
-					c = df100.groupby(['NAME'])['P_L'].sum().reset_index() #groupby(['NAME','P_L'])['NAME','P_L'].transform('sum')
+					c = df100.groupby(['NAME'])['P_L'].sum().reset_index()
 					AAA = c.style.format(subset=["P_L" ], formatter="{:.2f}").applymap(col)					
 					st.table(AAA)
 					st.info(f'_Availble\nCash\n👉Rs.{round((30000+im()),1)}_')						
@@ -140,13 +140,13 @@ with st.form("opt_form"):
 					with col2:
 						st.error(f'_Margin Used\nRs.{round(sum(M),1)}_')											
 				for i in range(0,len(df100.index)):					
-					if(df100.iloc[i,7]) > (df100.iloc[i,6]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):# and (df100.iloc[i,2] not in df5['STOCK'].tolist()):
+					if(df100.iloc[i,7]) > (df100.iloc[i,6]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
 						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
 						df5 = df5.append(df2, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
 						st.balloons()
 						df.drop([i], inplace = True)
-					if(df100.iloc[i,7]) < (df100.iloc[i,5]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):# and (df100.iloc[i,2] not in df5['STOCK'].tolist()):												
+					if(df100.iloc[i,7]) < (df100.iloc[i,5]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):											
 						df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
 						df5 = df5.append(df3, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
@@ -154,9 +154,10 @@ with st.form("opt_form"):
 						df.drop([i], inplace = True)
 				with col33:
 					with placeholder01.container():
-						st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"(Profit/Loss)"}</h1>', unsafe_allow_html=True)
+						st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"*_Profit / Loss_*"}</h1>', unsafe_allow_html=True)
 						PL = round((df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()),1)
 						st.metric("Rs", f"{im()}" , f"{PL}")
+						st.metric("%",f"{im()}" , f"{PL}")
 				with placeholder100.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)					
 					A = df100.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
