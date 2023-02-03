@@ -134,7 +134,7 @@ with st.form("opt_form"):
 				df100['P_L']  = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
 				M = df100['ENTRY'] * df100['QTY']				
 				with placeholder12.container():
-					df9 = df100['NAME','P_L']
+					df9 = df100[['NAME','P_L']]
 					st.table(df9)
 					st.info(f'_Availble\nCash\n👉Rs.{(30000+im())}_')						
 					col1, col2 = st.columns(2)
