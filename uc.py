@@ -133,12 +133,12 @@ with st.form("opt_form"):
 					c = df100.groupby(['NAME'])['P_L'].sum().reset_index() #groupby(['NAME','P_L'])['NAME','P_L'].transform('sum')
 					AAA = c.style.format(subset=["P_L" ], formatter="{:.2f}").applymap(col)					
 					st.table(AAA)
-					st.info(f'_Availble\nCash\n👉Rs.{(30000+im())}_')						
+					st.info(f'_Availble\nCash\n👉Rs.{round((30000+im()),1)}_')						
 					col1, col2 = st.columns(2)
 					with col1:
-						st.success(f'_Availble Margin\n Rs.{(30000+im())-sum(M)}_')						
+						st.success(f'_Availble Margin\n Rs.{round((30000+im())-sum(M),1)}_')						
 					with col2:
-						st.error(f'_Margin Used\nRs.{sum(M)}_')											
+						st.error(f'_Margin Used\nRs.round({sum(M),1)}_')											
 				for i in range(0,len(df100.index)):					
 					if(df100.iloc[i,7]) > (df100.iloc[i,6]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):# and (df100.iloc[i,2] not in df5['STOCK'].tolist()):
 						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
