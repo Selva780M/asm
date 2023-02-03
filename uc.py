@@ -136,7 +136,7 @@ with st.form("opt_form"):
 				with placeholder12.container():
 					df9 = df100[['NAME','P_L']]
 					AAA= df9.style.format(subset=["P_L" ], formatter="{:.2f}").applymap(col)
-					c = df100.groupby(['NAME','P_L'])['P_L'].transform('sum')
+					c = df100.groupby(['NAME','P_L'])['NAME','P_L'].transform('sum')
 					st.table(c)
 					st.table(AAA)
 					st.info(f'_Availble\nCash\n👉Rs.{(30000+im())}_')						
