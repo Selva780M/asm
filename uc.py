@@ -154,7 +154,7 @@ with st.form("opt_form"):
 						df.drop([i], inplace = True)
 				with col33:
 					with placeholder01.container():
-						st.write(f'<h1 style="color:#33ff33;font-size:25px;">{'Profit / Loss'}</h1>', unsafe_allow_html=True)
+						st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"Profit Loss"}</h1>', unsafe_allow_html=True)
 						PL = round((df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()),1)
 						col1 , col2 = st.columns(2)
 						with col1:
