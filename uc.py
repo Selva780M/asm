@@ -133,11 +133,9 @@ with st.form("opt_form"):
 				df100 = pd.concat([df,df1],axis=1)
 				df100['P_L']  = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
 				M = df100['ENTRY'] * df100['QTY']				
-				with placeholder12.container():
-					df9 = df100[['NAME','P_L']]
-					AAA= df9.style.format(subset=["P_L" ], formatter="{:.2f}").applymap(col)
+				with placeholder12.container():					
 					c = df100.groupby(['NAME'])['P_L'].sum().reset_index() #groupby(['NAME','P_L'])['NAME','P_L'].transform('sum')
-					st.table(c)
+					AAA = c.style.format(subset=["P_L" ], formatter="{:.2f}").applymap(col)					
 					st.table(AAA)
 					st.info(f'_Availble\nCash\n👉Rs.{(30000+im())}_')						
 					col1, col2 = st.columns(2)
