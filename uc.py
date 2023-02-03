@@ -145,15 +145,15 @@ with st.form("opt_form"):
 						st.error(f'_Margin Used\nRs.{sum(M)}_')											
 				for i in range(0,len(df100.index)):					
 					if(df100.iloc[i,7]) > (df100.iloc[i,6]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):# and (df100.iloc[i,2] not in df5['STOCK'].tolist()):						
-						del1 = df100.drop([i], inplace = True)
-						#df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
-						df5 = df5.append(del1, ignore_index = True)
+						df100.drop([i], inplace = True)
+						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
+						df5 = df5.append(df2, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
 						st.balloons()												
 					if(df100.iloc[i,7]) < (df100.iloc[i,5]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):# and (df100.iloc[i,2] not in df5['STOCK'].tolist()):						
-						del2 = df100.drop([i], inplace = True)
-						#df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
-						df5 = df5.append(del2, ignore_index = True)
+						df100.drop([i], inplace = True)
+						df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
+						df5 = df5.append(df3, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
 						st.balloons()			
 				with col33:
