@@ -54,7 +54,7 @@ expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index
 with st.form("opt_form"):	
 	col11, col22, col33 = st.columns(3)	
 	user_USER = st.sidebar.radio('*_Strategy_*',("Price action","ORB Day","ORB 915"))
-	st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f"Hi 👋 {user_USER}"}</h1>', unsafe_allow_html=True)	
+	st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f" {user_USER} 👋"}</h1>', unsafe_allow_html=True)	
 	with col11:		
 		user_STOCK = st.radio("*_Stock (Current strike)_*",("NIFTY","BANKNIFTY"), horizontal=True)
 		user_OPTION = st.radio("*_Option_*",("call","put"), horizontal=True)
@@ -135,7 +135,8 @@ with st.form("opt_form"):
 				M = df100['ENTRY'] * df100['QTY']				
 				with placeholder12.container():
 					df9 = df100[['NAME','P_L']]
-					st.table(df9)
+					AAA= df9.style.format(subset=["P_L" ], formatter="{:.2f}").applymap(col)
+					st.table(AAA)
 					st.info(f'_Availble\nCash\n👉Rs.{(30000+im())}_')						
 					col1, col2 = st.columns(2)
 					with col1:
