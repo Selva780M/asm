@@ -149,13 +149,13 @@ with st.form("opt_form"):
 						df5 = df5.append(df2, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
 						st.balloons()
-						#df100.drop([i], inplace = True)
+						df.drop([i], inplace = True)
 					if(df100.iloc[i,7]) < (df100.iloc[i,5]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):# and (df100.iloc[i,2] not in df5['STOCK'].tolist()):												
 						df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
 						df5 = df5.append(df3, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
 						st.balloons()
-					df100.drop([i], inplace = True)
+						df.drop([i], inplace = True)
 				with col33:
 					with placeholder01.container():
 						st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"(Profit/Loss)"}</h1>', unsafe_allow_html=True)
