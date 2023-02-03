@@ -133,7 +133,7 @@ with st.form("opt_form"):
 					c = df100.groupby(['NAME'])['P_L'].sum().reset_index()
 					AAA = c.style.format(subset=["P_L" ], formatter="{:.2f}").applymap(col)					
 					st.table(AAA)
-					st.info(f'_👉Availble Cash\nRs.{round((30000+im()),1)}_')						
+					st.info(f'_👉 Availble Cash\nRs.{round((30000+im()),1)}_')						
 					col1, col2 = st.columns(2)
 					with col1:
 						st.success(f'_Availble Margin\n Rs.{round((30000+im())-sum(M),1)}_')						
