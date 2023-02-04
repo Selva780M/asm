@@ -65,7 +65,10 @@ def Contract():
 		while not success:
 			try:
 				alice.get_contract_master('NFO')
+				time.sleep(10)
 				contract_master = pd.read_csv('NFO.csv')
+				all_contract = contract_master[contract_master['Symbol']=='NIFTY']
+				expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
 				success=True
 			except:
 				with placeholder00.container():
@@ -73,10 +76,8 @@ def Contract():
 				success=False
 			time.sleep(10)
 			idx += 1
-	return contract_master
+	return expiry
 Contract()
-all_contract = contract_master[contract_master['Symbol']=='NIFTY']
-expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
 #------------------------------------------
 with st.form("opt_form"):	
 	col11, col22, col33 = st.columns(3)	
