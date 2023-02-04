@@ -62,7 +62,7 @@ def Contract():
 		while not success:
 			try:
 				alice.get_contract_master('NFO')
-				time.sleep(10)
+				time.sleep(15)
 				contract_master = pd.read_csv('NFO.csv')
 				success=True
 			except:
@@ -86,20 +86,19 @@ with st.form("opt_form"):
 		st.write('')
 		st.write('')
 		st.write('')
-		ENTRY = st.form_submit_button('👉 *_Order Placed_*')
-		#clean = st.form_submit_button('👉 *_Restore File_*')
+		ENTRY = st.form_submit_button('👉 *_Order Placed_*')		
 	with col22:		
 		user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=None)
 		user_STOP = st.number_input('*_Stoploss_*', min_value=10, max_value=50, value=10, step=10, format=None, key=None)
 		user_TARGET = st.number_input('*_Target_*', min_value=10, max_value=50, value=10, step=10, format=None, key=None)			
 	with col33:
-		placeholder01 = st.empty()
-	#if clean:
-	#	dum = pd.DataFrame()		
-	#	dum.to_csv('token.csv',index = False)		
+		placeholder01 = st.empty()		
 	if ENTRY:
 		if user_STOCK == "NIFTY":			
-			n = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
+			try:
+				n = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
+			except:
+				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
 			n_ltp = n['LTP']
 			spot = round((float(n_ltp)) / 50) * 50
 			expiry_date = expiry[0]
@@ -118,7 +117,10 @@ with st.form("opt_form"):
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name,  "ENTRY" : round(entry,1), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
 				df = df.append(new_data, ignore_index = True)											
 		if user_STOCK == "BANKNIFTY":
-			b = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
+			try:
+				b = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
+			except:
+				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')			
 			b_ltp = b['LTP']
 			spot = round((float(b_ltp)) / 100) * 100			
 			expiry_date = expiry[0]
@@ -163,7 +165,15 @@ with st.form("opt_form"):
 					with col1:
 						st.success(f'_Availble Margin\n Rs.{round((30000+im())-sum(M),1)}_')						
 					with col2:
-						st.error(f'_Margin Used\nRs.{round(sum(M),1)}_')											
+						st.error(f'_Margin Used\nRs.{round(sum(M),1)}_')
+					
+					col16, col7 = st.columns(2)
+					st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"Profit Loss"}</h1>', unsafe_allow_html=True)
+					PL = round((df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()),1)
+					with col6:
+						st.metric("Rs", f"{im()}" , f"{PL}")						
+					with col7:
+						st.metric("%",f"{round(((im()/30000)*100),1)}%" , f"{round(((PL/30000)*100),1)}%")
 				for i in range(0,len(df100.index)):					
 					if(df100.iloc[i,7]) > (df100.iloc[i,6]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
 						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
@@ -179,10 +189,10 @@ with st.form("opt_form"):
 						df.drop([i], inplace = True)
 				with col33:
 					with placeholder01.container():
-						st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"Profit Loss"}</h1>', unsafe_allow_html=True)
-						PL = round((df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()),1)
-						st.metric("Rs", f"{im()}" , f"{PL}")
-						st.metric("%",f"{round(((im()/30000)*100),1)}%" , f"{round(((PL/30000)*100),1)}%")
+						n5 = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
+						bn = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
+						st.write(f'<h1 style="color:#33ff33;font-size:25px;">{f"Nifty- 50 Spot Price : {round(n5},1)"}</h1>', unsafe_allow_html=True)
+						st.write(f'<h1 style="color:#33ff33;font-size:25px;">{f"BakkNifty Spot Price : {round(bn,1)}:"}</h1>', unsafe_allow_html=True)
 				with placeholder100.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)					
 					A = df100.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
