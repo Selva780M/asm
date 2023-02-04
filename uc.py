@@ -97,9 +97,9 @@ with st.form("opt_form"):
 		if user_STOCK == "NIFTY":			
 			try:
 				n = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
+				n_ltp = n['LTP']
 			except:
-				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
-			n_ltp = n['LTP']
+				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')			
 			spot = round((float(n_ltp)) / 50) * 50
 			expiry_date = expiry[0]
 			if user_OPTION == "call":
@@ -119,9 +119,9 @@ with st.form("opt_form"):
 		if user_STOCK == "BANKNIFTY":
 			try:
 				b = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
+				b_ltp = b['LTP']
 			except:
-				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')			
-			b_ltp = b['LTP']
+				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')						
 			spot = round((float(b_ltp)) / 100) * 100			
 			expiry_date = expiry[0]
 			if user_OPTION == "call":
