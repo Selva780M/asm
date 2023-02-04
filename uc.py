@@ -20,12 +20,13 @@ df5 = pd.read_csv('./trade.csv')
 #------------------------------------------------------
 placeholder1 = st.empty()	
 with placeholder1.container():
-	st.success(f"Welcome !!!!⏰⏰")
+	st.header('Hi _Mr.Selvakumar_ This is :blue[_ALGO PAPER TRADE_] :sunglasses:')
+	#st.success(f"Welcome !!!!⏰⏰")
 	con1, con2 ,con3 = st.columns(3)
 	with con1:
 		st.markdown(f""" *_Date:_* {DATE}""")
 	with con3:
-		st.markdown(f""" *_ALGO PAPER TRADE_* """)
+		st.markdown(f""" *_Your Investment Rs.30000/-_* """)
 #--------------------------------------------
 def col(val):
 	try:
