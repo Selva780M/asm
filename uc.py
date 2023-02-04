@@ -48,6 +48,7 @@ def im():
 
 #Get Expiry-------------------------------------------
 def Contract():
+	placeholder00 = st.empty()
 	success=False
 	try:
 		contract_master= pd.read_csv('NFO.csv')
@@ -63,8 +64,10 @@ def Contract():
 				contract_master = pd.read_csv('NFO.csv')
 				success=True
 			except:
-				st.error(f"Connection lost Retrying {idx} times on contracts Master..")
+				with placeholder00.container():
+					st.error(f"Connection lost Retrying {idx} times on contracts Master..")
 				success=False
+			idx += 1
 Contract()
 
 all_contract=contract_master[contract_master['Symbol']=='NIFTY']
