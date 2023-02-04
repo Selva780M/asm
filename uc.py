@@ -191,8 +191,8 @@ with st.form("opt_form"):
 					with placeholder01.container():
 						n5 = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
 						bn = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
-						st.write(f'<h1 style="color:#33ff33;font-size:25px;">{f"Nifty- 50 Spot Price : {round(n5},1)"}</h1>', unsafe_allow_html=True)
-						st.write(f'<h1 style="color:#33ff33;font-size:25px;">{f"BakkNifty Spot Price : {round(bn,1)}"}</h1>', unsafe_allow_html=True)
+						st.subheader(f'*_Nifty- 50 Spot Price :green[{n}] ⏰_*')
+						st.subheader(f'*_BakkNifty Spot Price :green[{bn}] ⏰_*')
 				with placeholder100.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)					
 					A = df100.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
