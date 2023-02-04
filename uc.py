@@ -73,9 +73,9 @@ def Contract():
 				success=False
 			time.sleep(10)
 			idx += 1
+	return contract_master
 Contract()
-
-all_contract=contract_master[contract_master['Symbol']=='NIFTY']
+all_contract = contract_master[contract_master['Symbol']=='NIFTY']
 expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
 #------------------------------------------
 with st.form("opt_form"):	
