@@ -9,7 +9,12 @@ import time
 day = datetime.now(timezone("Asia/Kolkata"))
 DATE = day.strftime('%d-%m-%Y %H:%M:%S')
 alice = Aliceblue(user_id='627742',api_key='BPk1mFAXB9ByTFFQnm87HhieLFo3Fy5J3PCaae2g252DiLCNB9BK7hF0LpSg3d9fNO698r32IAsEt0lWm3hmuZMWW9tJC6r6A7xGkZWGmY1Hcdys1q9ITC1pRjYaklRQ')
-alice.get_session_id()
+try:
+	alice.get_session_id()
+except:
+	st.error('Pls Login first aliceblue account after continue....')	
+
+
 df = pd.read_csv('./token.csv')
 df5 = pd.read_csv('./trade.csv')
 #------------------------------------------------------
@@ -41,13 +46,17 @@ def im():
 		pm = round(0.0,1)
 	return pm
 
-
 #Get Expiry-------------------------------------------
 try:
 	contract_master= pd.read_csv('NFO.csv')
 except:
-	alice.get_contract_master('NFO')
-	contract_master = pd.read_csv('NFO.csv')
+	st.info('contract master fetch Error Wait 5 sec Retrying....')
+	time.sleep(10)
+	try:
+		alice.get_contract_master('NFO')
+		contract_master = pd.read_csv('NFO.csv')
+	except:
+		st.error('contract master Not fetch Please Check Website....')
 all_contract=contract_master[contract_master['Symbol']=='NIFTY']
 expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
 #------------------------------------------
