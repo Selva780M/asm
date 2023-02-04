@@ -101,7 +101,8 @@ with st.form("opt_form"):
 				n_ltp = n['LTP']
 			except:
 				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
-				sleep(1)
+				while True:
+					sleep(1)
 			spot = round((float(n_ltp)) / 50) * 50
 			expiry_date = expiry[0]
 			if user_OPTION == "call":
@@ -124,7 +125,8 @@ with st.form("opt_form"):
 				b_ltp = b['LTP']
 			except:
 				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
-				sleep(1)
+				while True:
+					sleep(1)
 			spot = round((float(b_ltp)) / 100) * 100			
 			expiry_date = expiry[0]
 			if user_OPTION == "call":
