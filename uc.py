@@ -9,25 +9,23 @@ import time
 day = datetime.now(timezone("Asia/Kolkata"))
 DATE = day.strftime('%d-%m-%Y %H:%M:%S')
 alice = Aliceblue(user_id='627742',api_key='BPk1mFAXB9ByTFFQnm87HhieLFo3Fy5J3PCaae2g252DiLCNB9BK7hF0LpSg3d9fNO698r32IAsEt0lWm3hmuZMWW9tJC6r6A7xGkZWGmY1Hcdys1q9ITC1pRjYaklRQ')
-try:
-	alice.get_session_id()
-except:
-	st.error('Pls Login first aliceblue account after continue....')	
-
-
 df = pd.read_csv('./token.csv')
 df5 = pd.read_csv('./trade.csv')
 #------------------------------------------------------
 placeholder1 = st.empty()	
 with placeholder1.container():
 	st.write("""👋Hey,iam👉
-		#:blue[_ALGO PAPER TRADE_] :sunglasses:""")
+		# :blue[_ALGO PAPER TRADE_] :sunglasses:""")
 	st.subheader('Welcome!! Mr._Selvakumar_ lets go...⏰')	
 	con1, con2 ,con3 = st.columns(3)
 	with con1:
 		st.markdown(f""" *_Date:_* {DATE}""")
 	with con3:
 		st.markdown(f""" *_Your Investment Rs.30000/-_* """)
+try:
+	alice.get_session_id()
+except:
+	st.error('Pls Login first aliceblue account after continue....')
 #--------------------------------------------
 def col(val):
 	try:
