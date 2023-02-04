@@ -54,7 +54,7 @@ def Contract():
 		success=True
 	except:
 		with placeholder00.container():
-			st.warning('contract master fetch Error Wait 10 sec Retrying..')
+			st.warning('*_Contract master fetch Error Wait 10 sec.._*')
 		time.sleep(10)
 		success=False
 		idx = 1
@@ -65,7 +65,7 @@ def Contract():
 				success=True
 			except:
 				with placeholder00.container():
-					st.error(f"Connection lost Retrying {idx} times on contracts Master..")
+					st.error(f"*_Connection lost Retrying {idx} times on contracts Master.._*")
 				success=False
 			time.sleep(10)
 			idx += 1
