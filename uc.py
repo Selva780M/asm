@@ -67,15 +67,15 @@ def Contract():
 				alice.get_contract_master('NFO')
 				time.sleep(10)
 				contract_master = pd.read_csv('NFO.csv')
-				all_contract = contract_master[contract_master['Symbol']=='NIFTY']
-				expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
 				success=True
 			except:
 				with placeholder00.container():
 					st.error(f"*_Connection lost Retrying {idx} times on contracts Master.._*")
 				success=False
 			time.sleep(10)
-			idx += 1
+			idx += 1	
+	all_contract = contract_master[contract_master['Symbol']=='NIFTY']
+	expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
 	return expiry
 Contract()
 #------------------------------------------
