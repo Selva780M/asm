@@ -54,7 +54,8 @@ def Contract():
 		contract_master= pd.read_csv('NFO.csv')
 		success=True
 	except:
-		st.warning('contract master fetch Error Wait 10 sec Retrying..')
+		with placeholder00.container():
+			st.warning('contract master fetch Error Wait 10 sec Retrying..')
 		time.sleep(10)
 		success=False
 		idx = 1
@@ -67,6 +68,7 @@ def Contract():
 				with placeholder00.container():
 					st.error(f"Connection lost Retrying {idx} times on contracts Master..")
 				success=False
+			time.sleep(5)
 			idx += 1
 Contract()
 
