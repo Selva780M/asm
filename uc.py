@@ -68,7 +68,7 @@ def Contract():
 				with placeholder00.container():
 					st.error(f"Connection lost Retrying {idx} times on contracts Master..")
 				success=False
-			time.sleep(5)
+			time.sleep(10)
 			idx += 1
 Contract()
 
