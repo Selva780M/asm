@@ -165,7 +165,21 @@ with st.form("opt_form"):
 				with placeholder101.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
 					B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
-					st.table(B)	
+					st.table(B)
+					col11, col22, col33,col44 = st.columns(4)					
+					with col11:
+						cl = st.button('👉 *_Delete Row_*')
+					with col22:
+						num = st.number_input('*_EnterRow No_*', min_value=0, max_value=len(df5.index), value=1, step=1, format=None, key=None)					
+					with col44:
+						dl  = st.button('👉 *_Reset_*')
+				if cl:
+					df5.drop([num], inplace = True)
+					df5.to_csv('trade.csv',index = False)
+				if dl :
+					for i in range(0,len(df5.index)):
+						df5.drop([i], inplace = True)
+					df5.to_csv('trade.csv',index = False)
 				df.to_csv('token.csv',index = False)
 				time.sleep(1)
 		
