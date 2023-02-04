@@ -20,8 +20,9 @@ df5 = pd.read_csv('./trade.csv')
 #------------------------------------------------------
 placeholder1 = st.empty()	
 with placeholder1.container():
-	st.header('👋 Mr._Selvakumar_ Iam,👉:blue[_ALGO PAPER TRADE_] :sunglasses:')
-	#st.success(f"Welcome !!!!⏰⏰")
+	st.write("""👋Hey,iam👉
+		#:blue[_ALGO PAPER TRADE_] :sunglasses:""")
+	st.subheader('Welcome!! Mr._Selvakumar_ lets go...⏰')	
 	con1, con2 ,con3 = st.columns(3)
 	with con1:
 		st.markdown(f""" *_Date:_* {DATE}""")
