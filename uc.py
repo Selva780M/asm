@@ -19,7 +19,7 @@ with placeholder1.container():
 		st.header('*_👋Hey, Im :blue[_ALGO PAPER TRADE_] :sunglasses:_*')
 	time.sleep(2)
 	with con51:
-		st.subheader('*_Welcome!! Mr.:green[_Selvakumar_] lets go...👉⏰_*')	
+		st.subheader('*_Welcome!! :green[_Mr.Selvakumar_] lets go...👉⏰_*')	
 	con1, con2 ,con3 = st.columns(3)
 	with con1:
 		st.markdown(f""" *_Date:_* {DATE}""")
