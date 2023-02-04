@@ -26,6 +26,7 @@ try:
 	alice.get_session_id()
 except:
 	st.error('Pls Login first aliceblue account after continue....')
+	sleep(1)
 #--------------------------------------------
 def col(val):
 	try:
@@ -99,7 +100,8 @@ with st.form("opt_form"):
 				n = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
 				n_ltp = n['LTP']
 			except:
-				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')			
+				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
+				sleep(1)
 			spot = round((float(n_ltp)) / 50) * 50
 			expiry_date = expiry[0]
 			if user_OPTION == "call":
@@ -121,7 +123,8 @@ with st.form("opt_form"):
 				b = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
 				b_ltp = b['LTP']
 			except:
-				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')						
+				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
+				sleep(1)
 			spot = round((float(b_ltp)) / 100) * 100			
 			expiry_date = expiry[0]
 			if user_OPTION == "call":
