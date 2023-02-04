@@ -47,16 +47,26 @@ def im():
 	return pm
 
 #Get Expiry-------------------------------------------
-try:
-	contract_master= pd.read_csv('NFO.csv')
-except:
-	st.info('contract master fetch Error Wait 5 sec Retrying....')
-	time.sleep(10)
+def Contract():
+	success=False
 	try:
-		alice.get_contract_master('NFO')
-		contract_master = pd.read_csv('NFO.csv')
+		contract_master= pd.read_csv('NFO.csv')
+		success=True
 	except:
-		st.error('contract master Not fetch Please Check Website....')
+		st.warning('contract master fetch Error Wait 10 sec Retrying..')
+		time.sleep(10)
+		success=False
+		idx = 1
+		while not success:
+			try:
+				alice.get_contract_master('NFO')
+				contract_master = pd.read_csv('NFO.csv')
+				success=True
+			except:
+				st.error(f"Connection lost Retrying {idx} times on contracts Master..")
+				success=False
+Contract()
+
 all_contract=contract_master[contract_master['Symbol']=='NIFTY']
 expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
 #------------------------------------------
