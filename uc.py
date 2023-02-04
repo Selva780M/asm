@@ -174,12 +174,12 @@ with st.form("opt_form"):
 					with col44:
 						dl  = st.button('👉 *_Reset_*')
 				if cl:
-					df5.drop([num], inplace = True)
-					df5.to_csv('trade.csv',index = False)
+					df100.drop([num], inplace = True)
+					df100.to_csv('trade.csv',index = False)
 				if dl :
 					for i in range(0,len(df5.index)):
-						df5.drop([i], inplace = True)
-					df5.to_csv('trade.csv',index = False)
+						df100.drop([i], inplace = True)
+					df100.to_csv('trade.csv',index = False)
 				df.to_csv('token.csv',index = False)
 				time.sleep(1)
 		
