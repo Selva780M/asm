@@ -144,6 +144,7 @@ with st.form("opt_form"):
 	placeholder100 = st.empty()
 	placeholder101 = st.empty()
 	if len(df['STOCK']) > 0:						
+		df.to_csv('token.csv',index = False)
 		while True:
 			em = []
 			try:
@@ -212,7 +213,6 @@ with st.form("opt_form"):
 			if cl:
 				for i in range(0,len(df.index)):
 					df.drop([i], inplace = True)
-				#df100.to_csv('token.csv',index = False)
-			df.to_csv('token.csv',index = False)
+				#df100.to_csv('token.csv',index = False)			
 			time.sleep(1)
 
