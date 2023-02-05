@@ -156,16 +156,19 @@ with st.form("opt_form"):
 				for i in df['STOCK']:
 					m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
 					lt = float(m['LTP'])
-					df.loc[i, ['LTP']] = ['lt'] 
+					r = float((df.loc[i, ['LTP']] - df.loc[i, ['ENTRY']]) * df.loc[i, ['QTY']])
+					df.loc[i, ['LTP']] = ['lt']
+					df.loc[i,['P_L']] = ['r']
 					#em.append(lt)
 			except Exception as e:
 				st.write(f"Er.",{e})					
 			#df100 = pd.DataFrame()
 			#df1 = pd.Series(em,name='LTP').astype('float')
+			st.table(df)
 			st.write(df.dtypes)
 			#df = pd.concat([df,df1],axis=1)
 			#st.write(df.dtypes)
-			df['P_L']  = ((df['LTP'] - df['ENTRY']) * df['QTY'])
+			#df['P_L']  = ((df['LTP'] - df['ENTRY']) * df['QTY'])
 			M = df['ENTRY'] * df['QTY']				
 			with placeholder12.container():					
 				c = df.groupby(['NAME'])['P_L'].sum().reset_index()					
