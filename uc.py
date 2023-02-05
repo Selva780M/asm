@@ -203,8 +203,9 @@ with st.form("opt_form"):
 				A = df100.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
 				st.table(A)						
 				col11, col22, col33,col44 = st.columns(4)					
+			with st.form("key2"):	
 				with col11:
-					cl = st.form_submit_button('👉 *_Clear Row_*)
+					cl = st.form_submit_button('👉 *_Clear Row_*')
 				with col22:
 					num = st.number_input('*_EnterRow No_*', min_value=0, max_value=len(df5.index), value=1, step=1, format=None, key=None)					
 				with col44:
@@ -213,7 +214,7 @@ with st.form("opt_form"):
 				st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
 				B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
 				st.table(B)
-			if cl(key='FormSubmitter:opt_form-👉 *_Clear Row_*'):
+			if cl():
 				df100.drop([num], inplace = True)
 				df100.to_csv('trade.csv',index = False)
 			if dl :
