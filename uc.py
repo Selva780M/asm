@@ -211,6 +211,60 @@ with st.form("opt_form"):
 				time.sleep(1)
 
 
+
+def on_button_click():
+    st.session_state.error_message = ''
+    st.session_state.result_message = ''
+    if not str(st.session_state.user_name):
+        st.session_state.error_message = "Input your name please~"
+    else:
+        st.session_state.result_message = f"Hello~ {str(st.session_state.user_name)}"
+
+
+st.title("Streamlit Test")
+
+input_user_name = st.text_input(label="User Name", key='user_name', value="")
+
+
+checkbox = st.checkbox('agree')
+st.button("Confirm", key='confirm_btn', disabled=(checkbox is False), on_click=on_button_click)
+
+con = st.container()
+con.caption("Result")
+if 'error_message' in st.session_state and st.session_state.error_message:
+    con.error(st.session_state.error_message)
+if 'result_message' in st.session_state and st.session_state.result_message:
+    con.write(st.session_state.result_message)				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 			
 			
 			
