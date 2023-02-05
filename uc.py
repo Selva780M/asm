@@ -216,11 +216,11 @@ with st.form("opt_form"):
 					st.table(B)
 			if cr:
 				df.drop(df.index[num], inplace = True)				
-				pass
+				return df
 			if cl:
 				for i in range(0,len(df.index)):
 					df.drop([i], inplace = True)
-				pass						
+				return	df					
 			df.to_csv('token.csv',index = False)
 			time.sleep(1)
 
