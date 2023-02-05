@@ -204,11 +204,11 @@ with st.form("opt_form"):
 					st.table(A)						
 					col11, col22, col33,col44 = st.columns(4)									
 					with col11:
-						cl = st.form_submit_button('👉*_Clear Row_*')
+						cl = st.form_submit_button('👉*_Clear Row_*',type=secondary)
 					with col22:
 						num = st.number_input('*_EnterRow No_*', min_value=0, max_value=len(df5.index), value=1, step=1, format=None,key=6)					
 					with col44:
-						dl  = st.form_submit_button('👉*_Clear ALL_*')
+						dl  = st.form_submit_button('👉*_Clear ALL_*'type=secondary)
 					with placeholder101.container():
 						st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
 						B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
