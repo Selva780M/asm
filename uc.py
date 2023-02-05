@@ -165,62 +165,62 @@ with st.form("opt_form"):
 			#df = pd.concat([df,df1],axis=1)
 			#st.write(df.dtypes)
 			#df['P_L']  = ((df['LTP'] - df['ENTRY']) * df['QTY'])
-	M = df['ENTRY'] * df['QTY']				
-	with placeholder12.container():					
-		c = df.groupby(['NAME'])['P_L'].sum().reset_index()					
-		c['%'] = (c['P_L']/30000*100)   
-		AAA = c.style.format(subset=["P_L","%"], formatter="{:.2f}").applymap(col)					
-		st.table(AAA)
-		st.info(f'_👉 Availble Cash\nRs.{round((30000+im()),1)}_')						
-		col1, col2 = st.columns(2)
-		with col1:
-			st.success(f'_Availble Margin\n Rs.{round((30000+im())-sum(M),1)}_')						
-		with col2:
-			st.error(f'_Margin Used\nRs.{round(sum(M),1)}_')				
-		st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"Profit Loss"}</h1>', unsafe_allow_html=True)
-		col16, col7 = st.columns(2)
-		PL = round((df.loc[df['NAME'] == str(user_USER) , 'P_L'].sum()),1)
-		with col16:
-			st.metric("Rs", f"{im()}" , f"{PL}")						
-		with col7:
-			st.metric("%",f"{round(((im()/30000)*100),1)}%" , f"{round(((PL/30000)*100),1)}%")
-		#st.download_button(label='📥 Download File', data=df5.to_csv(), file_name="PaperTrade.csv", mime='csv',key=7)
-			for i in range(0,len(df.index)):					
-				if(df.iloc[i,7]) > (df.iloc[i,6]) and (df.iloc[i,0] not in df5['DATE'].tolist()):
-					df2 = {"DATE" : df.iloc[i]['DATE'] ,"NAME": df.iloc[i]['NAME'], "STOCK" : df.iloc[i]['STOCK'],  "ENTRY" : df.iloc[i]['ENTRY'], "QTY" : df.iloc[i]['QTY'], "STOPLOSS" : df.iloc[i]['STOPLOSS'], "TARGET" : df.iloc[i]['TARGET'], "LTP" : df.iloc[i]['LTP'],"P_L" :df.iloc[i]['P_L']}						
-					df5 = df5.append(df2, ignore_index = True)
-					df5.to_csv('trade.csv',index = False)
-					st.balloons()
+			M = df['ENTRY'] * df['QTY']				
+			with placeholder12.container():					
+				c = df.groupby(['NAME'])['P_L'].sum().reset_index()					
+				c['%'] = (c['P_L']/30000*100)   
+				AAA = c.style.format(subset=["P_L","%"], formatter="{:.2f}").applymap(col)					
+				st.table(AAA)
+				st.info(f'_👉 Availble Cash\nRs.{round((30000+im()),1)}_')						
+				col1, col2 = st.columns(2)
+				with col1:
+					st.success(f'_Availble Margin\n Rs.{round((30000+im())-sum(M),1)}_')						
+				with col2:
+					st.error(f'_Margin Used\nRs.{round(sum(M),1)}_')				
+				st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"Profit Loss"}</h1>', unsafe_allow_html=True)
+				col16, col7 = st.columns(2)
+				PL = round((df.loc[df['NAME'] == str(user_USER) , 'P_L'].sum()),1)
+				with col16:
+					st.metric("Rs", f"{im()}" , f"{PL}")						
+				with col7:
+					st.metric("%",f"{round(((im()/30000)*100),1)}%" , f"{round(((PL/30000)*100),1)}%")
+				#st.download_button(label='📥 Download File', data=df5.to_csv(), file_name="PaperTrade.csv", mime='csv',key=7)
+					for i in range(0,len(df.index)):					
+						if(df.iloc[i,7]) > (df.iloc[i,6]) and (df.iloc[i,0] not in df5['DATE'].tolist()):
+							df2 = {"DATE" : df.iloc[i]['DATE'] ,"NAME": df.iloc[i]['NAME'], "STOCK" : df.iloc[i]['STOCK'],  "ENTRY" : df.iloc[i]['ENTRY'], "QTY" : df.iloc[i]['QTY'], "STOPLOSS" : df.iloc[i]['STOPLOSS'], "TARGET" : df.iloc[i]['TARGET'], "LTP" : df.iloc[i]['LTP'],"P_L" :df.iloc[i]['P_L']}						
+							df5 = df5.append(df2, ignore_index = True)
+							df5.to_csv('trade.csv',index = False)
+							st.balloons()
+							df.drop([i], inplace = True)
+						if(df.iloc[i,7]) < (df.iloc[i,5]) and (df.iloc[i,0] not in df5['DATE'].tolist()):											
+							df3 = {"DATE" : df.iloc[i]['DATE'] ,"NAME": df.iloc[i]['NAME'], "STOCK" : df.iloc[i]['STOCK'],  "ENTRY" : df.iloc[i]['ENTRY'], "QTY" : df.iloc[i]['QTY'], "STOPLOSS" : df.iloc[i]['STOPLOSS'], "TARGET" : df.iloc[i]['TARGET'], "LTP" : df.iloc[i]['LTP'],"P_L" :df.iloc[i]['P_L']}
+							df5 = df5.append(df3, ignore_index = True)
+							df5.to_csv('trade.csv',index = False)
+							st.balloons()
+							df.drop([i], inplace = True)
+			with col33:
+				with placeholder01.container():
+					n1 = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
+					b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
+					n5 = n1['LTP']
+					b5 = b1['LTP']
+					st.subheader(f'*_Nifty- 50 Spot Price :green[{n5}]_* ⏰')
+					st.subheader(f'*_BankNifty Spot Price :green[{b5}]_* ⏰')		
+				with placeholder100.container():
+					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)					
+					A = df.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
+					st.table(A)
+				with placeholder101.container():
+					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
+					B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
+					st.table(B)
+			if cr:
+				df.drop(df.index[num], inplace = True)				
+				pass
+			if cl:
+				for i in range(0,len(df.index)):
 					df.drop([i], inplace = True)
-				if(df.iloc[i,7]) < (df.iloc[i,5]) and (df.iloc[i,0] not in df5['DATE'].tolist()):											
-					df3 = {"DATE" : df.iloc[i]['DATE'] ,"NAME": df.iloc[i]['NAME'], "STOCK" : df.iloc[i]['STOCK'],  "ENTRY" : df.iloc[i]['ENTRY'], "QTY" : df.iloc[i]['QTY'], "STOPLOSS" : df.iloc[i]['STOPLOSS'], "TARGET" : df.iloc[i]['TARGET'], "LTP" : df.iloc[i]['LTP'],"P_L" :df.iloc[i]['P_L']}
-					df5 = df5.append(df3, ignore_index = True)
-					df5.to_csv('trade.csv',index = False)
-					st.balloons()
-					df.drop([i], inplace = True)
-	with col33:
-		with placeholder01.container():
-			n1 = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
-			b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
-			n5 = n1['LTP']
-			b5 = b1['LTP']
-			st.subheader(f'*_Nifty- 50 Spot Price :green[{n5}]_* ⏰')
-			st.subheader(f'*_BankNifty Spot Price :green[{b5}]_* ⏰')		
-		with placeholder100.container():
-			st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)					
-			A = df.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
-			st.table(A)
-		with placeholder101.container():
-			st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
-			B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
-			st.table(B)
-	if cr:
-		df.drop(df.index[num], inplace = True)
-		#df.to_csv('token.csv',index = False)
-	if cl:
-		for i in range(0,len(df.index)):
-			df.drop([i], inplace = True)
-		#df100.to_csv('token.csv',index = False)						
+				pass						
 			df.to_csv('token.csv',index = False)
 			time.sleep(1)
 
