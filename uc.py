@@ -154,12 +154,12 @@ with st.form("opt_form"):
 			try:
 				for i in df['STOCK']:
 					m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
-					lt = float(m['LTP'])								
+					lt = m['LTP']								
 					em.append(lt)
 			except Exception as e:
 				st.write(f"Er.",{e})					
 			#df100 = pd.DataFrame()
-			df1 = pd.Series(em,name='LTP')
+			df1 = int(pd.Series(em,name='LTP'))
 			df = pd.concat([df,df1],axis=1)
 			df['P_L']  = ((df['LTP'] - df['ENTRY']) * df['QTY'])
 			M = df['ENTRY'] * df['QTY']				
