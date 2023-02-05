@@ -83,15 +83,15 @@ with st.form("opt_form"):
 	st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f" {user_USER} 👋"}</h1>', unsafe_allow_html=True)	
 	with col11:		
 		user_STOCK = st.radio("*_Stock (Current strike)_*",("NIFTY","BANKNIFTY"), horizontal=True,key=1)
-		user_OPTION = st.radio("*_Option_*",("call","put"), horizontal=True,key=2)
+		user_OPTION = st.radio("*_Option_*",("call","put"), horizontal=True,key=1)
 		ENTRY = st.form_submit_button('👉 *_Order Placed_*')
-		num = st.number_input('*_EnterRow No_*', min_value=0, max_value=1000, value=1, step=1, format=None,key=6)
+		num = st.number_input('*_EnterRow No_*', min_value=0, max_value=1000, value=1, step=1, format=None,key=2)
 		cr = st.form_submit_button('👉*_Clear Row_*')
-		cl  = st.form_submit_button('👉*_Clear ALL_*',on_click = True)		
+		cl  = st.form_submit_button('👉*_Clear ALL_*')		
 	with col22:		
-		user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=3)
-		user_STOP = st.number_input('*_Stoploss_*', min_value=10, max_value=50, value=10, step=10, format=None,key=4)
-		user_TARGET = st.number_input('*_Target_*', min_value=10, max_value=50, value=10, step=10, format=None, key=5)			
+		user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=1)
+		user_STOP = st.number_input('*_Stoploss_*', min_value=10, max_value=50, value=10, step=10, format=None,key=1)
+		user_TARGET = st.number_input('*_Target_*', min_value=10, max_value=50, value=10, step=10, format=None, key=1)			
 	with col33:
 		placeholder01 = st.empty()		
 	if ENTRY:
