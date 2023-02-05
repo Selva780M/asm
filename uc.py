@@ -156,7 +156,7 @@ with st.form("opt_form"):
 				for i in df['STOCK']:
 					m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
 					lt = float(m['LTP'])
-					df.loc[3, ['LTP']] = ['lt'] 
+					df.loc[7, ['LTP']] = ['lt'] 
 					#em.append(lt)
 			except Exception as e:
 				st.write(f"Er.",{e})					
