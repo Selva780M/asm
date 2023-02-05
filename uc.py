@@ -213,6 +213,6 @@ with st.form("opt_form"):
 				for i in range(0,len(df100.index)):
 					df100.drop([i], inplace = True)
 				df100.to_csv('token.csv',index = False)
-			df100.to_csv('token.csv',index = False)
+			df.to_csv('token.csv',index = False)
 			time.sleep(1)
 
