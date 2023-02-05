@@ -85,7 +85,7 @@ with st.form("opt_form"):
 		user_STOCK = st.radio("*_Stock (Current strike)_*",("NIFTY","BANKNIFTY"), horizontal=True,key=1)
 		user_OPTION = st.radio("*_Option_*",("call","put"), horizontal=True,key=2)
 		ENTRY = st.form_submit_button('👉 *_Order Placed_*')
-		num = st.number_input('*_EnterRow No_*', min_value=0, max_value=len(df5.index), value=1, step=1, format=None,key=6)
+		num = st.number_input('*_EnterRow No_*', min_value=0, max_value=len(df100.index), value=1, step=1, format=None,key=6)
 		cl = st.form_submit_button('👉*_Clear Row_*')
 		dl  = st.form_submit_button('👉*_Clear ALL_*',on_click = True)		
 	with col22:		
@@ -213,13 +213,13 @@ with st.form("opt_form"):
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
 					B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
 					st.table(B)
-				if cl:
-					df100.drop([num], inplace = True)
-					df100.to_csv('trade.csv',index = False)
-				if dl:
-					for i in range(0,len(df100.index)):
-						df100.drop([i], inplace = True)
-					df100.to_csv('token.csv',index = False)
-				df.to_csv('token.csv',index = False)
+		if cl:
+			df100.drop([num], inplace = True)
+			df100.to_csv('trade.csv',index = False)
+		if dl:
+			for i in range(0,len(df100.index)):
+				df100.drop([i], inplace = True)
+			df100.to_csv('token.csv',index = False)
+			df.to_csv('token.csv',index = False)
 			time.sleep(1)
 
