@@ -162,7 +162,7 @@ with st.form("opt_form"):
 				st.write(f"Er.",{e})					
 			#df100 = pd.DataFrame()
 			#df1 = pd.Series(em,name='LTP').astype('float')
-			st.write(df1.dtypes)
+			st.write(df.dtypes)
 			#df = pd.concat([df,df1],axis=1)
 			#st.write(df.dtypes)
 			df['P_L']  = ((df['LTP'] - df['ENTRY']) * df['QTY'])
