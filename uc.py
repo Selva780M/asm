@@ -147,7 +147,7 @@ with st.form("opt_form"):
 			while True:
 				em = []
 				try:
-					for i in df['STOCK']:
+					for i in len(df['STOCK']):
 						m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
 						lt = float(m['LTP'])
 						r = float((df.loc[i, ['LTP']] - df.loc[i, ['ENTRY']]) * df.loc[i, ['QTY']])
