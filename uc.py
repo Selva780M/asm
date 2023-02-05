@@ -75,7 +75,7 @@ def Contract():
 	all_contract = contract_master[contract_master['Symbol']=='NIFTY']
 	expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
 	return expiry
-Contract()
+expiry = Contract()
 #------------------------------------------
 with st.form("opt_form"):	
 	col11, col22, col33 = st.columns(3)	
