@@ -165,7 +165,7 @@ with st.form("opt_form"):
 			#df = pd.concat([df,df1],axis=1)
 			#st.write(df.dtypes)
 			#df['P_L']  = ((df['LTP'] - df['ENTRY']) * df['QTY'])
-			M = df['ENTRY'] * df['QTY']				
+	M = df['ENTRY'] * df['QTY']				
 	with placeholder12.container():					
 		c = df.groupby(['NAME'])['P_L'].sum().reset_index()					
 		c['%'] = (c['P_L']/30000*100)   
