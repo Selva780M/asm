@@ -203,7 +203,8 @@ def mani():
 				df.to_csv('token.csv',index = False)
 				time.sleep(1)
 	return df100,df5			
-mani()			
+df100 =  mani.df100			
+df5 = mani.df5
 def main():
 	global df100,df5  
 	with st.form("opt_form2"):
