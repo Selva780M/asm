@@ -79,7 +79,7 @@ expiry = Contract()
 #------------------------------------------
 with st.form("opt_form"):	
 	col11, col22, col33 = st.columns(3)	
-	user_USER = st.sidebar.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT"))
+	user_USER = st.sidebar.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","test"))
 	st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f" {user_USER} 👋"}</h1>', unsafe_allow_html=True)	
 	with col11:		
 		user_STOCK = st.radio("*_Stock (Current strike)_*",("NIFTY","BANKNIFTY"), horizontal=True)
@@ -195,30 +195,30 @@ with st.form("opt_form"):
 						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
 						n5 = n1['LTP']
 						b5 = b1['LTP']
-						st.subheader(f'*_Nifty- 50 Spot Price :green[{n5}] ⏰_*')
-						st.subheader(f'*_BakkNifty Spot Price :green[{b5}] ⏰_*')
+						st.subheader(f'*_Nifty- 50 Spot Price \n :green[{n5}] ⏰_*')
+						st.subheader(f'*_BankNifty Spot Price \n :green[{b5}] ⏰_*')
 				with placeholder100.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)					
 					A = df100.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
-					st.table(A)							
+					st.table(A)						
+					col11, col22, col33,col44 = st.columns(4)					
+					with col11:
+						cl = st.form_submit_button('👉 *_Clear Row_*')
+					with col22:
+						num = st.number_input('*_EnterRow No_*', min_value=0, max_value=len(df5.index), value=1, step=1, format=None, key=None)					
+					with col44:
+						dl  = st.form_submit_button('👉 *_Clear ALL_*')
 				with placeholder101.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
 					B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
 					st.table(B)
-					col11, col22, col33,col44 = st.columns(4)					
-					with col11:
-						cl = st.button('👉 *_Delete Row_*')
-					with col22:
-						num = st.number_input('*_EnterRow No_*', min_value=0, max_value=len(df5.index), value=1, step=1, format=None, key=None)					
-					with col44:
-						dl  = st.button('👉 *_Reset_*')
 				if cl:
 					df100.drop([num], inplace = True)
 					df100.to_csv('trade.csv',index = False)
 				if dl :
-					for i in range(0,len(df5.index)):
+					for i in range(0,len(df100.index)):
 						df100.drop([i], inplace = True)
-					df100.to_csv('trade.csv',index = False)
+					df100.to_csv('token.csv',index = False)
 				df.to_csv('token.csv',index = False)
 				time.sleep(1)
 		
