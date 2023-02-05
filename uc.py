@@ -172,7 +172,7 @@ with st.form("opt_form"):
 					col16, col7 = st.columns(2)
 					st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"Profit Loss"}</h1>', unsafe_allow_html=True)
 					PL = round((df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()),1)
-					with col6:
+					with col16:
 						st.metric("Rs", f"{im()}" , f"{PL}")						
 					with col7:
 						st.metric("%",f"{round(((im()/30000)*100),1)}%" , f"{round(((PL/30000)*100),1)}%")
