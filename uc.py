@@ -202,7 +202,7 @@ with st.form("opt_form"):
 			time.sleep(1)
 
 			
-def mian():
+def main():
 	global df100,df5  
 	with st.form("opt_form2"):
 		with placeholder100.container():
