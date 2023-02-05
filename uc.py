@@ -95,6 +95,7 @@ with st.form("opt_form"):
 	with col33:
 		placeholder01 = st.empty()		
 	if ENTRY:
+		global expriry
 		if user_STOCK == "NIFTY":			
 			try:
 				n = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
