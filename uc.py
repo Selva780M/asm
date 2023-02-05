@@ -85,7 +85,7 @@ with st.form("opt_form"):
 		user_STOCK = st.radio("*_Stock (Current strike)_*",("NIFTY","BANKNIFTY"), horizontal=True,key=1)
 		user_OPTION = st.radio("*_Option_*",("call","put"), horizontal=True,key=2)
 		ENTRY = st.form_submit_button('👉 *_Order Placed_*')
-		num = st.number_input('*_EnterRow No_*', min_value=0, max_value=len(df100.index), value=1, step=1, format=None,key=6)
+		num = st.number_input('*_EnterRow No_*', min_value=0, max_value=1000, value=len(df.index), step=1, format=None,key=6)
 		cl = st.form_submit_button('👉*_Clear Row_*')
 		dl  = st.form_submit_button('👉*_Clear ALL_*',on_click = True)		
 	with col22:		
