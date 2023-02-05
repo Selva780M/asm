@@ -159,7 +159,7 @@ with st.form("opt_form"):
 			except Exception as e:
 				st.write(f"Er.",{e})					
 			#df100 = pd.DataFrame()
-			df1 = int(pd.Series(em,name='LTP'))
+			df1 = pd.Series(em,name='LTP').astype('float')
 			df = pd.concat([df,df1],axis=1)
 			df['P_L']  = ((df['LTP'] - df['ENTRY']) * df['QTY'])
 			M = df['ENTRY'] * df['QTY']				
