@@ -150,13 +150,14 @@ with st.form("opt_form"):
 					for i in df['STOCK']:
 						m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
 						lt = float(m['LTP'])
-						#r = float((df.loc[i, ['LTP']] - df.loc[i, ['ENTRY']]) * df.loc[i, ['QTY']])
 						df.loc[i, ['LTP']] = ['lt']
+						#r = float((df.loc[i, ['LTP']] - df.loc[i, ['ENTRY']]) * df.loc[i, ['QTY']])
 						#df.loc[i,['P_L']] = ['r']						
-						st.table(df)
+						#st.table(df)
 						#em.append(lt)
 				except Exception as e:
 					st.write(f"Er.",{e})					
+				st.table(df)
 				#df = df.replace({'LTP' : {'G' : 'Guard', 'F' : 'Forward', 'C' : 'Center'}})
 				#df100 = pd.DataFrame()
 				#df1 = pd.Series(em,name='LTP').astype('float')
