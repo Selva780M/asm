@@ -156,7 +156,7 @@ with st.form("opt_form"):
 				df100 = pd.DataFrame()
 				df1 = pd.Series(em,name='LTP')
 				df100 = pd.concat([df,df1],axis=1)
-				st.write(df.types)
+				st.write(df.dtypes)
 				df100['P_L']  = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
 				M = df100['ENTRY'] * df100['QTY']				
 				with placeholder12.container():					
