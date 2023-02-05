@@ -145,6 +145,7 @@ with st.form("opt_form"):
 				df = df.append(new_data, ignore_index = True)
 				#df.to_csv('token.csv',index = False)
 	st.table(df)
+	st.write(df.dtypes)
 	placeholder12 = st.sidebar.empty()
 	placeholder100 = st.empty()
 	placeholder101 = st.empty()
@@ -160,7 +161,9 @@ with st.form("opt_form"):
 				st.write(f"Er.",{e})					
 			#df100 = pd.DataFrame()
 			df1 = pd.Series(em,name='LTP').astype('float')
+			st.write(df1.dtypes)
 			df = pd.concat([df,df1],axis=1)
+			st.write(df.dtypes)
 			df['P_L']  = ((df['LTP'] - df['ENTRY']) * df['QTY'])
 			M = df['ENTRY'] * df['QTY']				
 			with placeholder12.container():					
