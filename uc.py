@@ -215,7 +215,7 @@ with st.form("opt_form"):
 					B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
 					st.table(B)
 			if cr:
-				df.drop([num], inplace = True)
+				df.drop(df.index[num], inplace = True)
 				#df.to_csv('token.csv',index = False)
 			if cl:
 				for i in range(0,len(df.index)):
