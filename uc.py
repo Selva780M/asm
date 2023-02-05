@@ -78,6 +78,7 @@ def Contract():
 expiry = Contract()
 #------------------------------------------
 def mani():
+	global df , df5
 	with st.form("opt_form"):	
 		col11, col22, col33 = st.columns(3)	
 		user_USER = st.sidebar.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","test"))
