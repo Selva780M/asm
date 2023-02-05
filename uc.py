@@ -160,17 +160,17 @@ with st.form("opt_form"):
 				M = df100['ENTRY'] * df100['QTY']				
 				with placeholder12.container():					
 					c = df100.groupby(['NAME'])['P_L'].sum().reset_index()
-					AAA = c.style.format(subset=["P_L" ], formatter="{:.2f}").applymap(col)					
+					c['%'] = (c['PL']/30000*100)   
+					AAA = c.style.format(subset=["P_L","%"], formatter="{:.2f}").applymap(col)					
 					st.table(AAA)
 					st.info(f'_👉 Availble Cash\nRs.{round((30000+im()),1)}_')						
 					col1, col2 = st.columns(2)
 					with col1:
 						st.success(f'_Availble Margin\n Rs.{round((30000+im())-sum(M),1)}_')						
 					with col2:
-						st.error(f'_Margin Used\nRs.{round(sum(M),1)}_')
-					
-					col16, col7 = st.columns(2)
+						st.error(f'_Margin Used\nRs.{round(sum(M),1)}_')				
 					st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"Profit Loss"}</h1>', unsafe_allow_html=True)
+					col16, col7 = st.columns(2)
 					PL = round((df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()),1)
 					with col16:
 						st.metric("Rs", f"{im()}" , f"{PL}")						
@@ -191,10 +191,12 @@ with st.form("opt_form"):
 						df.drop([i], inplace = True)
 				with col33:
 					with placeholder01.container():
-						n5 = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
-						bn = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
-						st.subheader(f'*_Nifty- 50 Spot Price :green[{n}] ⏰_*')
-						st.subheader(f'*_BakkNifty Spot Price :green[{bn}] ⏰_*')
+						n1 = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
+						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
+						n5 = n1['LTP']
+						b5 = b1['LTP']
+						st.subheader(f'*_Nifty- 50 Spot Price :green[{n5}] ⏰_*')
+						st.subheader(f'*_BakkNifty Spot Price :green[{b5}] ⏰_*')
 				with placeholder100.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)					
 					A = df100.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
