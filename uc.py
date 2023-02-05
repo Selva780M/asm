@@ -111,7 +111,7 @@ with st.form("opt_form"):
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name,  "ENTRY" : round(entry,1), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
 				df = df.append(new_data, ignore_index = True)	
-				df.to_csv('token.csv',index = False)
+				#df.to_csv('token.csv',index = False)
 			if  user_OPTION == "put":
 				put_strike = spot + (50)
 				n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
@@ -119,7 +119,7 @@ with st.form("opt_form"):
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name,  "ENTRY" : round(entry,1), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
 				df = df.append(new_data, ignore_index = True)
-				df.to_csv('token.csv',index = False)
+				#df.to_csv('token.csv',index = False)
 		if user_STOCK == "BANKNIFTY":
 			try:
 				b = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
@@ -135,7 +135,7 @@ with st.form("opt_form"):
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name,  "ENTRY" : round(entry,1), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
 				df = df.append(new_data, ignore_index = True)
-				df.to_csv('token.csv',index = False)
+				#df.to_csv('token.csv',index = False)
 			if  user_OPTION == "put":
 				put_strike = spot + (100)
 				b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
@@ -143,7 +143,7 @@ with st.form("opt_form"):
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name,  "ENTRY" : round(entry,1), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1)}
 				df = df.append(new_data, ignore_index = True)
-				df.to_csv('token.csv',index = False)
+				#df.to_csv('token.csv',index = False)
 	placeholder12 = st.sidebar.empty()
 	placeholder100 = st.empty()
 	placeholder101 = st.empty()
@@ -211,11 +211,12 @@ with st.form("opt_form"):
 					B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
 					st.table(B)
 			if cr:
-				df.drop([num], inplace = True)
-				df.to_csv('token.csv',index = False)
+				df100.drop([num], inplace = True)
+				df100.to_csv('token.csv',index = False)
 			if cl:
 				for i in range(0,len(df.index)):
 					df.drop([i], inplace = True)
-				df.to_csv('token.csv',index = False)						
+				df100.to_csv('token.csv',index = False)						
+			df.to_csv('token.csv',index = False)
 			time.sleep(1)
 
