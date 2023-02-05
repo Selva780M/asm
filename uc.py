@@ -105,7 +105,7 @@ with st.form("opt_form"):
 				n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
 				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1),"LTP" : float(entry) ,"P_L" : float(0) }
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1),"LTP" : float(0) ,"P_L" : float(0) }
 				df = df.append(new_data, ignore_index = True)	
 				#df.to_csv('token.csv',index = False)
 			if  user_OPTION == "put":
@@ -113,7 +113,7 @@ with st.form("opt_form"):
 				n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_put.name)))
 				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1),"LTP" : float(entry) ,"P_L" : float(0) }
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1),"LTP" : float(0) ,"P_L" : float(0) }
 				df = df.append(new_data, ignore_index = True)
 				#df.to_csv('token.csv',index = False)
 		if user_STOCK == "BANKNIFTY":
@@ -129,7 +129,7 @@ with st.form("opt_form"):
 				b_call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_call.name)))
 				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1),"LTP" : float(entry) ,"P_L" : float(0) }
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1),"LTP" : float(0) ,"P_L" : float(0) }
 				df = df.append(new_data, ignore_index = True)
 				#df.to_csv('token.csv',index = False)
 			if  user_OPTION == "put":
@@ -137,7 +137,7 @@ with st.form("opt_form"):
 				b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_put.name)))
 				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1),"LTP" : float(entry) ,"P_L" : float(0) }
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1),"LTP" : float(0) ,"P_L" : float(0) }
 				df = df.append(new_data, ignore_index = True)
 				#df.to_csv('token.csv',index = False)
 		placeholder12 = st.sidebar.empty()
@@ -153,7 +153,7 @@ with st.form("opt_form"):
 						df.loc[i, ['LTP']] = ['lt']
 						r = float((df.loc[i, ['LTP']] - df.loc[i, ['ENTRY']]) * df.loc[i, ['QTY']])
 						df.loc[i,['P_L']] = ['r']						
-						#st.table(df)
+						st.table(df)
 						#em.append(lt)
 				except Exception as e:
 					st.write(f"Er.",{e})					
