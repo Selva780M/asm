@@ -84,10 +84,7 @@ with st.form("opt_form"):
 	with col11:		
 		user_STOCK = st.radio("*_Stock (Current strike)_*",("NIFTY","BANKNIFTY"), horizontal=True,key=2)
 		user_OPTION = st.radio("*_Option_*",("call","put"), horizontal=True,key=3)
-		ENTRY = st.form_submit_button('👉 *_Order Placed_*')
-		num = st.number_input('*_EnterRow No_*', min_value=0, max_value=1000, value=1, step=1, format=None,key=7)
-		cr = st.form_submit_button('👉*_Clear Row_*')
-		cl  = st.form_submit_button('👉*_Clear ALL_*')		
+		ENTRY = st.form_submit_button('👉 *_Order Placed_*')			
 	with col22:		
 		user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=4)
 		user_STOP = st.number_input('*_Stoploss_*', min_value=10, max_value=50, value=10, step=10, format=None,key=5)
@@ -111,7 +108,7 @@ with st.form("opt_form"):
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1),"LTP" : float(entry) ,"P_L" : float(0) }
 				df = df.append(new_data, ignore_index = True)	
-				#df.to_csv('token.csv',index = False)
+				df.to_csv('token.csv',index = False)
 			if  user_OPTION == "put":
 				put_strike = spot + (50)
 				n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
@@ -119,7 +116,7 @@ with st.form("opt_form"):
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1),"LTP" : float(entry) ,"P_L" : float(0) }
 				df = df.append(new_data, ignore_index = True)
-				#df.to_csv('token.csv',index = False)
+				df.to_csv('token.csv',index = False)
 		if user_STOCK == "BANKNIFTY":
 			try:
 				b = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
@@ -135,7 +132,7 @@ with st.form("opt_form"):
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1),"LTP" : float(entry) ,"P_L" : float(0) }
 				df = df.append(new_data, ignore_index = True)
-				#df.to_csv('token.csv',index = False)
+				df.to_csv('token.csv',index = False)
 			if  user_OPTION == "put":
 				put_strike = spot + (100)
 				b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
@@ -143,7 +140,7 @@ with st.form("opt_form"):
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1),"LTP" : float(entry) ,"P_L" : float(0) }
 				df = df.append(new_data, ignore_index = True)
-				#df.to_csv('token.csv',index = False)
+				df.to_csv('token.csv',index = False)
 	placeholder12 = st.sidebar.empty()
 	placeholder100 = st.empty()
 	placeholder101 = st.empty()
@@ -213,14 +210,25 @@ with st.form("opt_form"):
 				with placeholder101.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
 					B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
-					st.table(B)
-			if cr:
-				df.drop([num], inplace = True)				
-				df = df.to_csv('token.csv',index = False)
-			if cl:
-				for i in range(0,len(df.index)):
-					df.drop([i], inplace = True)
-				df = df.to_csv('token.csv',index = False) 									
-			#df.to_csv('token.csv',index = False)
+					st.table(B)					
+			df.to_csv('token.csv',index = False)
 			time.sleep(1)
 
+
+			
+			
+			
+# with st.form("opt_form"):
+			
+# num = st.number_input('*_EnterRow No_*', min_value=0, max_value=1000, value=1, step=1, format=None,key=7)
+# 		cr = st.form_submit_button('👉*_Clear Row_*')
+# 		cl  = st.form_submit_button('👉*_Clear ALL_*')	
+			
+# 	if cr:
+# 		df.drop([num], inplace = True)				
+# 		df = df.to_csv('token.csv',index = False)
+# 	if cl:
+# 		for i in range(0,len(df.index)):
+# 			df.drop([i], inplace = True)
+# 		df = df.to_csv('token.csv',index = False) 						
+			
