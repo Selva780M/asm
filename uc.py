@@ -159,9 +159,8 @@ with st.form("opt_form"):
 				df100['P_L']  = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
 				M = df100['ENTRY'] * df100['QTY']				
 				with placeholder12.container():					
-					c = df100.groupby(['NAME'])['P_L'].sum().reset_index()
-					st.dataframe(c)
-					c['%'] = (c['PL']/30000*100)   
+					c = df100.groupby(['NAME'])['P_L'].sum().reset_index()					
+					c['%'] = (c['P_L']/30000*100)   
 					AAA = c.style.format(subset=["P_L","%"], formatter="{:.2f}").applymap(col)					
 					st.table(AAA)
 					st.info(f'_👉 Availble Cash\nRs.{round((30000+im()),1)}_')						
