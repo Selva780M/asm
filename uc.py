@@ -86,8 +86,8 @@ with st.form("opt_form"):
 		user_OPTION = st.radio("*_Option_*",("call","put"), horizontal=True,key=2)
 		ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 		num = st.number_input('*_EnterRow No_*', min_value=0, max_value=1000, value=len(df.index), step=1, format=None,key=6)
-		cl = st.form_submit_button('👉*_Clear Row_*')
-		dl  = st.form_submit_button('👉*_Clear ALL_*',on_click = True)		
+		cr = st.form_submit_button('👉*_Clear Row_*')
+		cl  = st.form_submit_button('👉*_Clear ALL_*',on_click = True)		
 	with col22:		
 		user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=3)
 		user_STOP = st.number_input('*_Stoploss_*', min_value=10, max_value=50, value=10, step=10, format=None,key=4)
@@ -201,22 +201,15 @@ with st.form("opt_form"):
 				with placeholder100.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)					
 					A = df100.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
-					st.table(A)					
-					#col11, col22, col33,col44 = st.columns(4)									
-					#with col11:
-						
-					#with col22:
-											
-					#with col44:
-						
+					st.table(A)
 				with placeholder101.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
 					B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
 					st.table(B)
-			if cl:
+			if cr:
 				df100.drop([num], inplace = True)
-				df100.to_csv('trade.csv',index = False)
-			if dl:
+				df100.to_csv('token.csv',index = False)
+			if cl:
 				for i in range(0,len(df100.index)):
 					df100.drop([i], inplace = True)
 				df100.to_csv('token.csv',index = False)
