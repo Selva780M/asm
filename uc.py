@@ -109,7 +109,7 @@ with st.form("opt_form"):
 				n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
 				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1),"LTP" : float(entry) ,"P_L" : float(0) }
 				df = df.append(new_data, ignore_index = True)	
 				#df.to_csv('token.csv',index = False)
 			if  user_OPTION == "put":
@@ -117,7 +117,7 @@ with st.form("opt_form"):
 				n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_put.name)))
 				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)"LTP" : float(entry) ,"P_L" : float(0) }
 				df = df.append(new_data, ignore_index = True)
 				#df.to_csv('token.csv',index = False)
 		if user_STOCK == "BANKNIFTY":
@@ -133,7 +133,7 @@ with st.form("opt_form"):
 				b_call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_call.name)))
 				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)"LTP" : float(entry) ,"P_L" : float(0) }
 				df = df.append(new_data, ignore_index = True)
 				#df.to_csv('token.csv',index = False)
 			if  user_OPTION == "put":
@@ -141,7 +141,7 @@ with st.form("opt_form"):
 				b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_put.name)))
 				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1)}
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1)"LTP" : float(entry) ,"P_L" : float(0) }
 				df = df.append(new_data, ignore_index = True)
 				#df.to_csv('token.csv',index = False)
 	placeholder12 = st.sidebar.empty()
@@ -157,13 +157,13 @@ with st.form("opt_form"):
 					em.append(lt)
 			except Exception as e:
 				st.write(f"Er.",{e})					
-			df100 = pd.DataFrame()
+			#df100 = pd.DataFrame()
 			df1 = pd.Series(em,name='LTP')
-			df100 = pd.concat([df,df1],axis=1)
-			df100['P_L']  = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
-			M = df100['ENTRY'] * df100['QTY']				
+			df = pd.concat([df,df1],axis=1)
+			df['P_L']  = ((df['LTP'] - df['ENTRY']) * df['QTY'])
+			M = df['ENTRY'] * df['QTY']				
 			with placeholder12.container():					
-				c = df100.groupby(['NAME'])['P_L'].sum().reset_index()					
+				c = df.groupby(['NAME'])['P_L'].sum().reset_index()					
 				c['%'] = (c['P_L']/30000*100)   
 				AAA = c.style.format(subset=["P_L","%"], formatter="{:.2f}").applymap(col)					
 				st.table(AAA)
@@ -175,21 +175,21 @@ with st.form("opt_form"):
 					st.error(f'_Margin Used\nRs.{round(sum(M),1)}_')				
 				st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"Profit Loss"}</h1>', unsafe_allow_html=True)
 				col16, col7 = st.columns(2)
-				PL = round((df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()),1)
+				PL = round((df.loc[df['NAME'] == str(user_USER) , 'P_L'].sum()),1)
 				with col16:
 					st.metric("Rs", f"{im()}" , f"{PL}")						
 				with col7:
 					st.metric("%",f"{round(((im()/30000)*100),1)}%" , f"{round(((PL/30000)*100),1)}%")
 				#st.download_button(label='📥 Download File', data=df5.to_csv(), file_name="PaperTrade.csv", mime='csv',key=7)
-			for i in range(0,len(df100.index)):					
-				if(df100.iloc[i,7]) > (df100.iloc[i,6]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
-					df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
+			for i in range(0,len(df.index)):					
+				if(df.iloc[i,7]) > (df.iloc[i,6]) and (df.iloc[i,0] not in df5['DATE'].tolist()):
+					df2 = {"DATE" : df.iloc[i]['DATE'] ,"NAME": df.iloc[i]['NAME'], "STOCK" : df.iloc[i]['STOCK'],  "ENTRY" : df.iloc[i]['ENTRY'], "QTY" : df.iloc[i]['QTY'], "STOPLOSS" : df.iloc[i]['STOPLOSS'], "TARGET" : df.iloc[i]['TARGET'], "LTP" : df.iloc[i]['LTP'],"P_L" :df.iloc[i]['P_L']}						
 					df5 = df5.append(df2, ignore_index = True)
 					df5.to_csv('trade.csv',index = False)
 					st.balloons()
 					df.drop([i], inplace = True)
-				if(df100.iloc[i,7]) < (df100.iloc[i,5]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):											
-					df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
+				if(df.iloc[i,7]) < (df.iloc[i,5]) and (df.iloc[i,0] not in df5['DATE'].tolist()):											
+					df3 = {"DATE" : df.iloc[i]['DATE'] ,"NAME": df.iloc[i]['NAME'], "STOCK" : df.iloc[i]['STOCK'],  "ENTRY" : df.iloc[i]['ENTRY'], "QTY" : df.iloc[i]['QTY'], "STOPLOSS" : df.iloc[i]['STOPLOSS'], "TARGET" : df.iloc[i]['TARGET'], "LTP" : df.iloc[i]['LTP'],"P_L" :df.iloc[i]['P_L']}
 					df5 = df5.append(df3, ignore_index = True)
 					df5.to_csv('trade.csv',index = False)
 					st.balloons()
@@ -204,19 +204,19 @@ with st.form("opt_form"):
 					st.subheader(f'*_BankNifty Spot Price :green[{b5}]_* ⏰')		
 				with placeholder100.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)					
-					A = df100.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
+					A = df.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
 					st.table(A)
 				with placeholder101.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
 					B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
 					st.table(B)
 			if cr:
-				df100.drop([num], inplace = True)
+				df.drop([num], inplace = True)
 				#df.to_csv('token.csv',index = False)
 			if cl:
-				for i in range(0,len(df100.index)):
-					df100.drop([i], inplace = True)
+				for i in range(0,len(df.index)):
+					df.drop([i], inplace = True)
 				#df100.to_csv('token.csv',index = False)						
-			df100.to_csv('token.csv',index = False)
+			df.to_csv('token.csv',index = False)
 			time.sleep(1)
 
