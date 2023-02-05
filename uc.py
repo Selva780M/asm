@@ -79,7 +79,7 @@ expiry = Contract()
 #------------------------------------------
 with st.form("opt_form"):	
 	col11, col22, col33 = st.columns(3)	
-	user_USER = st.sidebar.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","test",key=1))
+	user_USER = st.sidebar.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","test"),key=1))
 	st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f" {user_USER} 👋"}</h1>', unsafe_allow_html=True)	
 	with col11:		
 		user_STOCK = st.radio("*_Stock (Current strike)_*",("NIFTY","BANKNIFTY"), horizontal=True,key=2)
