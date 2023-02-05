@@ -176,6 +176,7 @@ with st.form("opt_form"):
 						st.metric("Rs", f"{im()}" , f"{PL}")						
 					with col7:
 						st.metric("%",f"{round(((im()/30000)*100),1)}%" , f"{round(((PL/30000)*100),1)}%")
+					st.download_button(label='📥 Download File', data=df.to_csv(), file_name="PaperTrade.csv", mime='csv')
 				for i in range(0,len(df100.index)):					
 					if(df100.iloc[i,7]) > (df100.iloc[i,6]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
 						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
@@ -203,7 +204,7 @@ with st.form("opt_form"):
 					st.table(A)						
 					col11, col22, col33,col44 = st.columns(4)					
 					with col11:
-						cl = st.form_submit_button('👉 *_Clear Row_*')
+						cl = st.form_submit_button('👉 *_Clear Row_*',key='FormSubmitter:opt_form-👉 *_Clear Row_*')
 					with col22:
 						num = st.number_input('*_EnterRow No_*', min_value=0, max_value=len(df5.index), value=1, step=1, format=None, key=None)					
 					with col44:
