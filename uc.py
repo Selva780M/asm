@@ -147,7 +147,7 @@ with st.form("opt_form"):
 			while True:
 				em = []
 				try:
-					for i in df.loc[i,'STOCK']:
+					for i in df['STOCK']:
 						m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
 						lt = float(m['LTP'])
 						df.loc[i, ['LTP']] = ['lt']
