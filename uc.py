@@ -160,6 +160,7 @@ with st.form("opt_form"):
 				M = df100['ENTRY'] * df100['QTY']				
 				with placeholder12.container():					
 					c = df100.groupby(['NAME'])['P_L'].sum().reset_index()
+					st.dataframe(c)
 					c['%'] = (c['PL']/30000*100)   
 					AAA = c.style.format(subset=["P_L","%"], formatter="{:.2f}").applymap(col)					
 					st.table(AAA)
