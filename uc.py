@@ -144,6 +144,7 @@ with st.form("opt_form"):
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1),"LTP" : float(entry) ,"P_L" : float(0) }
 				df = df.append(new_data, ignore_index = True)
 				#df.to_csv('token.csv',index = False)
+	st.table(df)
 	placeholder12 = st.sidebar.empty()
 	placeholder100 = st.empty()
 	placeholder101 = st.empty()
