@@ -141,7 +141,11 @@ if x =="Order Placed" :
 					df = df.append(new_data, ignore_index = True)
 					df.to_csv('token.csv',index = False)		
 if x =="Report":
-	if len(df['STOCK']) > 0:								
+	if len(df['STOCK']) > 0:
+		placeholder12 = st.sidebar.empty()
+		placeholder100 = st.empty()
+		placeholder101 = st.empty()
+		placeholder13 = st.sidebar.empty()
 			while True:
 				em = []
 				try:
@@ -155,10 +159,7 @@ if x =="Report":
 				df1 = pd.Series(em,name='LTP')
 				df100 = pd.concat([df,df1],axis=1)				
 				df100['P_L']  = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
-				M = df100['ENTRY'] * df100['QTY']				
-				placeholder12 = st.sidebar.empty()
-				placeholder100 = st.empty()
-				placeholder101 = st.empty()
+				M = df100['ENTRY'] * df100['QTY']	
 				with placeholder12.container():					
 					c = df100.groupby(['NAME'])['P_L'].sum().reset_index()					
 					c['%'] = (c['P_L']/30000*100)   
@@ -169,11 +170,10 @@ if x =="Report":
 					with col1:
 						st.success(f'_Availble Margin\n Rs.{round((30000+im())-sum(M),1)}_')						
 					with col2:
-						st.error(f'_Margin Used\nRs.{round(sum(M),1)}_')		
-				placeholder13 = st.sidebar.empty()
+						st.error(f'_Margin Used\nRs.{round(sum(M),1)}_')
 				with placeholder13.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"Profit Loss"}</h1>', unsafe_allow_html=True)					
-					user_USER = st.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","test"),horizontal=True,key=7)
+					user_USER = st.radio('*_Report_*',("Price action","ORB Day","ORB 930","BTST","STBT","test"),horizontal=True,key=1)
 					PL = round((df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()),1)
 					col16, col7 = st.columns(2)
 					with col16:
