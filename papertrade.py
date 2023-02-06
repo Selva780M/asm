@@ -230,6 +230,7 @@ if x =="Report":
 				#st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
 				B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
 				st.table(B)
+				st.warning('*_Paper Trade Chart_*')
 				chart_data = df100[["NAME","P_L"]]
 				chart_data = chart_data.set_index('NAME')
 				st.bar_chart(chart_data)
