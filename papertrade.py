@@ -247,8 +247,7 @@ if x == "Access File":
 		if cl:
 			for i in range(0,len(df.index)):
 				df.drop([i], inplace = True)
-			df.to_csv('token.csv',index = False)
-		st.title("Files")
+			df.to_csv('token.csv',index = False)		
 		A = df.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET"], formatter="{:.2f}").applymap(col)
 		st.table(A)	
 					
