@@ -240,8 +240,7 @@ if x == "Access File":
 		with col2:
 			cr = st.form_submit_button('*_👉Clear Row_*')
 		with col3:
-			cl  = st.form_submit_button('*_👉Clear ALL_*')
-		st.download_button(label='📥 Download File', data=df5.to_csv(), file_name="PaperTrade.csv", mime='csv',key=8)
+			cl  = st.form_submit_button('*_👉Clear ALL_*')	
 		if cr:
 			df.drop([num], inplace = True)
 			df.to_csv('token.csv',index = False)
@@ -249,7 +248,7 @@ if x == "Access File":
 			for i in range(0,len(df.index)):
 				df.drop([i], inplace = True)
 			df.to_csv('token.csv',index = False)	
-				
+	st.download_button(label='📥 Download File', data=df5.to_csv(), file_name="PaperTrade.csv", mime='csv',key=8)				
 				
 				
 				
