@@ -175,7 +175,7 @@ if x =="Report":
 				#usera = st.radio('*_Report_*',("Price action","ORB Day","ORB 930","BTST","STBT","test"),horizontal=True)
 				with placeholder13.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"Profit Loss"}</h1>', unsafe_allow_html=True)
-					PL = round((df100.loc[df100['P_L'].sum()),1)
+					PL = round((df100['P_L'].sum()),1)
 					col16, col7 = st.columns(2)
 					with col16:
 						st.metric("Rs", f"{im()}" , f"{PL}")						
