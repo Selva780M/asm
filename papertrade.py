@@ -166,8 +166,7 @@ if x =="Report":
 			with placeholder12.container():					
 				c = df100.groupby(['NAME'])['P_L'].sum().reset_index()					
 				c['%'] = (c['P_L']/30000*100)   
-				AAA = c.style.format(subset=["P_L","%"], formatter="{:.2f}").applymap(col)					
-				st.table(AAA)
+				AAA = c.style.format(subset=["P_L","%"], formatter="{:.2f}").applymap(col)									
 				st.info(f'_👉 Availble Cash\nRs.{round((30000+im()),1)}_')						
 				col1, col2 = st.columns(2)
 				with col1:
@@ -177,6 +176,7 @@ if x =="Report":
 			#usera = st.radio('*_Report_*',("Price action","ORB Day","ORB 930","BTST","STBT","test"),horizontal=True)
 			with placeholder13.container():
 				st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"Profit Loss"}</h1>', unsafe_allow_html=True)
+				st.table(AAA)
 				PL = round((df100['P_L'].sum()),1)
 				col16, col7 = st.columns(2)
 				with col16:
