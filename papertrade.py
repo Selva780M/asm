@@ -80,7 +80,7 @@ def Contract():
 	return expiry
 expiry = Contract()
 #------------------------------------------
-x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report"))
+x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report","Access File"))
 if x =="Order Placed" :
 	with st.form("opt_form"):				
 		user_USER = st.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","test"),horizontal=True,key=1)
@@ -233,30 +233,18 @@ if x =="Report":
 				B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
 				st.table(B)
 			time.sleep(1)
-
-
-				
-				
-			
-				
-				
-				
-			
-			
-			
-# with st.form("opt_form"):
-			
-# num = st.number_input('*_EnterRow No_*', min_value=0, max_value=1000, value=1, step=1, format=None,key=7)
-# 		cr = st.form_submit_button('👉*_Clear Row_*')
-# 		cl  = st.form_submit_button('👉*_Clear ALL_*')	
-			
-# 	if cr:
-# 		df.drop([num], inplace = True)				
-# 		df = df.to_csv('token.csv',index = False)
-# 	if cl:
-# 		for i in range(0,len(df.index)):
-# 			df.drop([i], inplace = True)
-# 		df = df.to_csv('token.csv',index = False) 						
+if x == "Access File":
+	with st.form("opt_form"):
+		num = st.number_input('*_EnterRow No_*', min_value=0, max_value=1000, value=1, step=1, format=None,key=7)
+ 		cr = st.form_submit_button('👉*_Clear Row_*')
+ 		cl  = st.form_submit_button('👉*_Clear ALL_*')
+ 		if cr:
+ 			df.drop([num], inplace = True)				
+ 			df.to_csv('token.csv',index = False)
+ 		if cl:
+ 			for i in range(0,len(df.index)):
+ 				df.drop([i], inplace = True)
+			df.to_csv('token.csv',index = False) 						
 			
 				
 				
