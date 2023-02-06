@@ -236,21 +236,15 @@ if x =="Report":
 if x == "Access File":
 	with st.form("opt_form"):
 		num = st.number_input('*_EnterRow No_*', min_value=0, max_value=1000, value=1, step=1, format=None,key=7)
- 		cr = st.form_submit_button('👉*_Clear Row_*')
- 		cl  = st.form_submit_button('👉*_Clear ALL_*')
- 		if cr:
- 			df.drop([num], inplace = True)				
- 			df.to_csv('token.csv',index = False)
- 		if cl:
- 			for i in range(0,len(df.index)):
- 				df.drop([i], inplace = True)
-			df.to_csv('token.csv',index = False) 						
-			
-				
-				
-				
-				
-				
+		cr = st.form_submit_button('👉*_Clear Row_*')
+		cl  = st.form_submit_button('👉*_Clear ALL_*')
+		if cr:
+			df.drop([num], inplace = True)
+			df.to_csv('token.csv',index = False)
+		if cl:
+			for i in range(0,len(df.index)):
+				df.drop([i], inplace = True)
+			df.to_csv('token.csv',index = False)	
 				
 				
 				
