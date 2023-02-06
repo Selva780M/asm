@@ -143,6 +143,7 @@ if x =="Order Placed" :
 					df = df.append(new_data, ignore_index = True)
 					df.to_csv('token.csv',index = False)		
 if x =="Report":
+	global user_USER
 	if len(df['STOCK']) > 0:								
 			while True:
 				em = []
