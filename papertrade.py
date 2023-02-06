@@ -43,7 +43,7 @@ def col(val):
 	return 'color: %s' % color
 def im():
 	try :
-		pm = round(df5.loc[df5['NAME'] == str(user_USER) , 'P_L'].sum(),1)
+		pm = round(df5['P_L'].sum(),1)
 	except:
 		pm = round(0.0,1)
 	return pm
