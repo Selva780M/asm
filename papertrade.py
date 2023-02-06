@@ -20,7 +20,7 @@ with placeholder1.container():
 	with con3:
 		st.markdown(f""" *_Your Investment Rs.30000/-_* """)
 	st.header('*_👋Hey, Im :blue[_ALGO PAPER TRADE_] :sunglasses:_*')
-	time.sleep(2)
+	#time.sleep(2)
 	st.subheader('*_Welcome!! :green[_Mr.Selvakumar_] lets go...👉⏰_*')
 		
 try:
