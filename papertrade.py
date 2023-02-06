@@ -232,6 +232,7 @@ if x =="Report":
 				st.table(B)
 			time.sleep(1)
 if x == "Access File":
+	st.sidebar.download_button(label='📥 Download File', data=df5.to_csv(), file_name="PaperTrade.csv", mime='csv',key=8)
 	with st.form("opt_form"):		
 		st.success('*_Access Current Position File_*')		
 		col1, col2, col3 = st.columns(3)
@@ -246,8 +247,11 @@ if x == "Access File":
 		if cl:
 			for i in range(0,len(df.index)):
 				df.drop([i], inplace = True)
-			df.to_csv('token.csv',index = False)	
-	st.download_button(label='📥 Download File', data=df5.to_csv(), file_name="PaperTrade.csv", mime='csv',key=8)				
+			df.to_csv('token.csv',index = False)
+		st.title("Files")
+		A = df100.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
+		st.table(A)	
+					
 				
 				
 				
