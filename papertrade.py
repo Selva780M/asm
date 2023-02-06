@@ -77,73 +77,76 @@ def Contract():
 	return expiry
 expiry = Contract()
 #------------------------------------------
-with st.form("opt_form"):	
-	col11, col22, col33 = st.columns(3)	
-	user_USER = st.sidebar.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","test"),key=1)
-	st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f" {user_USER} 👋"}</h1>', unsafe_allow_html=True)	
-	with col11:		
-		user_STOCK = st.radio("*_Stock (Current strike)_*",("NIFTY","BANKNIFTY"), horizontal=True,key=2)
-		user_OPTION = st.radio("*_Option_*",("call","put"), horizontal=True,key=3)
-		ENTRY = st.form_submit_button('👉 *_Order Placed_*')			
-	with col22:		
-		user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=4)
-		user_STOP = st.number_input('*_Stoploss_*', min_value=10, max_value=50, value=10, step=10, format=None,key=5)
-		user_TARGET = st.number_input('*_Target_*', min_value=10, max_value=50, value=10, step=10, format=None, key=6)			
-	with col33:
-		placeholder01 = st.empty()		
-	if ENTRY:		
-		if user_STOCK == "NIFTY":			
-			try:
-				n = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
-				n_ltp = n['LTP']
-			except:
-				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
-			spot = round((float(n_ltp)) / 50) * 50
-			expiry_date = expiry[0]
-			if user_OPTION == "call":
-				call_strike = spot - (50)
-				n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
-				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
-				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1) }
-				df = df.append(new_data, ignore_index = True)	
-				#df.to_csv('token.csv',index = False)
-			if  user_OPTION == "put":
-				put_strike = spot + (50)
-				n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
-				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_put.name)))
-				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
-				df = df.append(new_data, ignore_index = True)
-				#df.to_csv('token.csv',index = False)
-		if user_STOCK == "BANKNIFTY":
-			try:
-				b = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
-				b_ltp = b['LTP']
-			except:
-				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
-			spot = round((float(b_ltp)) / 100) * 100			
-			expiry_date = expiry[0]
-			if user_OPTION == "call":
-				call_strike = spot - (100)
-				b_call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
-				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_call.name)))
-				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
-				df = df.append(new_data, ignore_index = True)
-				#df.to_csv('token.csv',index = False)
-			if  user_OPTION == "put":
-				put_strike = spot + (100)
-				b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
-				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_put.name)))
-				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
-				df = df.append(new_data, ignore_index = True)
-				#df.to_csv('token.csv',index = False)
+x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report"))
+if x =="Order Placed" :
+	with st.form("opt_form"):	
+		col11, col22, col33 = st.columns(3)	
+		user_USER = st.sidebar.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","test"),key=1)
+		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f" {user_USER} 👋"}</h1>', unsafe_allow_html=True)	
+		with col11:		
+			user_STOCK = st.radio("*_Stock (Current strike)_*",("NIFTY","BANKNIFTY"), horizontal=True,key=2)
+			user_OPTION = st.radio("*_Option_*",("call","put"), horizontal=True,key=3)
+			ENTRY = st.form_submit_button('👉 *_Order Placed_*')			
+		with col22:		
+			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=4)
+			user_STOP = st.number_input('*_Stoploss_*', min_value=10, max_value=50, value=10, step=10, format=None,key=5)
+			user_TARGET = st.number_input('*_Target_*', min_value=10, max_value=50, value=10, step=10, format=None, key=6)			
+		with col33:
+			placeholder01 = st.empty()		
+		if ENTRY:		
+			if user_STOCK == "NIFTY":			
+				try:
+					n = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
+					n_ltp = n['LTP']
+				except:
+					st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
+				spot = round((float(n_ltp)) / 50) * 50
+				expiry_date = expiry[0]
+				if user_OPTION == "call":
+					call_strike = spot - (50)
+					n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
+					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
+					entry = float(s['LTP'])	
+					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1) }
+					df = df.append(new_data, ignore_index = True)	
+					df.to_csv('token.csv',index = False)
+				if  user_OPTION == "put":
+					put_strike = spot + (50)
+					n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
+					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_put.name)))
+					entry = float(s['LTP'])	
+					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+					df = df.append(new_data, ignore_index = True)
+					df.to_csv('token.csv',index = False)
+			if user_STOCK == "BANKNIFTY":
+				try:
+					b = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
+					b_ltp = b['LTP']
+				except:
+					st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
+				spot = round((float(b_ltp)) / 100) * 100			
+				expiry_date = expiry[0]
+				if user_OPTION == "call":
+					call_strike = spot - (100)
+					b_call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
+					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_call.name)))
+					entry = float(s['LTP'])	
+					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+					df = df.append(new_data, ignore_index = True)
+					df.to_csv('token.csv',index = False)
+				if  user_OPTION == "put":
+					put_strike = spot + (100)
+					b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
+					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_put.name)))
+					entry = float(s['LTP'])	
+					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
+					df = df.append(new_data, ignore_index = True)
+					df.to_csv('token.csv',index = False)
 		placeholder12 = st.sidebar.empty()
 		placeholder100 = st.empty()
 		placeholder101 = st.empty()
-		if len(df['STOCK']) > 0:								
+if x =="Report":
+	if len(df['STOCK']) > 0:								
 			while True:
 				em = []
 				try:
@@ -191,26 +194,78 @@ with st.form("opt_form"):
 						df5.to_csv('trade.csv',index = False)
 						st.balloons()
 						df.drop([i], inplace = True)
-	with col33:
-		with placeholder01.container():
-			n1 = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
-			b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
-			n5 = n1['LTP']
-			b5 = b1['LTP']
-			st.subheader(f'*_Nifty- 50 Spot Price :green[{n5}]_* ⏰')
-			st.subheader(f'*_BankNifty Spot Price :green[{b5}]_* ⏰')		
-				with placeholder100.container():
-					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)					
-					A = df100.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
-					st.table(A)
-				with placeholder101.container():
-					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
-					B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
-					st.table(B)					
-				df.to_csv('token.csv',index = False)
+					with placeholder01.container():
+						n1 = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
+						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
+						n5 = n1['LTP']
+						b5 = b1['LTP']
+						st.subheader(f'*_Nifty- 50 Spot Price :green[{n5}]_* ⏰')
+						st.subheader(f'*_BankNifty Spot Price :green[{b5}]_* ⏰')		
+					with placeholder100.container():
+						st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)					
+						A = df100.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
+						st.table(A)
+					with placeholder101.container():
+						st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
+						B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
+						st.table(B)					
+					df.to_csv('token.csv',index = False)
 				time.sleep(1)
 
 
+				
+				
+			
+				
+				
+				
+			
+			
+			
+# with st.form("opt_form"):
+			
+# num = st.number_input('*_EnterRow No_*', min_value=0, max_value=1000, value=1, step=1, format=None,key=7)
+# 		cr = st.form_submit_button('👉*_Clear Row_*')
+# 		cl  = st.form_submit_button('👉*_Clear ALL_*')	
+			
+# 	if cr:
+# 		df.drop([num], inplace = True)				
+# 		df = df.to_csv('token.csv',index = False)
+# 	if cl:
+# 		for i in range(0,len(df.index)):
+# 			df.drop([i], inplace = True)
+# 		df = df.to_csv('token.csv',index = False) 						
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 
 def on_button_click():
     st.session_state.error_message = ''
@@ -261,24 +316,4 @@ if 'result_message' in st.session_state and st.session_state.result_message:
 				
 				
 				
-				
-				
-				
-				
-			
-			
-			
-# with st.form("opt_form"):
-			
-# num = st.number_input('*_EnterRow No_*', min_value=0, max_value=1000, value=1, step=1, format=None,key=7)
-# 		cr = st.form_submit_button('👉*_Clear Row_*')
-# 		cl  = st.form_submit_button('👉*_Clear ALL_*')	
-			
-# 	if cr:
-# 		df.drop([num], inplace = True)				
-# 		df = df.to_csv('token.csv',index = False)
-# 	if cl:
-# 		for i in range(0,len(df.index)):
-# 			df.drop([i], inplace = True)
-# 		df = df.to_csv('token.csv',index = False) 						
-			
+	
