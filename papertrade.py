@@ -196,12 +196,15 @@ if x =="Report":
 						st.balloons()
 						df.drop([i], inplace = True)					
 					with placeholder01.container():
-						n1 = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
-						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
-						n5 = n1['LTP']
-						b5 = b1['LTP']
-						st.subheader(f'*_Nifty- 50 Spot Price :green[{n5}]_* ⏰')
-						st.subheader(f'*_BankNifty Spot Price :green[{b5}]_* ⏰')		
+						col1, col2 = st.columns(2)
+						with col1:
+							n1 = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
+							n5 = n1['LTP']
+							st.subheader(f'*_Nifty- 50 Spot Price :green[{n5}]_* ⏰')								
+						with col2:
+							b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))						
+							b5 = b1['LTP']
+							st.subheader(f'*_BankNifty Spot Price :green[{b5}]_* ⏰')		
 					with placeholder100.container():
 						st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)					
 						A = df100.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
