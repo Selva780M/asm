@@ -141,10 +141,7 @@ if x =="Order Placed" :
 					entry = float(s['LTP'])	
 					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
 					df = df.append(new_data, ignore_index = True)
-					df.to_csv('token.csv',index = False)
-		placeholder12 = st.sidebar.empty()
-		placeholder100 = st.empty()
-		placeholder101 = st.empty()
+					df.to_csv('token.csv',index = False)		
 if x =="Report":
 	if len(df['STOCK']) > 0:								
 			while True:
@@ -162,6 +159,9 @@ if x =="Report":
 				st.write(df100.dtypes)
 				df100['P_L']  = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
 				M = df100['ENTRY'] * df100['QTY']				
+				placeholder12 = st.sidebar.empty()
+				placeholder100 = st.empty()
+				placeholder101 = st.empty()
 				with placeholder12.container():					
 					c = df100.groupby(['NAME'])['P_L'].sum().reset_index()					
 					c['%'] = (c['P_L']/30000*100)   
