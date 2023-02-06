@@ -152,7 +152,7 @@ if x =="Report":
 	placeholder13 = st.sidebar.empty()
 	placeholder100 = st.empty()
 	placeholder101 = st.empty()	
-	if len(df5['STOCK']) > 0 | len(df['STOCK']) > 0:
+	if len(df100['STOCK']) > 0 | len(df['STOCK']) > 0:
 		while True:
 			df.to_csv('token.csv',index = False)
 			em = []
