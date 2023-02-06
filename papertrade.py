@@ -13,15 +13,16 @@ df = pd.read_csv('./token.csv')
 df5 = pd.read_csv('./trade.csv')
 #------------------------------------------------------
 placeholder1 = st.empty()	
-with placeholder1.container():
-	st.header('*_👋Hey, Im :blue[_ALGO PAPER TRADE_] :sunglasses:_*')
-	time.sleep(2)
-	st.subheader('*_Welcome!! :green[_Mr.Selvakumar_] lets go...👉⏰_*')	
+with placeholder1.container():		
 	con1, con2 ,con3 = st.columns(3)
 	with con1:
 		st.markdown(f""" *_Date:_* {DATE}""")
 	with con3:
 		st.markdown(f""" *_Your Investment Rs.30000/-_* """)
+	st.header('*_👋Hey, Im :blue[_ALGO PAPER TRADE_] :sunglasses:_*')
+	time.sleep(2)
+	st.subheader('*_Welcome!! :green[_Mr.Selvakumar_] lets go...👉⏰_*')
+		
 try:
 	alice.get_session_id()
 except:
@@ -89,8 +90,8 @@ if x =="Order Placed" :
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')			
 		with col22:		
 			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=4)
-			user_STOP = st.number_input('*_Stoploss_*', min_value=10, max_value=50, value=10, step=10, format=None,key=5)
-			user_TARGET = st.number_input('*_Target_*', min_value=10, max_value=50, value=10, step=10, format=None, key=6)
+			user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=50, value=10, step=5, format=None,key=5)
+			user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=6)
 		if ENTRY:		
 			if user_STOCK == "NIFTY":			
 				try:
