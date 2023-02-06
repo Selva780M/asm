@@ -149,6 +149,7 @@ if x =="Report":
 	placeholder101 = st.empty()	
 	if len(df['STOCK']) > 0:
 		while True:
+			df.to_csv('token.csv',index = False)
 			em = []
 			try:
 				for i in df['STOCK']:
@@ -213,8 +214,7 @@ if x =="Report":
 				with placeholder101.container():
 					st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
 					B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
-					st.table(B)					
-				df.to_csv('token.csv',index = False)
+					st.table(B)
 			time.sleep(1)
 
 
