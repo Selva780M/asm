@@ -23,7 +23,7 @@ with placeholder1.container():
 	with con10:
 		st.header('*_👋 Im :blue[_PAPER TRADE_] :sunglasses:_*')
 	with con20:
-		st.subheader('*_🙏 :green[_Mr.Selvakumar_].👉⏰_*')
+		st.subheader('*_🙏 :green[_Mr.Selvakumar_]👉⏰_*')
 		
 try:
 	alice.get_session_id()
@@ -237,7 +237,7 @@ if x == "Access File":
 		st.success('*_Access Current Position File_*')		
 		col1, col2, col3 = st.columns(3)
 		with col1:
-			num = st.number_input('*_Enter Row No_*', min_value=0, max_value=1000, value=len(df.index), step=1, format=None,key=7)
+			num = st.number_input('*_Enter Row No_*', min_value=0, max_value=1000, value=len(df.index)-1, step=1, format=None,key=7)
 			cr = st.form_submit_button('*_👉Clear Row_*')
 		with col3:
 			cl  = st.form_submit_button('*_👉Clear ALL_*')	
