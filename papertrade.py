@@ -141,12 +141,12 @@ if x =="Order Placed" :
 					df = df.append(new_data, ignore_index = True)
 					df.to_csv('token.csv',index = False)		
 if x =="Report":
+	placeholder12 = st.sidebar.empty()
+	placeholder100 = st.empty()
+	placeholder101 = st.empty()
+	placeholder13 = st.sidebar.empty()
 	if len(df['STOCK']) > 0:
-		placeholder12 = st.sidebar.empty()
-		placeholder100 = st.empty()
-		placeholder101 = st.empty()
-		placeholder13 = st.sidebar.empty()
-			while True:
+		while True:
 				em = []
 				try:
 					for i in df['STOCK']:
