@@ -90,9 +90,7 @@ if x =="Order Placed" :
 		with col22:		
 			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=4)
 			user_STOP = st.number_input('*_Stoploss_*', min_value=10, max_value=50, value=10, step=10, format=None,key=5)
-			user_TARGET = st.number_input('*_Target_*', min_value=10, max_value=50, value=10, step=10, format=None, key=6)			
-		with col33:
-			placeholder01 = st.empty()		
+			user_TARGET = st.number_input('*_Target_*', min_value=10, max_value=50, value=10, step=10, format=None, key=6)
 		if ENTRY:		
 			if user_STOCK == "NIFTY":			
 				try:
@@ -155,8 +153,7 @@ if x =="Report":
 					st.write(f"Er.",{e})									
 				df100 = pd.DataFrame()
 				df1 = pd.Series(em,name='LTP')
-				df100 = pd.concat([df,df1],axis=1)
-				st.write(df100.dtypes)
+				df100 = pd.concat([df,df1],axis=1)				
 				df100['P_L']  = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
 				M = df100['ENTRY'] * df100['QTY']				
 				placeholder12 = st.sidebar.empty()
@@ -195,6 +192,7 @@ if x =="Report":
 						df5.to_csv('trade.csv',index = False)
 						st.balloons()
 						df.drop([i], inplace = True)
+					placeholder01 = st.empty()
 					with placeholder01.container():
 						n1 = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
 						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
