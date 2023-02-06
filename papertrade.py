@@ -141,10 +141,11 @@ if x =="Order Placed" :
 					df = df.append(new_data, ignore_index = True)
 					df.to_csv('token.csv',index = False)		
 if x =="Report":
+	placeholder01 = st.empty()
 	placeholder12 = st.sidebar.empty()
-	placeholder100 = st.empty()
-	placeholder101 = st.empty()
 	placeholder13 = st.sidebar.empty()
+	placeholder100 = st.empty()
+	placeholder101 = st.empty()	
 	if len(df['STOCK']) > 0:
 		while True:
 				em = []
@@ -193,8 +194,7 @@ if x =="Report":
 						df5 = df5.append(df3, ignore_index = True)
 						df5.to_csv('trade.csv',index = False)
 						st.balloons()
-						df.drop([i], inplace = True)
-					placeholder01 = st.empty()
+						df.drop([i], inplace = True)					
 					with placeholder01.container():
 						n1 = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
 						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
