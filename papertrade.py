@@ -149,7 +149,7 @@ if x =="Report":
 	placeholder101 = st.empty()	
 	if len(df['STOCK']) > 0:
 		while True:
-			df.to_csv('token.csv',index = False)
+			#df.to_csv('token.csv',index = False)
 			em = []
 			try:
 				for i in df['STOCK']:
@@ -188,15 +188,19 @@ if x =="Report":
 				if(df100.iloc[i,7]) > (df100.iloc[i,6]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
 					df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
 					df5 = df5.append(df2, ignore_index = True)
-					df5.to_csv('trade.csv',index = False)
-					st.balloons()
+					df5.to_csv('trade.csv',index = False)					
 					df.drop([i], inplace = True)
+					st.balloons()
+					time.sleep(1)
+					df.to_csv('token.csv',index = False)
 				if(df100.iloc[i,7]) < (df100.iloc[i,5]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):											
 					df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
 					df5 = df5.append(df3, ignore_index = True)
 					df5.to_csv('trade.csv',index = False)
+					df.drop([i], inplace = True)
 					st.balloons()
-					df.drop([i], inplace = True)					
+					time.sleep(1)
+					df.to_csv('token.csv',index = False)
 				with placeholder01.container():
 					col1, col2 = st.columns(2)
 					with col1:
