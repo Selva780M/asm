@@ -143,7 +143,6 @@ if x =="Order Placed" :
 					df = df.append(new_data, ignore_index = True)
 					df.to_csv('token.csv',index = False)		
 if x =="Report":
-	global user_USER
 	if len(df['STOCK']) > 0:								
 			while True:
 				em = []
@@ -176,6 +175,7 @@ if x =="Report":
 						st.error(f'_Margin Used\nRs.{round(sum(M),1)}_')				
 					st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"Profit Loss"}</h1>', unsafe_allow_html=True)
 					col16, col7 = st.columns(2)
+					user_USER = st.sidebar.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","test"))
 					PL = round((df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()),1)
 					with col16:
 						st.metric("Rs", f"{im()}" , f"{PL}")						
