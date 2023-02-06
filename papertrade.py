@@ -23,7 +23,7 @@ with placeholder1.container():
 	with con10:
 		st.header('*_👋 Im :blue[_PAPER TRADE_] :sunglasses:_*')
 	with con20:
-		st.subheader('*_ 🙏!:green[_Mr.Selvakumar_] lets go...👉⏰_*')
+		st.subheader('*_🙏 :green[_Mr.Selvakumar_].👉⏰_*')
 		
 try:
 	alice.get_session_id()
