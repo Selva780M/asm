@@ -12,13 +12,10 @@ alice = Aliceblue(user_id='627742',api_key='BPk1mFAXB9ByTFFQnm87HhieLFo3Fy5J3PCa
 df = pd.read_csv('./token.csv')
 df5 = pd.read_csv('./trade.csv')
 #------------------------------------------------------
+st.sidebar.markdown(f""" *_Date:_* {DATE}""")
+st.sidebar.markdown(f""" *_Your Investment Rs.30000/-_* """)
 placeholder1 = st.empty()	
-with placeholder1.container():		
-	con1, con2 ,con3 = st.columns(3)
-	with con1:
-		st.markdown(f""" *_Date:_* {DATE}""")
-	with con3:
-		st.markdown(f""" *_Your Investment Rs.30000/-_* """)
+with placeholder1.container():
 	con10, con20  = st.columns(2)
 	with con10:
 		st.header('*_👋 Im :blue[_PAPER TRADE_] :sunglasses:_*')
