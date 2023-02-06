@@ -19,9 +19,11 @@ with placeholder1.container():
 		st.markdown(f""" *_Date:_* {DATE}""")
 	with con3:
 		st.markdown(f""" *_Your Investment Rs.30000/-_* """)
-	st.header('*_👋Hey, Im :blue[_ALGO PAPER TRADE_] :sunglasses:_*')
-	#time.sleep(2)
-	st.subheader('*_Welcome!! :green[_Mr.Selvakumar_] lets go...👉⏰_*')
+	con10, con20  = st.columns(2)
+	with con10:
+		st.header('*_👋 Im :blue[_PAPER TRADE_] :sunglasses:_*')
+	with con20:
+		st.subheader('*_ 🙏!:green[_Mr.Selvakumar_] lets go...👉⏰_*')
 		
 try:
 	alice.get_session_id()
