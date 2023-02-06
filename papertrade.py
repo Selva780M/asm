@@ -237,7 +237,6 @@ if x == "Access File":
 		col1, col2, col3 = st.columns(3)
 		with col1:
 			num = st.number_input('*_Enter Row No_*', min_value=0, max_value=1000, value=len(df.index), step=1, format=None,key=7)
-		with col2:
 			cr = st.form_submit_button('*_👉Clear Row_*')
 		with col3:
 			cl  = st.form_submit_button('*_👉Clear ALL_*')	
