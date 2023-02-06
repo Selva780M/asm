@@ -169,11 +169,13 @@ if x =="Report":
 					with col1:
 						st.success(f'_Availble Margin\n Rs.{round((30000+im())-sum(M),1)}_')						
 					with col2:
-						st.error(f'_Margin Used\nRs.{round(sum(M),1)}_')				
-					st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"Profit Loss"}</h1>', unsafe_allow_html=True)
-					col16, col7 = st.columns(2)
-					user_USER = st.sidebar.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","test"))
+						st.error(f'_Margin Used\nRs.{round(sum(M),1)}_')		
+				placeholder13 = st.sidebar.empty()
+				with placeholder13.container():
+					st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"Profit Loss"}</h1>', unsafe_allow_html=True)					
+					user_USER = st.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","test"),horizontal=True,key=7)
 					PL = round((df100.loc[df100['NAME'] == str(user_USER) , 'P_L'].sum()),1)
+					col16, col7 = st.columns(2)
 					with col16:
 						st.metric("Rs", f"{im()}" , f"{PL}")						
 					with col7:
