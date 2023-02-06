@@ -181,7 +181,6 @@ if x =="Report":
 					st.success(f'_Availble Margin\n Rs.{round((30000+im())-sum(M),1)}_')						
 				with col2:
 					st.error(f'_Margin Used\nRs.{round(sum(M),1)}_')
-			#usera = st.radio('*_Report_*',("Price action","ORB Day","ORB 930","BTST","STBT","test"),horizontal=True)
 			with placeholder13.container():
 				st.write(f'<h1 style="color:#33ff33;font-size:25px;">{"Profit Loss"}</h1>', unsafe_allow_html=True)
 				st.table(AAA)
@@ -190,8 +189,7 @@ if x =="Report":
 				with col16:
 					st.metric("Rs", f"{im()}" , f"{PL}")						
 				with col7:
-					st.metric("%",f"{round(((im()/30000)*100),1)}%" , f"{round(((PL/30000)*100),1)}%")
-				#st.download_button(label='📥 Download File', data=df5.to_csv(), file_name="PaperTrade.csv", mime='csv',key=7)
+					st.metric("%",f"{round(((im()/30000)*100),1)}%" , f"{round(((PL/30000)*100),1)}%")				
 			for i in range(0,len(df100.index)):					
 				if(df100.iloc[i,7]) > (df100.iloc[i,6]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
 					df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
@@ -234,10 +232,16 @@ if x =="Report":
 				st.table(B)
 			time.sleep(1)
 if x == "Access File":
-	with st.form("opt_form"):
-		num = st.number_input('*_EnterRow No_*', min_value=0, max_value=1000, value=1, step=1, format=None,key=7)
-		cr = st.form_submit_button('👉*_Clear Row_*')
-		cl  = st.form_submit_button('👉*_Clear ALL_*')
+	with st.form("opt_form"):		
+		st.success('*_Access Current Position File_*')		
+		col1, col2, col3 = st.columns(3)
+		with col1:
+			num = st.number_input('*_Enter Row No_*', min_value=0, max_value=1000, value=len(df.index), step=1, format=None,key=7)
+		with col2:
+			cr = st.form_submit_button('*_👉Clear Row_*')
+		with col3:
+			cl  = st.form_submit_button('*_👉Clear ALL_*')
+		st.download_button(label='📥 Download File', data=df5.to_csv(), file_name="PaperTrade.csv", mime='csv',key=8)
 		if cr:
 			df.drop([num], inplace = True)
 			df.to_csv('token.csv',index = False)
