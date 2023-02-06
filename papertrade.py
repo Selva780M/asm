@@ -142,7 +142,13 @@ if x =="Order Placed" :
 					entry = float(s['LTP'])	
 					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
 					df = df.append(new_data, ignore_index = True)
-					df.to_csv('token.csv',index = False)		
+					df.to_csv('token.csv',index = False)	
+					
+			h = st.empty()
+			st.success('*_Your Trade Order Placed Pls Check in Report_*')
+			time.sleep(0.5)
+			h.empty()
+			pass		
 if x =="Report":
 	placeholder01 = st.empty()
 	placeholder12 = st.sidebar.empty()
