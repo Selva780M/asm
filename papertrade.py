@@ -92,7 +92,7 @@ def loaddata():
 		contract_master = pd.read_csv(user_STOCK+'.csv')
 		s = contract_master['Symbol']
 		sym = s.tolist()				
-		return sym
+	return sym
 #------------------------------------------
 x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report","Access File"))
 if x =="Order Placed" :
