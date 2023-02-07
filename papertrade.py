@@ -181,8 +181,7 @@ if x =="Order Placed" :
 		if MAN  == "AAUTO":
 			try:
 				b = alice.get_scrip_info(alice.get_instrument_by_symbol(XX,user_STOCK))
-				b_ltp = b['LTP']
-				entry = float(s['LTP'])	
+				entry = float(b['LTP'])								
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : XX, "EXCH" : user_STOCK , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
 				df = df.append(new_data, ignore_index = True)
 				df.to_csv('token.csv',index = False)
