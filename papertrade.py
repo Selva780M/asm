@@ -204,8 +204,7 @@ if x =="Report":
 			df.to_csv('token.csv',index = False)
 			em = []
 			try:
-				for i in range(0,len(df.index)):
-					st.write(df.loc[i,'EXCH'])
+				for i in range(0,len(df.index)):					
 					m = alice.get_scrip_info(alice.get_instrument_by_symbol(df.loc[i,'EXCH'],df.loc[i,'STOCK']))				
 					lt = float(m['LTP'])
 					em.append(lt)
