@@ -94,7 +94,7 @@ def loaddata():
 		sym = s.tolist()				
 	return sym
 #------------------------------------------
-x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report","Access File"),key=9)
+x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report","Access File"),key=0)
 if x =="Order Placed" :
 	user = st.radio('*_Choose the Stock_*',("Auto","Manual"),horizontal=True,key=1)	
 	if user == "Manual":
@@ -273,7 +273,7 @@ if x == "Access File":
 		st.success('*_Access Current Position File_*')		
 		col1, col2, col3 = st.columns(3)
 		with col1:
-			num = st.number_input('*_Enter Row No_*', min_value=0, max_value=1000, value=len(df.index)-1, step=1, format=None,key=8)
+			num = st.number_input('*_Enter Row No_*', min_value=0, max_value=1000, value=len(df.index)-1, step=1, format=None,key=9)
 			cr = st.form_submit_button('*_👉Clear Row_*')
 		with col3:
 			cl  = st.form_submit_button('*_👉Clear ALL_*')	
