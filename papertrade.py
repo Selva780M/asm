@@ -76,6 +76,15 @@ def Contract():
 	expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
 	return expiry
 expiry = Contract()
+
+def loaddata():
+	try:
+		contract_master = pd.read_csv(user_STOCK +'.csv')
+		sym = [contract_master['Symbol'].tolist()
+	except:
+		alice.get_contract_master('NFO')
+		contract_master = pd.read_csv(user_STOCK +'.csv')
+		return sym
 #------------------------------------------
 x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report","Access File"))
 if x =="Order Placed" :
@@ -96,6 +105,8 @@ if x =="Order Placed" :
 	if user == "Manual":
 		with col11:
 			user_STOCK = st.radio("*_Select Exchange_*",("NSE","NFO","CDS","MCX"), horizontal=True,key=3)
+			stock1 = st.selectbox("*_Select Stock_*",loaddata())
+			
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')	
 		with col22:		
 			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=5)
