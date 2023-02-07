@@ -205,8 +205,8 @@ if x =="Report":
 			em = []
 			try:
 				for i in range(0,len(df.index)):
-					st.write(df.loc[i,3])
-					m = alice.get_scrip_info(alice.get_instrument_by_symbol(df.loc[i,3],df.loc[i,2]))				
+					st.write(df.loc[i,'EXCH'])
+					m = alice.get_scrip_info(alice.get_instrument_by_symbol(df.loc[i,'EXCH'],df.loc[i,'STOCK']))				
 					lt = float(m['LTP'])
 					em.append(lt)
 			except Exception as e:
