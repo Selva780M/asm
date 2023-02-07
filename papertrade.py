@@ -112,7 +112,7 @@ if x =="Order Placed" :
 			user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=7)	
 	if user == "Manual":
 		with col11:
-			user_STOCK = st.radio("*_Select Exchange_*",("NSE","NFO","CDS","MCX"), horizontal=True,key=3)
+			user_STOCK = st.radio("*_Select Exchange_*",("NSE","NFO","CDS","MCX"), on_change=loaddata(), horizontal=True,key=3)
 		if user_STOCK:
 			with col11:
 				stock1 = st.selectbox("*_Select Stock_*",(loaddata()))						
