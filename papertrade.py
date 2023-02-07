@@ -83,6 +83,7 @@ def loaddata():
 	try:
 		contract_master = pd.read_csv('NFO.csv')   #(user_STOCK +'.csv')
 		sym = contract_master['Symbol'].tolist()
+		st.write(f'1{sym})
 	except:
 		alice.get_contract_master('NFO.csv')
 		with placeholder11.container():
@@ -90,6 +91,7 @@ def loaddata():
 		time.sleep(15)
 		contract_master = pd.read_csv('NFO.csv')
 		sym = contract_master['Symbol'].tolist()
+		st.write(sym)
 		return sym
 #------------------------------------------
 x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report","Access File"))
@@ -111,7 +113,7 @@ if x =="Order Placed" :
 	if user == "Manual":
 		with col11:
 			user_STOCK = st.radio("*_Select Exchange_*",("NSE","NFO","CDS","MCX"), horizontal=True,key=3)
-			st.write(loaddata())
+			loaddata()
 			stock1 = st.selectbox("*_Select Stock_*",(loaddata()))
 			
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')	
