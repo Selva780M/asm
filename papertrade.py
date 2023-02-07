@@ -72,7 +72,7 @@ def Contract():
 				success=False
 			time.sleep(10)
 			idx += 1	
-	all_contract = contract_master[contract_master['Symbol']=='NIFTY']
+	all_contract = contract_master[contract_master['Symbol'] =='NIFTY']
 	expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
 	return expiry
 expiry = Contract()
@@ -113,6 +113,7 @@ if x =="Order Placed" :
 	if user == "Manual":
 		with col11:
 			user_STOCK = st.radio("*_Select Exchange_*",("NSE","NFO","CDS","MCX"), horizontal=True,key=3)			
+			st.dataframe(loaddata())
 			stock1 = st.selectbox("*_Select Stock_*",loaddata())			
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')	
 		with col22:		
