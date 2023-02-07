@@ -105,6 +105,7 @@ if x =="Order Placed" :
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f" {user_USER} 👋"}</h1>', unsafe_allow_html=True)
 		col11, col22, col33 = st.columns(3)				
 	if user == "Auto":
+		MAN = "asn"
 		with col11:
 			user_STOCK = st.radio("*_Stock (Current strike)_*",("NIFTY","BANKNIFTY"), horizontal=True,key=3)
 			user_OPTION = st.radio("*_Option_*",("call","put"), horizontal=True,key=4)			
@@ -203,9 +204,9 @@ if x =="Report":
 			df.to_csv('token.csv',index = False)
 			em = []
 			try:
-				for i in df['STOCK']:
+				for i in range(0,len(df.index)):
 					st.write(df.loc[i,3])
-					m = alice.get_scrip_info(alice.get_instrument_by_symbol(df[i,3],i))				
+					m = alice.get_scrip_info(alice.get_instrument_by_symbol(df.loc[i,3],df.loc[i,2]))				
 					lt = float(m['LTP'])
 					em.append(lt)
 			except Exception as e:
