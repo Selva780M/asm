@@ -141,7 +141,7 @@ if x =="Order Placed" :
 					n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
 					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
 					entry = float(s['LTP'])	
-					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1) }
+					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" = "NFO" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1) }
 					df = df.append(new_data, ignore_index = True)	
 					df.to_csv('token.csv',index = False)
 				if  user_OPTION == "put":
@@ -149,7 +149,7 @@ if x =="Order Placed" :
 					n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
 					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_put.name)))
 					entry = float(s['LTP'])	
-					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name, "EXCH" = "NFO" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
 					df = df.append(new_data, ignore_index = True)
 					df.to_csv('token.csv',index = False)
 			if user_STOCK == "BANKNIFTY":
@@ -165,7 +165,7 @@ if x =="Order Placed" :
 					b_call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
 					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_call.name)))
 					entry = float(s['LTP'])	
-					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name, "EXCH" = "NFO" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
 					df = df.append(new_data, ignore_index = True)
 					df.to_csv('token.csv',index = False)
 				if  user_OPTION == "put":
@@ -173,7 +173,7 @@ if x =="Order Placed" :
 					b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
 					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_put.name)))
 					entry = float(s['LTP'])	
-					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
+					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name, "EXCH" = "NFO" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
 					df = df.append(new_data, ignore_index = True)
 					df.to_csv('token.csv',index = False)	
 					
@@ -194,7 +194,7 @@ if x =="Report":
 			em = []
 			try:
 				for i in df['STOCK']:
-					m = alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',i))				
+					m = alice.get_scrip_info(alice.get_instrument_by_symbol(df.iloc[i,3],i))				
 					lt = float(m['LTP'])
 					em.append(lt)
 			except Exception as e:
@@ -224,16 +224,16 @@ if x =="Report":
 				with col7:
 					st.metric("%",f"{round(((im()/30000)*100),1)}%" , f"{round(((PL/30000)*100),1)}%")				
 			for i in range(0,len(df100.index)):					
-				if(df100.iloc[i,7]) > (df100.iloc[i,6]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
-					df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
+				if(df100.iloc[i,8]) > (df100.iloc[i,7]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
+					df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'], "EXCH":df100.iloc[i]['EXCH'], "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
 					df5 = df5.append(df2, ignore_index = True)
 					df5.to_csv('trade.csv',index = False)					
 					df.drop([i], inplace = True)
 					st.balloons()
 					#time.sleep(1)
 					#df.to_csv('token.csv',index = False)
-				if(df100.iloc[i,7]) < (df100.iloc[i,5]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):											
-					df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],  "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
+				if(df100.iloc[i,8]) < (df100.iloc[i,6]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):											
+					df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],"EXCH":df100.iloc[i]['EXCH'], "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
 					df5 = df5.append(df3, ignore_index = True)
 					df5.to_csv('trade.csv',index = False)
 					df.drop([i], inplace = True)
@@ -251,8 +251,7 @@ if x =="Report":
 					b5 = b1['LTP']
 					st.subheader(f'*_BankNifty Spot Price :green[{b5}]_* ⏰')		
 			with placeholder100.container():
-				st.success('*_Current Position_*')
-				#st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Position"}</h1>', unsafe_allow_html=True)					
+				st.success('*_Current Position_*')									
 				if len(df100['STOCK']) < 0:
 					st.title("No Position Order")					
 				else:
