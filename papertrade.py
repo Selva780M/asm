@@ -81,15 +81,15 @@ expiry = Contract()
 def loaddata():
 	placeholder11 = st.empty()
 	try:
-		contract_master = pd.read_csv('NSE.csv')   #(user_STOCK +'.csv')
+		contract_master = pd.read_csv(user_STOCK+'.csv')   #(user_STOCK +'.csv')
 		s = contract_master['Symbol']
 		sym = s.tolist()		
 	except:
-		alice.get_contract_master('NSE')
+		alice.get_contract_master(user_STOCK)
 		with placeholder11.container():
 			st.error(f"*_Fetch contracts._*")
 		time.sleep(30)
-		contract_master = pd.read_csv('NSE.csv')
+		contract_master = pd.read_csv(user_STOCK+'.csv')
 		s = contract_master['Symbol']
 		sym = s.tolist()				
 		return sym
@@ -112,9 +112,8 @@ if x =="Order Placed" :
 			user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=7)	
 	if user == "Manual":
 		with col11:
-			user_STOCK = st.radio("*_Select Exchange_*",("NSE","NFO","CDS","MCX"), horizontal=True,key=3)			
-			st.table(loaddata())
-			#stock1 = st.selectbox("*_Select Stock_*",loaddata())			
+			user_STOCK = st.radio("*_Select Exchange_*",("NSE","NFO","CDS","MCX"), horizontal=True,key=3)
+			stock1 = st.selectbox("*_Select Stock_*",loaddata())			
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')	
 		with col22:		
 			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=5)
