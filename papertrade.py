@@ -79,10 +79,10 @@ expiry = Contract()
 #------------------------------------------
 x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report","Access File"))
 if x =="Order Placed" :
+	user = st.radio('*_Choose the Stock_*',("Auto","Manual"),horizontal=True,key=1)
 	with st.form("opt_form"):				
-		user_USER = st.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","test"),horizontal=True,key=1)
-		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f" {user_USER} 👋"}</h1>', unsafe_allow_html=True)	
-		user = st.radio('*_Choose the Stock_*',("Auto","Manual"),horizontal=True,key=2)
+		user_USER = st.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","test"),horizontal=True,key=2)
+		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f" {user_USER} 👋"}</h1>', unsafe_allow_html=True)
 		col11, col22, col33 = st.columns(3)				
 	if user == "Auto":
 		with col11:
