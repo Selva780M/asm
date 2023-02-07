@@ -87,8 +87,9 @@ def loaddata():
 	except:
 		alice.get_contract_master(user_STOCK)
 		with placeholder11.container():
-			st.info(f"*_Loading..._*")
-		time.sleep(30)
+			with st.spinner(f"*_Loading..._*"):
+				time.sleep(30)
+		st.success('Done!')
 		contract_master = pd.read_csv(user_STOCK+'.csv')
 		s = contract_master['Trading Symbol']
 		sym = s.tolist()				
