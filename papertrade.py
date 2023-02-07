@@ -19,7 +19,7 @@ placeholder1 = st.empty()
 with placeholder1.container():
 	con10, con20  = st.columns(2)
 	with con10:
-		st.header('*_👋:blue[_BOT Paper Trade_] :sunglasses:_*')
+		st.header('*_👋  :blue[_BOT Paper Trade_] :sunglasses:_*')
 	with con20:
 		st.subheader('*_🙏 :green[_Mr.Selvakumar_]👉⏰_*')
 		
