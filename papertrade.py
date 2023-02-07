@@ -99,7 +99,7 @@ x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report","Access File"),key
 if x =="Order Placed" :
 	user = st.radio('*_Choose the Stock_*',("Auto","Manual"),horizontal=True,key=1)	
 	if user == "Manual":
-		user_STOCK = st.radio("*_Select Exchange_*",("NFO","NSE","CDS","MCX"),horizontal=True,key=3)
+		XX = st.radio("*_Select Exchange_*",("NFO","NSE","CDS","MCX"),horizontal=True,key=3)
 	with st.form("opt_form"):				
 		user_USER = st.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","test"),horizontal=True,key=2)
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f" {user_USER} 👋"}</h1>', unsafe_allow_html=True)
@@ -114,14 +114,15 @@ if x =="Order Placed" :
 			user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=50, value=10, step=5, format=None,key=6)
 			user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=7)	
 	if user == "Manual":
+		MAN = "AAUTO"
 		with col11:			
-			if user_STOCK == "NSE":
+			if XX == "NSE":
 				user_STOCK = st.selectbox("*_Select Stock_*",(loaddata()))
-			if user_STOCK == "NFO":
+			if XX == "NFO":
 				user_STOCK = st.selectbox("*_Select Stock_*",(loaddata()))			
-			if user_STOCK == "CDS":
+			if XX == "CDS":
 				user_STOCK = st.selectbox("*_Select Stock_*",(loaddata()))			
-			if user_STOCK == "MCX":
+			if XX == "MCX":
 				user_STOCK = st.selectbox("*_Select Stock_*",(loaddata()))
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 		with col22:		
@@ -177,7 +178,16 @@ if x =="Order Placed" :
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name, "EXCH" : "NFO" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
 				df = df.append(new_data, ignore_index = True)
 				df.to_csv('token.csv',index = False)	
-				
+		if MAN  == "AAUTO":
+			try:
+				b = alice.get_scrip_info(alice.get_instrument_by_symbol(XX,user_STOCK))
+				b_ltp = b['LTP']
+				entry = float(s['LTP'])	
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : XX, "EXCH" : user_STOCK , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+				df = df.append(new_data, ignore_index = True)
+				df.to_csv('token.csv',index = False)
+			except:
+				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')					
 		h = st.empty()
 		st.success('*_Your Trade Order Placed Pls Check in Report_*')
 		time.sleep(0.5)
