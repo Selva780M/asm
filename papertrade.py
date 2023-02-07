@@ -82,14 +82,16 @@ def loaddata():
 	placeholder11 = st.empty()
 	try:
 		contract_master = pd.read_csv('NFO.csv')   #(user_STOCK +'.csv')
-		sym = contract_master['Symbol'].tolist()		
+		s = contract_master['Symbol']
+		sym = s.tolist()		
 	except:
 		alice.get_contract_master('NFO.csv')
 		with placeholder11.container():
 			st.error(f"*_Fetch contracts._*")
 		time.sleep(15)
 		contract_master = pd.read_csv('NFO.csv')
-		sym = contract_master['Symbol'].tolist()		
+		s = contract_master['Symbol']
+		sym = s.tolist()				
 		return sym
 #------------------------------------------
 x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report","Access File"))
