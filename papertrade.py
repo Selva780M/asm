@@ -84,23 +84,23 @@ if x =="Order Placed" :
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f" {user_USER} 👋"}</h1>', unsafe_allow_html=True)	
 		user = st.radio('*_Choose the Stock_*',("Auto","Manual"),horizontal=True,key=2)
 		col11, col22, col33 = st.columns(3)				
-		if user == "Auto":
-			with col11:
-				user_STOCK = st.radio("*_Stock (Current strike)_*",("NIFTY","BANKNIFTY"), horizontal=True,key=3)
-				user_OPTION = st.radio("*_Option_*",("call","put"), horizontal=True,key=4)			
-			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
-			with col22:
-				user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=5)
-				user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=50, value=10, step=5, format=None,key=6)
-				user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=7)	
-		if user == "Manual":
-			with col11:
-				user_STOCK = st.radio("*_Select Exchange_*",("NSE","NFO","CDS","MCX"), horizontal=True,key=3)
-			ENTRY = st.form_submit_button('👉 *_Order Placed_*')	
-			with col22:		
-				user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=5)
-				user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=50, value=10, step=5, format=None,key=6)
-				user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=7)
+	if user == "Auto":
+		with col11:
+			user_STOCK = st.radio("*_Stock (Current strike)_*",("NIFTY","BANKNIFTY"), horizontal=True,key=3)
+			user_OPTION = st.radio("*_Option_*",("call","put"), horizontal=True,key=4)			
+		ENTRY = st.form_submit_button('👉 *_Order Placed_*')
+		with col22:
+			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=5)
+			user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=50, value=10, step=5, format=None,key=6)
+			user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=7)	
+	if user == "Manual":
+		with col11:
+			user_STOCK = st.radio("*_Select Exchange_*",("NSE","NFO","CDS","MCX"), horizontal=True,key=3)
+		ENTRY = st.form_submit_button('👉 *_Order Placed_*')	
+		with col22:		
+			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=5)
+			user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=50, value=10, step=5, format=None,key=6)
+			user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=7)
 		if ENTRY:		
 			if user_STOCK == "NIFTY":			
 				try:
