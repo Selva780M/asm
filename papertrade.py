@@ -94,7 +94,7 @@ def loaddata():
 		sym = s.tolist()				
 	return sym
 #------------------------------------------
-x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report","Access File"),key=0)
+x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report","Access File"),key=10)
 if x =="Order Placed" :
 	user = st.radio('*_Choose the Stock_*',("Auto","Manual"),horizontal=True,key=1)	
 	if user == "Manual":
