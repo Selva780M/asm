@@ -114,7 +114,7 @@ if x =="Order Placed" :
 		with col11:
 			user_STOCK = st.radio("*_Select Exchange_*",("NSE","NFO","CDS","MCX"), horizontal=True,key=3)
 			fm = loaddata()
-			stock1 = st.selectbox("*_Select Stock_*",fm)			
+			stock1 = st.selectbox("*_Select Stock_*",[fm])			
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')	
 		with col22:		
 			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=5)
