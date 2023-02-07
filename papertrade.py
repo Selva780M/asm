@@ -12,13 +12,14 @@ alice = Aliceblue(user_id='627742',api_key='BPk1mFAXB9ByTFFQnm87HhieLFo3Fy5J3PCa
 df = pd.read_csv('./token.csv')
 df5 = pd.read_csv('./trade.csv')
 #------------------------------------------------------
+Investment = int(300000)
 st.sidebar.markdown(f""" *_Date:_* {DATE}""")
-st.sidebar.markdown(f""" *_Your Investment Rs.30000/-_* """)
+st.sidebar.markdown(f""" *_Your Investment Rs.{Investment}/-_* """)
 placeholder1 = st.empty()	
 with placeholder1.container():
 	con10, con20  = st.columns(2)
 	with con10:
-		st.header('*_👋:blue[_im BOT Paper Trade_] :sunglasses:_*')
+		st.header('*_👋:blue[_BOT Paper Trade_] :sunglasses:_*')
 	with con20:
 		st.subheader('*_🙏 :green[_Mr.Selvakumar_]👉⏰_*')
 		
@@ -217,12 +218,12 @@ if x =="Report":
 			M = df100['ENTRY'] * df100['QTY']	
 			with placeholder12.container():					
 				c = df100.groupby(['NAME'])['P_L'].sum().reset_index()					
-				c['%'] = (c['P_L']/30000*100)   
+				c['%'] = (c['P_L']/Investment*100)   
 				AAA = c.style.format(subset=["P_L","%"], formatter="{:.2f}").applymap(col)									
-				st.info(f'_👉 Availble Cash\nRs.{round((30000+im()),1)}_')						
+				st.info(f'_👉 Availble Cash\nRs.{round((Investment+im()),1)}_')						
 				col1, col2 = st.columns(2)
 				with col1:
-					st.success(f'_Availble Margin\n Rs.{round((30000+im())-sum(M),1)}_')						
+					st.success(f'_Availble Margin\n Rs.{round((Investment+im())-sum(M),1)}_')						
 				with col2:
 					st.error(f'_Margin Used\nRs.{round(sum(M),1)}_')
 			with placeholder13.container():
@@ -233,7 +234,7 @@ if x =="Report":
 				with col16:
 					st.metric("Rs", f"{im()}" , f"{PL}")						
 				with col7:
-					st.metric("%",f"{round(((im()/30000)*100),1)}%" , f"{round(((PL/30000)*100),1)}%")				
+					st.metric("%",f"{round(((im()/Investment)*100),1)}%" , f"{round(((PL/Investment)*100),1)}%")				
 			for i in range(0,len(df100.index)):					
 				if(df100.iloc[i,8]) > (df100.iloc[i,7]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
 					df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'], "EXCH":df100.iloc[i]['EXCH'], "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
