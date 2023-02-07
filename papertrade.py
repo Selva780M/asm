@@ -109,7 +109,7 @@ if x =="Order Placed" :
 	if user == "Manual":
 		with col11:
 			user_STOCK = st.radio("*_Select Exchange_*",("NSE","NFO","CDS","MCX"), horizontal=True,key=3)
-			stock1 = st.selectbox("*_Select Stock_*",(loaddata()))
+			stock1 = st.selectbox("*_Select Stock_*",(loaddata))
 			
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')	
 		with col22:		
