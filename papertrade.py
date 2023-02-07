@@ -120,8 +120,9 @@ if x =="Order Placed" :
 		if user_STOCK == "CDS":
 			stock1 = st.selectbox("*_Select Stock_*",(loaddata()))			
 		if user_STOCK == "MCX":
-			stock1 = st.selectbox("*_Select Stock_*",(loaddata()))						
-			ENTRY = st.form_submit_button('👉 *_Order Placed_*')	
+			stock1 = st.selectbox("*_Select Stock_*",(loaddata()))
+		with col11:			
+			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 		with col22:		
 			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=5)
 			user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=50, value=10, step=5, format=None,key=6)
