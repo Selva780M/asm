@@ -88,7 +88,7 @@ def loaddata():
 		alice.get_contract_master('NSE.csv')
 		with placeholder11.container():
 			st.error(f"*_Fetch contracts._*")
-		time.sleep(15)
+		time.sleep(30)
 		contract_master = pd.read_csv('NSE.csv')
 		s = contract_master['Symbol']
 		sym = s.tolist()				
