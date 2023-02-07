@@ -85,7 +85,7 @@ def loaddata():
 		s = contract_master['Symbol']
 		sym = s.tolist()		
 	except:
-		alice.get_contract_master('NSE.csv')
+		alice.get_contract_master('NSE')
 		with placeholder11.container():
 			st.error(f"*_Fetch contracts._*")
 		time.sleep(30)
