@@ -77,7 +77,7 @@ def Contract():
 	return expiry
 expiry = Contract()
 
-@st.experimental_memo
+#@st.experimental_memo
 def loaddata():
 	placeholder11 = st.empty()
 	try:
