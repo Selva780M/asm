@@ -127,61 +127,61 @@ if x =="Order Placed" :
 			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=5)
 			user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=50, value=10, step=5, format=None,key=6)
 			user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=7)
-		if ENTRY:		
-			if user_STOCK == "NIFTY":			
-				try:
-					n = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
-					n_ltp = n['LTP']
-				except:
-					st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
-				spot = round((float(n_ltp)) / 50) * 50
-				expiry_date = expiry[0]
-				if user_OPTION == "call":
-					call_strike = spot - (50)
-					n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
-					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
-					entry = float(s['LTP'])	
-					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1) }
-					df = df.append(new_data, ignore_index = True)	
-					df.to_csv('token.csv',index = False)
-				if  user_OPTION == "put":
-					put_strike = spot + (50)
-					n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
-					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_put.name)))
-					entry = float(s['LTP'])	
-					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name, "EXCH" : "NFO" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
-					df = df.append(new_data, ignore_index = True)
-					df.to_csv('token.csv',index = False)
-			if user_STOCK == "BANKNIFTY":
-				try:
-					b = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
-					b_ltp = b['LTP']
-				except:
-					st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
-				spot = round((float(b_ltp)) / 100) * 100			
-				expiry_date = expiry[0]
-				if user_OPTION == "call":
-					call_strike = spot - (100)
-					b_call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
-					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_call.name)))
-					entry = float(s['LTP'])	
-					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name, "EXCH" : "NFO" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
-					df = df.append(new_data, ignore_index = True)
-					df.to_csv('token.csv',index = False)
-				if  user_OPTION == "put":
-					put_strike = spot + (100)
-					b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
-					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_put.name)))
-					entry = float(s['LTP'])	
-					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name, "EXCH" : "NFO" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
-					df = df.append(new_data, ignore_index = True)
-					df.to_csv('token.csv',index = False)	
-					
-			h = st.empty()
-			st.success('*_Your Trade Order Placed Pls Check in Report_*')
-			time.sleep(0.5)
-			h.empty()
-			pass		
+	if ENTRY:		
+		if user_STOCK == "NIFTY":			
+			try:
+				n = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
+				n_ltp = n['LTP']
+			except:
+				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
+			spot = round((float(n_ltp)) / 50) * 50
+			expiry_date = expiry[0]
+			if user_OPTION == "call":
+				call_strike = spot - (50)
+				n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
+				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
+				entry = float(s['LTP'])	
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1) }
+				df = df.append(new_data, ignore_index = True)	
+				df.to_csv('token.csv',index = False)
+			if  user_OPTION == "put":
+				put_strike = spot + (50)
+				n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
+				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_put.name)))
+				entry = float(s['LTP'])	
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name, "EXCH" : "NFO" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+				df = df.append(new_data, ignore_index = True)
+				df.to_csv('token.csv',index = False)
+		if user_STOCK == "BANKNIFTY":
+			try:
+				b = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
+				b_ltp = b['LTP']
+			except:
+				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
+			spot = round((float(b_ltp)) / 100) * 100			
+			expiry_date = expiry[0]
+			if user_OPTION == "call":
+				call_strike = spot - (100)
+				b_call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
+				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_call.name)))
+				entry = float(s['LTP'])	
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name, "EXCH" : "NFO" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+				df = df.append(new_data, ignore_index = True)
+				df.to_csv('token.csv',index = False)
+			if  user_OPTION == "put":
+				put_strike = spot + (100)
+				b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
+				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_put.name)))
+				entry = float(s['LTP'])	
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name, "EXCH" : "NFO" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
+				df = df.append(new_data, ignore_index = True)
+				df.to_csv('token.csv',index = False)	
+				
+		h = st.empty()
+		st.success('*_Your Trade Order Placed Pls Check in Report_*')
+		time.sleep(0.5)
+		h.empty()
+		pass		
 if x =="Report":
 	placeholder01 = st.empty()
 	placeholder12 = st.sidebar.empty()
