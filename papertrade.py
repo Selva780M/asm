@@ -81,14 +81,14 @@ expiry = Contract()
 def loaddata():
 	placeholder11 = st.empty()
 	try:
-		contract_master = pd.read_csv('NSE.csv')   #(user_STOCK +'.csv')
+		contract_master = pd.read_csv('NFO.csv')   #(user_STOCK +'.csv')
 		sym = contract_master['Symbol'].tolist()
 	except:
-		alice.get_contract_master('NSE.csv')
+		alice.get_contract_master('NFO.csv')
 		with placeholder11.container():
 			st.error(f"*_Fetch contracts._*")
 		time.sleep(15)
-		contract_master = pd.read_csv('NSE.csv')
+		contract_master = pd.read_csv('NFO.csv')
 		sym = contract_master['Symbol'].tolist()
 		return sym
 #------------------------------------------
