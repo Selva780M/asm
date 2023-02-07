@@ -204,6 +204,7 @@ if x =="Report":
 			em = []
 			try:
 				for i in df['STOCK']:
+					st.write(df.loc[i,3])
 					m = alice.get_scrip_info(alice.get_instrument_by_symbol(df[i,3],i))				
 					lt = float(m['LTP'])
 					em.append(lt)
