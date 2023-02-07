@@ -83,7 +83,7 @@ def loaddata():
 	try:
 		contract_master = pd.read_csv('NFO.csv')   #(user_STOCK +'.csv')
 		sym = contract_master['Symbol'].tolist()
-		st.write(f'1{sym})
+		st.write(f'1'{sym})
 	except:
 		alice.get_contract_master('NFO.csv')
 		with placeholder11.container():
