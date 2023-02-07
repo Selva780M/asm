@@ -81,8 +81,11 @@ def loaddata():
 	try:
 		contract_master = pd.read_csv(user_STOCK +'.csv')
 		sym = contract_master['Symbol'].tolist()
-      except:
-		alice.get_contract_master('NFO')
+	except:
+		alice.get_contract_master(user_STOCK +'.csv')
+		with placeholder00.container():
+			st.error(f"*_Fetch contracts Master.. 10sec Wait..._*")
+		time.sleep(10)
 		contract_master = pd.read_csv(user_STOCK +'.csv')
 		return sym
 #------------------------------------------
