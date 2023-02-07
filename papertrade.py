@@ -82,7 +82,7 @@ def loaddata():
 	placeholder11 = st.empty()
 	try:
 		contract_master = pd.read_csv(user_STOCK+'.csv')   #(user_STOCK +'.csv')
-		s = contract_master['Symbol']
+		s = contract_master['Trading Symbol']
 		sym = s.tolist()		
 	except:
 		alice.get_contract_master(user_STOCK)
@@ -90,7 +90,7 @@ def loaddata():
 			st.error(f"*_Fetch contracts._*")
 		time.sleep(30)
 		contract_master = pd.read_csv(user_STOCK+'.csv')
-		s = contract_master['Symbol']
+		s = contract_master['Trading Symbol']
 		sym = s.tolist()				
 	return sym
 #------------------------------------------
