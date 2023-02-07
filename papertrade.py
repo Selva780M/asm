@@ -81,13 +81,13 @@ expiry = Contract()
 def loaddata():
 	placeholder11 = st.empty()
 	try:
-		contract_master = pd.read_csv(user_STOCK+'.csv')   #(user_STOCK +'.csv')
+		contract_master = pd.read_csv(user_STOCK+'.csv') 
 		s = contract_master['Trading Symbol']
 		sym = s.tolist()		
 	except:
 		alice.get_contract_master(user_STOCK)
 		with placeholder11.container():
-			st.error(f"*_Fetch contracts._*")
+			st.info(f"*_Loading..._*")
 		time.sleep(30)
 		contract_master = pd.read_csv(user_STOCK+'.csv')
 		s = contract_master['Trading Symbol']
