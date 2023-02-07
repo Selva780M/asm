@@ -77,6 +77,7 @@ def Contract():
 	return expiry
 expiry = Contract()
 
+@st.experimental_memo
 def loaddata():
 	placeholder11 = st.empty()
 	try:
@@ -85,9 +86,10 @@ def loaddata():
 	except:
 		alice.get_contract_master(user_STOCK +'.csv')
 		with placeholder11.container():
-			st.error(f"*_Fetch contracts Master.. 10sec Wait..._*")
-		time.sleep(10)
+			st.error(f"*_Fetch contracts._*")
+		time.sleep(15)
 		contract_master = pd.read_csv(user_STOCK +'.csv')
+		sym = contract_master['Symbol'].tolist()
 		return sym
 #------------------------------------------
 x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report","Access File"))
