@@ -96,8 +96,7 @@ def loaddata():
 #------------------------------------------
 x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report","Access File"))
 if x =="Order Placed" :
-	user = st.radio('*_Choose the Stock_*',("Auto","Manual"),horizontal=True,key=1)
-	ex = st.radio("*_Select Exchange_*",("NSE","NFO","CDS","MCX"), horizontal=True,key=3)
+	user = st.radio('*_Choose the Stock_*',("Auto","Manual"),horizontal=True,key=1)	
 	with st.form("opt_form"):				
 		user_USER = st.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","test"),horizontal=True,key=2)
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f" {user_USER} 👋"}</h1>', unsafe_allow_html=True)
@@ -112,9 +111,10 @@ if x =="Order Placed" :
 			user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=50, value=10, step=5, format=None,key=6)
 			user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=7)	
 	if user == "Manual":
-		with col11:						
-			if ex:
-				stock1 = st.selectbox("*_Select Stock_*",(loaddata()))						
+		with col11:
+			ex = st.radio("*_Select Exchange_*",("NSE","NFO","CDS","MCX"), horizontal=True,key=3)
+		if ex:
+			stock1 = st.selectbox("*_Select Stock_*",(loaddata()))						
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')	
 		with col22:		
 			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=5)
