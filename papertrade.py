@@ -296,9 +296,9 @@ if x =="Report":
 						st.balloons()
 						st.write('b2')
 						send_sticker_on_telegram(sad)
-						send_msg_on_telegram(f"Sorry {Na}, Your Trade  {df100.iloc[i]['NAME']}  Completed Lose in Rs.{round(df100.iloc[i]['P_L'],1)}")				
- 				if(df100.iloc[i,9]) < (df100.iloc[i,8]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
-					if (df100.iloc[i,4]) == "S":
+						send_msg_on_telegram(f"Sorry {Na}, Your Trade  {df100.iloc[i]['NAME']}  Completed Lose in Rs.{round(df100.iloc[i]['P_L'],1)}")
+				if(df100.iloc[i,9]) < (df100.iloc[i,8]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
+					if(df100.iloc[i,4]) == "S":
 						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'], "EXCH":df100.iloc[i]['EXCH'],"TRADE": df100.iloc[i]['TRADE'], "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
  						df5 = df5.append(df2, ignore_index = True)
  						save()					
