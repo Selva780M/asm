@@ -238,13 +238,15 @@ if x =="Report":
 			em = []
 			tr = []
 			try:
-				for i in range(0,len(df.index)):					
-					m = alice.get_scrip_info(alice.get_instrument_by_symbol(df.loc[i,'EXCH'],df.loc[i,'STOCK']))				
-					lt = float(m['LTP'])
+				for i in range(0,len(df.index)):
 					if df.loc[i,'TRADE'] == "B":
-						 pl = float((df.loc[i,'LTP'] - df.loc[i,'ENTRY']) * df.loc[i,'QTY'])
+						m = alice.get_scrip_info(alice.get_instrument_by_symbol(df.loc[i,'EXCH'],df.loc[i,'STOCK']))				
+						lt = float(m['LTP'])
+						pl = float((df.loc[i,'LTP'] - df.loc[i,'ENTRY']) * df.loc[i,'QTY'])
 					if df.loc[i,'TRADE'] == "S":
-						 pl = float((df.loc[i,'ENTRY'] - df.loc[i,'LTP'])  * df.loc[i,'QTY'])
+						m = alice.get_scrip_info(alice.get_instrument_by_symbol(df.loc[i,'EXCH'],df.loc[i,'STOCK']))				
+						lt = float(m['LTP'])
+						pl = float((df.loc[i,'ENTRY'] - df.loc[i,'LTP'])  * df.loc[i,'QTY'])
 					tr.append(pl)
 					em.append(lt)					
 			except Exception as e:
