@@ -6,6 +6,7 @@ import numpy as np
 from datetime import datetime, timedelta
 from pytz import timezone 
 import time
+import requests
 day = datetime.now(timezone("Asia/Kolkata"))
 DATE = day.strftime('%d-%m-%Y %H:%M:%S')
 alice = Aliceblue(user_id='627742',api_key='BPk1mFAXB9ByTFFQnm87HhieLFo3Fy5J3PCaae2g252DiLCNB9BK7hF0LpSg3d9fNO698r32IAsEt0lWm3hmuZMWW9tJC6r6A7xGkZWGmY1Hcdys1q9ITC1pRjYaklRQ')
@@ -95,6 +96,27 @@ def loaddata():
 		s = contract_master['Trading Symbol']
 		sym = s.tolist()				
 	return sym
+#TeleGram --------------------------------
+bot_token = "5719015279:AAHTTTus2_dmsVvp9xTlO2QUFuHwtRmUfbY"
+bot = Bot(token=bot_token)
+tele_auth_token = '5719015279:AAHTTTus2_dmsVvp9xTlO2QUFuHwtRmUfbY'
+tel_group_id =  "Gold_Duck_Trade"
+def send_msg_on_telegram(message):
+	telegram_api_url = f"https://api.telegram.org/bot{tele_auth_token}/sendMessage?chat_id=@{tel_group_id}&text={message}"
+	tel_resp = requests.get(telegram_api_url)
+	if tel_resp.status_code == 200:
+		print("Notification has been sent on Telegram")
+	else:
+		print ("Could not send on Telegram Message")
+def send_sticker_on_telegram(message):
+	telegram_api_url = f"https://api.telegram.org/bot{tele_auth_token}/sendSticker?chat_id=@{tel_group_id}&sticker={message}"
+	tel_resp = requests.get(telegram_api_url)
+	if tel_resp.status_code == 200:
+		print("Notification has been sent on sticker msg Telegram")
+	else:
+		print("Could not send on Telegram sticker Message")
+sad = "CAACAgIAAxkBAANIYxm-bLBDd1VugpzDrfK0eaKNYSYAAvMAA1advQpqG-vEx_qW_ikE"
+happy = "CAACAgIAAxkBAANFYxmxaQFWhPkw80xf8NVJxapzwBEAAgMBAAJWnb0KAuXReIfl-k8pBA"
 #------------------------------------------
 x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report","Access File"),key=10)
 if x =="Order Placed" :
@@ -242,6 +264,8 @@ if x =="Report":
 					df5.to_csv('trade.csv',index = False)					
 					df.drop([i], inplace = True)
 					st.balloons()
+					send_sticker_on_telegram(happy)
+					send_sticker_on_telegram(f'Hi Selva, Your Trade Win  Compeleted , Porfit on Rs.{df100.iloc[i]['P_L']}/-')
 					#time.sleep(1)
 					#df.to_csv('token.csv',index = False)
 				if(df100.iloc[i,8]) < (df100.iloc[i,6]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):											
@@ -250,6 +274,8 @@ if x =="Report":
 					df5.to_csv('trade.csv',index = False)
 					df.drop([i], inplace = True)
 					st.balloons()
+					send_sticker_on_telegram(sad)
+					send_sticker_on_telegram(f'Sorry Selva, Your Trade Lose Compeleted , Loss on Rs.{df100.iloc[i]['P_L']}/-')
 					#time.sleep(1)
 					#df.to_csv('token.csv',index = False)
 			with placeholder01.container():
