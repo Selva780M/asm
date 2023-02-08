@@ -248,7 +248,8 @@ if x =="Report":
 						lt = float(m['LTP'])
 						pl = float((df.loc[i,'ENTRY'] - df.loc[i,'LTP'])  * df.loc[i,'QTY'])
 					tr.append(pl)
-					em.append(lt)					
+					em.append(lt)
+					st.write(pl,lt)
 			except Exception as e:
 				st.write(f"Er.",{e})									
 			frame = {'P_L': tr, 'LTP': em }
