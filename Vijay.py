@@ -12,8 +12,13 @@ DATE = day.strftime('%d-%m-%Y %H:%M:%S')
 alice = Aliceblue(user_id='627742',api_key='BPk1mFAXB9ByTFFQnm87HhieLFo3Fy5J3PCaae2g252DiLCNB9BK7hF0LpSg3d9fNO698r32IAsEt0lWm3hmuZMWW9tJC6r6A7xGkZWGmY1Hcdys1q9ITC1pRjYaklRQ')
 df = pd.read_csv('./token2.csv')
 df5 = pd.read_csv('./trade2.csv')
+def temp():
+	df.to_csv('token2.csv',index = False)
+def save():
+	df5.to_csv('trade2.csv',index = False)
 #------------------------------------------------------
 Investment = int(300000)
+Na = str('Mr.Vijaya Raja')
 st.sidebar.markdown(f""" *_Date:_* {DATE}""")
 st.sidebar.markdown(f""" *_Your Investment Rs.{Investment}/-_* """)
 placeholder1 = st.empty()	
@@ -22,7 +27,7 @@ with placeholder1.container():
 	with con10:
 		st.header('*_👋  :blue[_BOT Paper Trade_] :sunglasses:_*')
 	with con20:
-		st.subheader('*_🙏 :green[_Mr.Vijaya Raja_]👉⏰_*')
+		st.subheader(f'*_🙏 :green[_{Na}_]👉⏰_*')
 		
 try:
 	alice.get_session_id()
@@ -123,7 +128,7 @@ if x =="Order Placed" :
 	if user == "Manual":
 		XX = st.radio("*_Select Exchange_*",("NFO","NSE","CDS","MCX"),horizontal=True,key=3)
 	with st.form("opt_form"):				
-		user_USER = st.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","test"),horizontal=True,key=2)
+		user_USER = st.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","Hedging","test"),horizontal=True,key=2)
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f" {user_USER} 👋"}</h1>', unsafe_allow_html=True)
 		col11, col22, col33 = st.columns(3)				
 	if user == "Auto":
@@ -147,6 +152,7 @@ if x =="Order Placed" :
 				user_STOCK = st.selectbox("*_Select Stock_*",(loaddata()))			
 			if XX == "MCX":
 				user_STOCK = st.selectbox("*_Select Stock_*",(loaddata()))
+			Tradd = st.radio("*_Trade_*",("Buy","Sell"), horizontal=True,key=4)
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 		with col22:		
 			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=5)
@@ -166,17 +172,17 @@ if x =="Order Placed" :
 				n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
 				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1) }
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "TRADE" :"B" ,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1) }
 				df = df.append(new_data, ignore_index = True)	
-				df.to_csv('token2.csv',index = False)
+				temp()
 			if  user_OPTION == "put":
 				put_strike = spot + (50)
 				n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_put.name)))
 				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name, "EXCH" : "NFO" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name, "EXCH" : "NFO" , "TRADE" :"B"  ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
 				df = df.append(new_data, ignore_index = True)
-				df.to_csv('token2.csv',index = False)
+				temp()
 		if user_STOCK == "BANKNIFTY":
 			try:
 				b = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))
@@ -190,26 +196,31 @@ if x =="Order Placed" :
 				b_call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_call.name)))
 				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name, "EXCH" : "NFO" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name, "EXCH" : "NFO" ,"TRADE" :"B" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
 				df = df.append(new_data, ignore_index = True)
-				df.to_csv('token2.csv',index = False)
+				temp()
 			if  user_OPTION == "put":
 				put_strike = spot + (100)
 				b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_put.name)))
 				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name, "EXCH" : "NFO" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name, "EXCH" : "NFO" ,"TRADE" : "B" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
 				df = df.append(new_data, ignore_index = True)
-				df.to_csv('token2.csv',index = False)	
+				temp()	
 		if MAN  == "AAUTO":
 			try:
 				b = alice.get_scrip_info(alice.get_instrument_by_symbol(XX,user_STOCK))
-				entry = float(b['LTP'])								
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : user_STOCK, "EXCH" : XX , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
-				df = df.append(new_data, ignore_index = True)
-				df.to_csv('token2.csv',index = False)
+				entry = float(b['LTP'])				
 			except:
-				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')					
+				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
+			if Tradd =="Buy":
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : user_STOCK, "EXCH" : XX , "TRADE" : "B" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+				df = df.append(new_data, ignore_index = True)
+				temp()
+			if Tradd =="Sell":
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : user_STOCK, "EXCH" : XX , "TRADE" : "S" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry + user_STOP),1), "TARGET" : round((entry - user_TARGET),1)}
+				df = df.append(new_data, ignore_index = True)
+				temp()
 		h = st.empty()
 		st.success('*_Your Trade Order Placed Pls Check in Report_*')
 		time.sleep(0.5)
@@ -223,19 +234,28 @@ if x =="Report":
 	placeholder101 = st.empty()	
 	if (len(df5['STOCK']) > -1) | (len(df['STOCK']) > -1):
 		while True:
-			df.to_csv('token.csv',index = False)
+			temp()
 			em = []
+			tr = []
 			try:
 				for i in range(0,len(df.index)):					
-					m = alice.get_scrip_info(alice.get_instrument_by_symbol(df.loc[i,'EXCH'],df.loc[i,'STOCK']))				
-					lt = float(m['LTP'])
-					em.append(lt)
+					if df.loc[i,'TRADE'] == "B":
+						m = alice.get_scrip_info(alice.get_instrument_by_symbol(df.loc[i,'EXCH'],df.loc[i,'STOCK']))				
+						lt = float(m['LTP'])
+						pl = float((lt - df.loc[i,'ENTRY']) * df.loc[i,'QTY'])
+					if df.loc[i,'TRADE'] == "S":
+						m = alice.get_scrip_info(alice.get_instrument_by_symbol(df.loc[i,'EXCH'],df.loc[i,'STOCK']))				
+						lt = float(m['LTP'])
+						pl = float((df.loc[i,'ENTRY'] - lt)  * df.loc[i,'QTY'])
+					tr.append(pl)
+					em.append(lt)					
 			except Exception as e:
 				st.write(f"Er.",{e})									
-			df100 = pd.DataFrame()
-			df1 = pd.Series(em,name='LTP')
-			df100 = pd.concat([df,df1],axis=1)				
-			df100['P_L']  = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
+			frame = {'LTP': em,'P_L': tr}
+			df1 = pd.DataFrame(frame)
+			#df1 = pd.Series(em,name='LTP')
+			df100 = pd.concat([df,df1],axis=1)							
+			#df100['P_L']  = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
 			M = df100['ENTRY'] * df100['QTY']	
 			with placeholder12.container():					
 				c = df100.groupby(['NAME'])['P_L'].sum().reset_index()					
@@ -256,27 +276,43 @@ if x =="Report":
 					st.metric("Rs", f"{im()}" , f"{PL}")						
 				with col7:
 					st.metric("%",f"{round(((im()/Investment)*100),1)}%" , f"{round(((PL/Investment)*100),1)}%")				
-			for i in range(0,len(df100.index)):					
-				if(df100.iloc[i,8]) > (df100.iloc[i,7]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
-					df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'], "EXCH":df100.iloc[i]['EXCH'], "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
-					df5 = df5.append(df2, ignore_index = True)
-					df5.to_csv('trade2.csv',index = False)					
-					df.drop([i], inplace = True)
-					st.balloons()
-					send_sticker_on_telegram(happy)
-					send_msg_on_telegram(f"Hi Vijay, Your Trade Win  Completed, Profit on Rs.{round(df100.iloc[i]['P_L'],1)}")
-					#time.sleep(1)
-					#df.to_csv('token.csv',index = False)
-				if(df100.iloc[i,8]) < (df100.iloc[i,6]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):											
-					df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],"EXCH":df100.iloc[i]['EXCH'], "ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
-					df5 = df5.append(df3, ignore_index = True)
-					df5.to_csv('trade2.csv',index = False)
-					df.drop([i], inplace = True)
-					st.balloons()
-					send_sticker_on_telegram(sad)
-					send_msg_on_telegram(f"Sorry Vijay, Your Trade Loose Completed Loss on Rs.{round(df100.iloc[i]['P_L'],1)}")
-					#time.sleep(1)
-					#df.to_csv('token.csv',index = False)
+			for i in range(0,len(df100.index)):
+				if(df100.iloc[i,9]) > (df100.iloc[i,8]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
+					if (df100.iloc[i,4]) == "B":
+						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'], "EXCH":df100.iloc[i]['EXCH'], "TRADE": df100.iloc[i]['TRADE'],"ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
+						df5 = df5.append(df2, ignore_index = True)
+						save()					
+						df.drop([i], inplace = True)
+						st.balloons()						
+						send_sticker_on_telegram(happy)
+						send_msg_on_telegram(f"Hi {Na}, Your Trade {df100.iloc[i]['NAME']} Completed, Profit in Rs.{round(df100.iloc[i]['P_L'],1)}")						
+				if (df100.iloc[i,9]) < (df100.iloc[i,7]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
+					if (df100.iloc[i,4]) == "B":
+						df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],"EXCH":df100.iloc[i]['EXCH'], "TRADE": df100.iloc[i]['TRADE'],"ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
+						df5 = df5.append(df3, ignore_index = True)
+						save()
+						df.drop([i], inplace = True)
+						st.balloons()						
+						send_sticker_on_telegram(sad)
+						send_msg_on_telegram(f"Sorry {Na}, Your Trade  {df100.iloc[i]['NAME']}  Completed Lose in Rs.{round(df100.iloc[i]['P_L'],1)}")
+				if(df100.iloc[i,9]) < (df100.iloc[i,8]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
+					if (df100.iloc[i,4]) == "S":
+						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'], "EXCH":df100.iloc[i]['EXCH'], "TRADE": df100.iloc[i]['TRADE'],"ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
+						df5 = df5.append(df2, ignore_index = True)
+						save()					
+						df.drop([i], inplace = True)
+						st.balloons()						
+						send_sticker_on_telegram(happy)
+						send_msg_on_telegram(f"Hi {Na}, Your Trade {df100.iloc[i]['NAME']} Completed, Profit in Rs.{round(df100.iloc[i]['P_L'],1)}")						
+				if (df100.iloc[i,9]) > (df100.iloc[i,7]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
+					if (df100.iloc[i,4]) == "S":
+						df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],"EXCH":df100.iloc[i]['EXCH'], "TRADE": df100.iloc[i]['TRADE'],"ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
+						df5 = df5.append(df3, ignore_index = True)
+						save()
+						df.drop([i], inplace = True)
+						st.balloons()						
+						send_sticker_on_telegram(sad)
+						send_msg_on_telegram(f"Sorry {Na}, Your Trade  {df100.iloc[i]['NAME']}  Completed Lose in Rs.{round(df100.iloc[i]['P_L'],1)}")			
 			with placeholder01.container():
 				col1, col2 = st.columns(2)
 				with col1:
@@ -316,86 +352,10 @@ if x == "Access File":
 			cl  = st.form_submit_button('*_👉Clear ALL_*')	
 		if cr:
 			df.drop([num], inplace = True)
-			df.to_csv('token2.csv',index = False)
+			temp()
 		if cl:
 			for i in range(0,len(df.index)):
 				df.drop([i], inplace = True)
-			df.to_csv('token2.csv',index = False)		
+			temp()		
 		A = df.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET"], formatter="{:.2f}").applymap(col)
 		st.table(A)	
-					
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-
-# def on_button_click():
-#     st.session_state.error_message = ''
-#     st.session_state.result_message = ''
-#     if not str(st.session_state.user_name):
-#         st.session_state.error_message = "Input your name please~"
-#     else:
-#         st.session_state.result_message = f"Hello~ {str(st.session_state.user_name)}"
-
-
-# st.title("Streamlit Test")
-
-# input_user_name = st.text_input(label="User Name", key='user_name', value="")
-
-
-# checkbox = st.checkbox('agree')
-# st.button("Confirm", key='confirm_btn', disabled=(checkbox is False), on_click=on_button_click)
-
-# con = st.container()
-# con.caption("Result")
-# if 'error_message' in st.session_state and st.session_state.error_message:
-#     con.error(st.session_state.error_message)
-# if 'result_message' in st.session_state and st.session_state.result_message:
-#     con.write(st.session_state.result_message)				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-	
