@@ -218,7 +218,7 @@ if x =="Order Placed" :
 				df = df.append(new_data, ignore_index = True)
 				temp()
 			if Tradd =="Sell":
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : user_STOCK, "EXCH" : XX , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((user_STOP-entry),1), "TARGET" : round((user_TARGET+entry),1)}
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : user_STOCK, "EXCH" : XX , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry + user_STOP),1), "TARGET" : round((entry - user_TARGET),1)}
 				df = df.append(new_data, ignore_index = True)
 				temp()
 		h = st.empty()
