@@ -246,10 +246,10 @@ if x =="Report":
 					if df.loc[i,'TRADE'] == "S":
 						 pl = float((df.loc[i,'ENTRY'] - df.loc[i,'LTP'])  * df.loc[i,'QTY'])
 					tr.append(pl)
-					em.append(lt)
-					frame = { 'P_L': tr, 'LTP': em }
+					em.append(lt)					
 			except Exception as e:
 				st.write(f"Er.",{e})									
+			frame = {'P_L': tr, 'LTP': em }
 			df1 = pd.DataFrame(frame)
 			#df1 = pd.Series(em,name='LTP')
 			df100 = pd.concat([df,df1],axis=1)							
