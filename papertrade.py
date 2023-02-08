@@ -242,7 +242,7 @@ if x =="Report":
 					if df.loc[i,'TRADE'] == "B":
 						m = alice.get_scrip_info(alice.get_instrument_by_symbol(df.loc[i,'EXCH'],df.loc[i,'STOCK']))				
 						lt = float(m['LTP'])
-						pl = float(lt - df.loc[i,'ENTRY']) * df.loc[i,'QTY'])
+						pl = float((lt - df.loc[i,'ENTRY']) * df.loc[i,'QTY'])
 					if df.loc[i,'TRADE'] == "S":
 						m = alice.get_scrip_info(alice.get_instrument_by_symbol(df.loc[i,'EXCH'],df.loc[i,'STOCK']))				
 						lt = float(m['LTP'])
