@@ -283,6 +283,7 @@ if x =="Report":
 					save()					
 					df.drop([i], inplace = True)
 					st.balloons()
+					st.write('b1')
 					send_sticker_on_telegram(happy)
 					send_msg_on_telegram(f"Hi {Na}, Your Trade {df100.iloc[i]['NAME']} Completed, Profit in Rs.{round(df100.iloc[i]['P_L'],1)}")						
 				elif(df100.iloc[i,4]) == "B" and (df100.iloc[i,9]) < (df100.iloc[i,7]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):											
@@ -291,6 +292,7 @@ if x =="Report":
 					save()
 					df.drop([i], inplace = True)
 					st.balloons()
+					st.write('b2')
 					send_sticker_on_telegram(sad)
 					send_msg_on_telegram(f"Sorry {Na}, Your Trade  {df100.iloc[i]['NAME']}  Completed Lose in Rs.{round(df100.iloc[i]['P_L'],1)}")				
 				elif(df100.iloc[i,4]) == "S" and (df100.iloc[i,9]) < (df100.iloc[i,8]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
@@ -299,6 +301,7 @@ if x =="Report":
 					save()					
 					df.drop([i], inplace = True)
 					st.balloons()
+					st.write('s1')
 					send_sticker_on_telegram(happy)
 					send_msg_on_telegram(f"Hi {Na}, Your Trade {df100.iloc[i]['NAME']} Completed, Profit in Rs.{round(df100.iloc[i]['P_L'],1)}")						
 				elif(df100.iloc[i,4]) == "S" and  (df100.iloc[i,9]) > (df100.iloc[i,7]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):											
@@ -307,6 +310,7 @@ if x =="Report":
 					save()
 					df.drop([i], inplace = True)
 					st.balloons()
+					st.write('s2')
 					send_sticker_on_telegram(sad)
 					send_msg_on_telegram(f"Sorry {Na}, Your Trade  {df100.iloc[i]['NAME']}  Completed Lose in Rs.{round(df100.iloc[i]['P_L'],1)}")
 				else :
