@@ -238,15 +238,15 @@ if x =="Report":
 			em = []
 			tr = []
 			try:
-				for i in range(0,len(df.index)):
+				for i in range(0,len(df.index)):					
 					if df.loc[i,'TRADE'] == "B":
 						m = alice.get_scrip_info(alice.get_instrument_by_symbol(df.loc[i,'EXCH'],df.loc[i,'STOCK']))				
 						lt = float(m['LTP'])
-						pl = float((df.loc[i,'LTP'] - df.loc[i,'ENTRY']) * df.loc[i,'QTY'])
+						pl = float(lt - df.loc[i,'ENTRY']) * df.loc[i,'QTY'])
 					if df.loc[i,'TRADE'] == "S":
 						m = alice.get_scrip_info(alice.get_instrument_by_symbol(df.loc[i,'EXCH'],df.loc[i,'STOCK']))				
 						lt = float(m['LTP'])
-						pl = float((df.loc[i,'ENTRY'] - df.loc[i,'LTP'])  * df.loc[i,'QTY'])
+						pl = float((df.loc[i,'ENTRY'] - lt)  * df.loc[i,'QTY'])
 					tr.append(pl)
 					em.append(lt)
 					st.write(pl,lt)
