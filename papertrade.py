@@ -98,7 +98,6 @@ def loaddata():
 	return sym
 #TeleGram --------------------------------
 bot_token = "5719015279:AAHTTTus2_dmsVvp9xTlO2QUFuHwtRmUfbY"
-bot = Bot(token=bot_token)
 tele_auth_token = '5719015279:AAHTTTus2_dmsVvp9xTlO2QUFuHwtRmUfbY'
 tel_group_id =  "Gold_Duck_Trade"
 def send_msg_on_telegram(message):
