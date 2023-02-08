@@ -275,7 +275,7 @@ if x =="Report":
 					df.drop([i], inplace = True)
 					st.balloons()
 					send_sticker_on_telegram(happy)
-					send_msg_on_telegram(f"Hi Selva, Your Trade Win  Completed, Profit on Rs.{round(df100.iloc[i]['P_L'],1)}")
+					send_msg_on_telegram(f"Hi Selva, Your Trade {df100.iloc[i]['NAME']} Completed, Profit in Rs.{round(df100.iloc[i]['P_L'],1)}")
 					#time.sleep(1)
 					#df.to_csv('token.csv',index = False)
 				if(df100.iloc[i,8]) < (df100.iloc[i,6]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):											
@@ -285,7 +285,7 @@ if x =="Report":
 					df.drop([i], inplace = True)
 					st.balloons()
 					send_sticker_on_telegram(sad)
-					send_msg_on_telegram(f"Sorry Selva, Your Trade Loose Completed Loss on Rs.{round(df100.iloc[i]['P_L'],1)}")
+					send_msg_on_telegram(f"Sorry Selva, Your Trade  {df100.iloc[i]['NAME']}  Completed Lose in Rs.{round(df100.iloc[i]['P_L'],1)}")
 					#time.sleep(1)
 					#df.to_csv('token.csv',index = False)
 			with placeholder01.container():
