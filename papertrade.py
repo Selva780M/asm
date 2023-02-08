@@ -172,7 +172,7 @@ if x =="Order Placed" :
 				n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
 				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "TRADE" :"Buy" ,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1) }
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "TRADE" :"B" ,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1) }
 				df = df.append(new_data, ignore_index = True)	
 				temp()
 			if  user_OPTION == "put":
@@ -180,7 +180,7 @@ if x =="Order Placed" :
 				n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_put.name)))
 				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name, "EXCH" : "NFO" , "TRADE" :"Buy"  ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name, "EXCH" : "NFO" , "TRADE" :"B"  ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
 				df = df.append(new_data, ignore_index = True)
 				temp()
 		if user_STOCK == "BANKNIFTY":
@@ -196,7 +196,7 @@ if x =="Order Placed" :
 				b_call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_call.name)))
 				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name, "EXCH" : "NFO" ,"TRADE" :"Buy" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name, "EXCH" : "NFO" ,"TRADE" :"B" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
 				df = df.append(new_data, ignore_index = True)
 				temp()
 			if  user_OPTION == "put":
@@ -204,7 +204,7 @@ if x =="Order Placed" :
 				b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_put.name)))
 				entry = float(s['LTP'])	
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name, "EXCH" : "NFO" ,"TRADE" : "Buy" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name, "EXCH" : "NFO" ,"TRADE" : "B" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
 				df = df.append(new_data, ignore_index = True)
 				temp()	
 		if MAN  == "AAUTO":
@@ -214,11 +214,11 @@ if x =="Order Placed" :
 			except:
 				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
 			if Tradd =="Buy":
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : user_STOCK, "EXCH" : XX , "TRADE" :Tradd ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : user_STOCK, "EXCH" : XX , "TRADE" :"B" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
 				df = df.append(new_data, ignore_index = True)
 				temp()
 			if Tradd =="Sell":
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : user_STOCK, "EXCH" : XX , "TRADE" : Tradd ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry + user_STOP),1), "TARGET" : round((entry - user_TARGET),1)}
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : user_STOCK, "EXCH" : XX , "TRADE" : "S" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry + user_STOP),1), "TARGET" : round((entry - user_TARGET),1)}
 				df = df.append(new_data, ignore_index = True)
 				temp()
 		h = st.empty()
@@ -236,18 +236,24 @@ if x =="Report":
 		while True:
 			temp()
 			em = []
+			tr = []
 			try:
 				for i in range(0,len(df.index)):					
 					m = alice.get_scrip_info(alice.get_instrument_by_symbol(df.loc[i,'EXCH'],df.loc[i,'STOCK']))				
 					lt = float(m['LTP'])
+					if df.loc[i,'TRADE'] == "B":
+						 pl = float((df.loc[i,'LTP'] - df.loc[i,'ENTRY']) * df.loc[i,'QTY'])
+					if df.loc[i,'TRADE'] == "S":
+						 pl = float((df.loc[i,'ENTRY'] - df.loc[i,'LTP'])  * df.loc[i,'QTY'])
+					tr.append(pl)
 					em.append(lt)
+					frame = { 'P_L': tr, 'LTP': em }
 			except Exception as e:
 				st.write(f"Er.",{e})									
-			df100 = pd.DataFrame()
-			df1 = pd.Series(em,name='LTP')
-			df100 = pd.concat([df,df1],axis=1)				
-			if 
-			df100['P_L']  = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
+			df1 = pd.DataFrame(frame)
+			#df1 = pd.Series(em,name='LTP')
+			df100 = pd.concat([df,df1],axis=1)							
+			#df100['P_L']  = ((df100['LTP'] - df100['ENTRY']) * df100['QTY'])
 			M = df100['ENTRY'] * df100['QTY']	
 			with placeholder12.container():					
 				c = df100.groupby(['NAME'])['P_L'].sum().reset_index()					
