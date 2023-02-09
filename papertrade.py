@@ -127,7 +127,7 @@ if x =="Order Placed" :
 	user = st.radio('*_Choose the Stock_*',("Auto","Manual"),horizontal=True,key=1)	
 	if user == "Manual":
 		XX = st.radio("*_Select Exchange_*",("NFO","NSE","CDS","MCX"),horizontal=True,key=3)
-		dis = st.radio('*_Option Chain_*',("Yes","No"),horizontal=True,key=12)
+		dis = st.radio('*_Option Chain Display_*',("No","Yes"),horizontal=True,key=12)
 	with st.form("opt_form"):				
 		user_USER = st.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","Hedging","test"),horizontal=True,key=2)
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f" {user_USER} 👋"}</h1>', unsafe_allow_html=True)
@@ -156,7 +156,7 @@ if x =="Order Placed" :
 			Tradd = st.radio("*_Trade_*",("Buy","Sell"), horizontal=True,key=4)
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 		if dis == "Yes":
-			st.write(f'<iframe src="https://1lyoptions.com/option-chain" frameborder="0" scrolling="no" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="400" width="100%"></iframe>',unsafe_allow_html=True)
+			st.write(f'<iframe src="https://1lyoptions.com/option-chain" frameborder="0" scrolling="yes" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="400" width="100%"></iframe>',unsafe_allow_html=True)
 		with col22:		
 			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=5)
 			user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=50, value=10, step=5, format=None,key=6)
