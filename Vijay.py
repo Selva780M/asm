@@ -17,8 +17,8 @@ def temp():
 def save():
 	df5.to_csv('trade2.csv',index = False)
 #------------------------------------------------------
-Investment = int(300000)
-Na = str('Mr.Vijaya Raja')
+Investment = int(100000)
+Na = str('Mr.SaravanaKumar')
 st.sidebar.markdown(f""" *_Date:_* {DATE}""")
 st.sidebar.markdown(f""" *_Your Investment Rs.{Investment}/-_* """)
 placeholder1 = st.empty()	
