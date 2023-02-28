@@ -9,7 +9,7 @@ import time
 import requests
 day = datetime.now(timezone("Asia/Kolkata"))
 DATE = day.strftime('%d-%m-%Y %H:%M:%S')
-alice = Aliceblue(user_id='627742',api_key='BPk1mFAXB9ByTFFQnm87HhieLFo3Fy5J3PCaae2g252DiLCNB9BK7hF0LpSg3d9fNO698r32IAsEt0lWm3hmuZMWW9tJC6r6A7xGkZWGmY1Hcdys1q9ITC1pRjYaklRQ')
+alice = Aliceblue(user_id='775965',api_key='jFrYnBN1b2WmyWFttnF5iSq6FrHyPioEmcdc15eX1e9viWidrDIYGCnyzI0jNzPceS4QAQ2Bxr7EDOQN8TMajELaHjCgp4OBdRmKEPR31cp6xoXRyMH0ln5BcXRm2t8A')
 df = pd.read_csv('./token1.csv')
 df5 = pd.read_csv('./trade1.csv')
 def temp():
