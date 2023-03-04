@@ -59,6 +59,7 @@ def Contract():
 	placeholder00 = st.empty()
 	success=False
 	try:
+		alice.get_contract_master('NFO')
 		contract_master= pd.read_csv('NFO.csv')
 		success=True
 	except:
