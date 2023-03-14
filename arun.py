@@ -1,3 +1,4 @@
+import pyautogui
 from pya3 import *
 import streamlit as st
 st.set_page_config(layout="wide")
@@ -120,8 +121,37 @@ def send_sticker_on_telegram(message):
 		print("Notification has been sent on sticker msg Telegram")
 	else:
 		print("Could not send on Telegram sticker Message")
+
+
+def send_Image_on_telegram(Image):
+    tele_auth_token = '5719015279:AAHTTTus2_dmsVvp9xTlO2QUFuHwtRmUfbY'
+    tel_group_id = "Gold_Duck_Trade"
+    apiURL = f'https://api.telegram.org/bot{tele_auth_token}/sendPhoto'
+
+    try:
+        response = requests.post(apiURL, data={'chat_id': tel_group_id}, files={'photo': open(Image, 'rb')})
+        print(response.text)
+    except Exception as e:
+        print(e)
+
+def errscreen():
+	pyautogui.screenshot('test.png')
+	time.sleep(3)
+	send_Image_on_telegram('E:/Pyth/jobcode/test.png')
+	time.sleep(3)
+
+
+		
+		
+		
+		
+		
+		
 sad = "CAACAgIAAxkBAANIYxm-bLBDd1VugpzDrfK0eaKNYSYAAvMAA1advQpqG-vEx_qW_ikE"
 happy = "CAACAgIAAxkBAANFYxmxaQFWhPkw80xf8NVJxapzwBEAAgMBAAJWnb0KAuXReIfl-k8pBA"
+
+
+
 #------------------------------------------
 x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report","Access File"),key=10)
 if x =="Order Placed" :
