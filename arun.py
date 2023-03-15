@@ -1,4 +1,3 @@
-import pyscreenshot
 from pya3 import *
 import streamlit as st
 st.set_page_config(layout="wide")
@@ -121,34 +120,8 @@ def send_sticker_on_telegram(message):
 		print("Notification has been sent on sticker msg Telegram")
 	else:
 		print("Could not send on Telegram sticker Message")
-
-
-def send_Image_on_telegram(Image):
-    tele_auth_token = '5719015279:AAHTTTus2_dmsVvp9xTlO2QUFuHwtRmUfbY'
-    tel_group_id = "Gold_Duck_Trade"
-    apiURL = f'https://api.telegram.org/bot{tele_auth_token}/sendPhoto'
-
-    try:
-        response = requests.post(apiURL, data={'chat_id': tel_group_id}, files={'photo': open(Image, 'rb')})
-        print(response.text)
-    except Exception as e:
-        print(e)
-
-def errscreen():
-	import pyscreenshot as ImageGrab
-	im = ImageGrab.grab()
-	im.save("fullscreen.png")
-	time.sleep(3)
-	send_Image_on_telegram('fullscreen.png')
-	time.sleep(3)
-		
-errscreen()		
-		
-		
-		
 sad = "CAACAgIAAxkBAANIYxm-bLBDd1VugpzDrfK0eaKNYSYAAvMAA1advQpqG-vEx_qW_ikE"
 happy = "CAACAgIAAxkBAANFYxmxaQFWhPkw80xf8NVJxapzwBEAAgMBAAJWnb0KAuXReIfl-k8pBA"
-
 
 
 #------------------------------------------
@@ -315,7 +288,7 @@ if x =="Report":
 						df.drop([i], inplace = True)
 						st.balloons()						
 						send_sticker_on_telegram(happy)
-						send_msg_on_telegram(f"Hi {Na}, Your Trade {df100.iloc[i]['NAME']} Completed, Profit in Rs.{round(df100.iloc[i]['P_L'],1)}")						
+						send_msg_on_telegram(f"Hi {Na}, Your Trade  {df100.iloc[i]['NAME']} Completed, Profit in Rs.{round(df100.iloc[i]['P_L'],1)}\nDATE : {df100.iloc[i]['DATE']} \nSTOCK : {df100.iloc[i]['STOCK']} \nTRADE: {df100.iloc[i]['TRADE']} \nEntry Price: {df100.iloc[i]['ENTRY']}\nQTY: {df100.iloc[i]['QTY']}\nSTOPLOSS : {df100.iloc[i]['STOPLOSS']}\nTARGET : {df100.iloc[i]['TARGET']}\nProfit & Loss :{df100.iloc[i]['P_L']}")						
 				if (df100.iloc[i,9]) < (df100.iloc[i,7]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
 					if (df100.iloc[i,4]) == "B":
 						df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],"EXCH":df100.iloc[i]['EXCH'], "TRADE": df100.iloc[i]['TRADE'],"ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
@@ -323,8 +296,8 @@ if x =="Report":
 						save()
 						df.drop([i], inplace = True)
 						st.balloons()						
-						send_sticker_on_telegram(sad)
-						send_msg_on_telegram(f"Sorry {Na}, Your Trade  {df100.iloc[i]['NAME']}  Completed Lose in Rs.{round(df100.iloc[i]['P_L'],1)}")
+						send_sticker_on_telegram(sad)						
+						send_msg_on_telegram(f"Hi {Na}, Your Trade {df100.iloc[i]['NAME']} Completed, Lose in Rs.{round(df100.iloc[i]['P_L'],1)}\nDATE : {df100.iloc[i]['DATE']} \nSTOCK : {df100.iloc[i]['STOCK']} \nTRADE: {df100.iloc[i]['TRADE']} \nEntry Price: {df100.iloc[i]['ENTRY']}\nQTY: {df100.iloc[i]['QTY']}\nSTOPLOSS : {df100.iloc[i]['STOPLOSS']}\nTARGET : {df100.iloc[i]['TARGET']}\nProfit & Loss :{df100.iloc[i]['P_L']}")
 				if(df100.iloc[i,9]) < (df100.iloc[i,8]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
 					if (df100.iloc[i,4]) == "S":
 						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'], "EXCH":df100.iloc[i]['EXCH'], "TRADE": df100.iloc[i]['TRADE'],"ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
