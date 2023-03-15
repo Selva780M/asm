@@ -225,7 +225,7 @@ if x =="Order Placed" :
 				df = df.append(new_data, ignore_index = True)
 				temp()
 		h = st.empty()
-		st.success('*_Your Trade Order Placed Pls Check in Report_*')
+		st.sidebar.success('*_Your Trade Order Placed Pls Check in Report_*')
 		time.sleep(0.5)
 		h.empty()
 		pass		
