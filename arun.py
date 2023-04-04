@@ -1,3 +1,14 @@
+
+import os
+import time
+os.environ['TZ'] = 'Asia/Kolkata'
+time.tzset()
+import datetime as DT
+import dateutil.relativedelta as REL
+today = DT.date.today() 
+rd = REL.relativedelta(days=0, weekday=REL.TH)
+e = (today + rd).strftime('%Y-%m-%d')
+#---------------------------------------------------
 from pya3 import *
 import streamlit as st
 st.set_page_config(layout="wide")
@@ -80,10 +91,10 @@ def Contract():
 				success=False
 			time.sleep(10)
 			idx += 1	
-	all_contract = contract_master[contract_master['Symbol'] =='NIFTY']
-	expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
-	return expiry
-expiry = Contract()
+	#all_contract = contract_master[contract_master['Symbol'] =='NIFTY']
+	#expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
+	#return expiry
+expiry = e
 st.write(expiry)
 #@st.experimental_memo
 def loaddata():
