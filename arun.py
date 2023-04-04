@@ -84,7 +84,7 @@ def Contract():
 	expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
 	return expiry
 expiry = Contract()
-
+st.write(expiry)
 #@st.experimental_memo
 def loaddata():
 	placeholder11 = st.empty()
