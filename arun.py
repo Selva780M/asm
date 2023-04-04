@@ -188,7 +188,7 @@ if x =="Order Placed" :
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))				
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "TRADE" :"B" ,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1) }
-				df = df.append(new_data, ignore_index = False)	
+				df = df.append(new_data, ignore_index=True)	
 				temp()
 			if  user_OPTION == "put":
 				put_strike = spot + (50)
