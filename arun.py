@@ -4,9 +4,12 @@ os.environ['TZ'] = 'Asia/Kolkata'
 time.tzset()
 import datetime as DT
 import dateutil.relativedelta as REL
-today = DT.date.today() 
-rd = REL.relativedelta(days=0, weekday=REL.TH)
-e = (today + rd).strftime('%Y-%m-%d')
+def w():
+	today = DT.date.today() 
+	rd = REL.relativedelta(days=0, weekday=REL.TH)
+	e = (today + rd).strftime('%Y-%m-%d')
+	return e
+e = w()
 #---------------------------------------------------
 from pya3 import *
 import streamlit as st
@@ -178,21 +181,18 @@ if x =="Order Placed" :
 				n_ltp = n['LTP']
 			except:
 				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
-			spot = round((float(n_ltp)) / 50) * 50
-			expiry_date = e
+			spot = round((float(n_ltp)) / 50) * 50			
 			if user_OPTION == "call":
 				call_strike = spot - (50)
-				n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
-				st.write(n_call)
-				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
-				st.write(s)
+				n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date = e, is_fut=False,strike=call_strike, is_CE=True)								
+				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))				
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "TRADE" :"B" ,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1) }
 				df = df.append(new_data, ignore_index = True)	
 				temp()
 			if  user_OPTION == "put":
 				put_strike = spot + (50)
-				n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
+				n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date= e , is_fut=False,strike=put_strike, is_CE=False)
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_put.name)))
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name, "EXCH" : "NFO" , "TRADE" :"B"  ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
@@ -204,11 +204,10 @@ if x =="Order Placed" :
 				b_ltp = b['LTP']
 			except:
 				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
-			spot = round((float(b_ltp)) / 100) * 100			
-			expiry_date = e
+			spot = round((float(b_ltp)) / 100) * 100						
 			if user_OPTION == "call":
 				call_strike = spot - (100)
-				b_call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
+				b_call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date =e, is_fut=False,strike=call_strike, is_CE=True)				
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_call.name)))
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name, "EXCH" : "NFO" ,"TRADE" :"B" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
@@ -216,7 +215,7 @@ if x =="Order Placed" :
 				temp()
 			if  user_OPTION == "put":
 				put_strike = spot + (100)
-				b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
+				b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date= e , is_fut=False,strike=put_strike, is_CE=False)
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_put.name)))
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name, "EXCH" : "NFO" ,"TRADE" : "B" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
