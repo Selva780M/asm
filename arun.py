@@ -97,7 +97,6 @@ def Contract():
 	#expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
 	#return expiry
 Contract()
-st.write(e)
 #@st.experimental_memo
 def loaddata():
 	placeholder11 = st.empty()
@@ -146,7 +145,7 @@ if x =="Order Placed" :
 	with st.form("opt_form"):				
 		user_USER = st.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","Hedging","test"),horizontal=True,key=2)
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f" {user_USER} 👋"}</h1>', unsafe_allow_html=True)
-		st.subheader(f'*_Exp. Date 👉 :green[_{e}_]_*')
+		st.sidebar.subheader(f'*_Exp. Date 👉 :green[_{e}_]_*')
 		col11, col22, col33 = st.columns(3)				
 	if user == "Auto":
 		MAN = "asn"
