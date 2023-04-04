@@ -94,8 +94,8 @@ def Contract():
 	#all_contract = contract_master[contract_master['Symbol'] =='NIFTY']
 	#expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
 	#return expiry
-expiry = e
-st.write(expiry)
+Contract()
+st.write(e)
 #@st.experimental_memo
 def loaddata():
 	placeholder11 = st.empty()
