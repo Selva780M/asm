@@ -183,7 +183,9 @@ if x =="Order Placed" :
 			if user_OPTION == "call":
 				call_strike = spot - (50)
 				n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
+				st.write(n_call)
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
+				st.write(s)
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "TRADE" :"B" ,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1) }
 				df = df.append(new_data, ignore_index = True)	
