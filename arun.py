@@ -180,7 +180,7 @@ if x =="Order Placed" :
 			except:
 				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
 			spot = round((float(n_ltp)) / 50) * 50
-			expiry_date = expiry[0]
+			expiry_date = e
 			if user_OPTION == "call":
 				call_strike = spot - (50)
 				n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
@@ -204,7 +204,7 @@ if x =="Order Placed" :
 			except:
 				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
 			spot = round((float(b_ltp)) / 100) * 100			
-			expiry_date = expiry[0]
+			expiry_date = e
 			if user_OPTION == "call":
 				call_strike = spot - (100)
 				b_call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
