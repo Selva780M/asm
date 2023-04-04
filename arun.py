@@ -6,7 +6,7 @@ import datetime as DT
 import dateutil.relativedelta as REL
 today = DT.date.today() 
 rd = REL.relativedelta(days=0, weekday=REL.TH)
-e = f"{(today + rd).strftime('%Y-%m-%d')}"
+e = f'{(today + rd).strftime('%Y-%m-%d)}'
 #---------------------------------------------------
 from pya3 import *
 import streamlit as st
