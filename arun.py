@@ -189,7 +189,8 @@ if x =="Order Placed" :
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "TRADE" :"B" ,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1) }
 				st.write(new_data)
-				df = df.append(new_data, ignore_index = True)	
+				dfx = pd.DataFrame(new_data)
+				df = df.append(dfx, ignore_index = False)	
 				temp()
 			if  user_OPTION == "put":
 				put_strike = spot + (50)
