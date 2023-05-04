@@ -356,6 +356,7 @@ if x =="Report":
 				st.warning('*_Paper Trade Chart_*')
 				chart_data = df100[["NAME","P_L"]]
 				chart_data = chart_data.set_index('NAME')
+				st.write(f'<iframe src="https://nifty50signal.streamlit.app/" frameborder="0" scrolling="no" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="400" width="100%"></iframe>',unsafe_allow_html=True)
 				st.bar_chart(chart_data)
 			time.sleep(1)
 if x == "Access File":
