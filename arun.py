@@ -211,7 +211,7 @@ if x =="Order Placed" :
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_call.name)))
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name, "EXCH" : "NFO" ,"TRADE" :"B" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
-				df = df.append(new_data, ignore_index = True)
+				df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
 				temp()
 			if  user_OPTION == "put":
 				put_strike = spot + (100)
@@ -219,7 +219,7 @@ if x =="Order Placed" :
 				s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_put.name)))
 				entry = float(s['LTP'])	
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name, "EXCH" : "NFO" ,"TRADE" : "B" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
-				df = df.append(new_data, ignore_index = True)
+				df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
 				temp()	
 		if MAN  == "AAUTO":
 			try:
@@ -229,11 +229,11 @@ if x =="Order Placed" :
 				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
 			if Tradd =="Buy":
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : user_STOCK, "EXCH" : XX , "TRADE" : "B" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
-				df = df.append(new_data, ignore_index = True)
+				df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
 				temp()
 			if Tradd =="Sell":
 				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : user_STOCK, "EXCH" : XX , "TRADE" : "S" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry + user_STOP),1), "TARGET" : round((entry - user_TARGET),1)}
-				df = df.append(new_data, ignore_index = True)
+				df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
 				temp()
 		h = st.empty()
 		st.sidebar.success('*_Your Trade Order Placed Pls Check in Report_*')
@@ -294,7 +294,8 @@ if x =="Report":
 				if(df100.iloc[i,9]) > (df100.iloc[i,8]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
 					if (df100.iloc[i,4]) == "B":
 						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'], "EXCH":df100.iloc[i]['EXCH'], "TRADE": df100.iloc[i]['TRADE'],"ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
-						df5 = df5.append(df2, ignore_index = True)
+						#df5 = df5.append(df2, ignore_index = True)
+						df5 = pd.concat([df2, pd.DataFrame([new_data])], ignore_index=True)
 						save()					
 						df.drop([i], inplace = True)
 						st.balloons()						
@@ -303,7 +304,8 @@ if x =="Report":
 				if (df100.iloc[i,9]) < (df100.iloc[i,7]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
 					if (df100.iloc[i,4]) == "B":
 						df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],"EXCH":df100.iloc[i]['EXCH'], "TRADE": df100.iloc[i]['TRADE'],"ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
-						df5 = df5.append(df3, ignore_index = True)
+						#df5 = df5.append(df3, ignore_index = True)
+						df5 = pd.concat([df3, pd.DataFrame([new_data])], ignore_index=True)
 						save()
 						df.drop([i], inplace = True)
 						st.balloons()						
@@ -312,7 +314,8 @@ if x =="Report":
 				if(df100.iloc[i,9]) < (df100.iloc[i,8]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
 					if (df100.iloc[i,4]) == "S":
 						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'], "EXCH":df100.iloc[i]['EXCH'], "TRADE": df100.iloc[i]['TRADE'],"ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
-						df5 = df5.append(df2, ignore_index = True)
+						#df5 = df5.append(df2, ignore_index = True)
+						df5 = pd.concat([df2, pd.DataFrame([new_data])], ignore_index=True)
 						save()					
 						df.drop([i], inplace = True)
 						st.balloons()						
@@ -321,7 +324,8 @@ if x =="Report":
 				if (df100.iloc[i,9]) > (df100.iloc[i,7]) and (df100.iloc[i,0] not in df5['DATE'].tolist()):
 					if (df100.iloc[i,4]) == "S":
 						df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],"EXCH":df100.iloc[i]['EXCH'], "TRADE": df100.iloc[i]['TRADE'],"ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
-						df5 = df5.append(df3, ignore_index = True)
+						#df5 = df5.append(df3, ignore_index = True)
+						df5 = pd.concat([df3, pd.DataFrame([new_data])], ignore_index=True)
 						save()
 						df.drop([i], inplace = True)
 						st.balloons()						
