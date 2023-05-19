@@ -282,7 +282,7 @@ if x =="Report":
 					if (df100.iloc[i,4]) == "B":
 						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'], "EXCH":df100.iloc[i]['EXCH'], "TRADE": df100.iloc[i]['TRADE'],"ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
 						#df5 = df5.append(df2, ignore_index = True)
-						df5 = pd.concat([df2, pd.DataFrame([new_data])], ignore_index=True)
+						df5 = pd.concat([df2, pd.DataFrame([df2])], ignore_index=True)
 						save()					
 						df.drop([i], inplace = True)
 						st.balloons()						
@@ -292,7 +292,7 @@ if x =="Report":
 					if (df100.iloc[i,4]) == "B":
 						df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],"EXCH":df100.iloc[i]['EXCH'], "TRADE": df100.iloc[i]['TRADE'],"ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
 						#df5 = df5.append(df3, ignore_index = True)
-						df5 = pd.concat([df3, pd.DataFrame([new_data])], ignore_index=True)
+						df5 = pd.concat([df3, pd.DataFrame([df3])], ignore_index=True)
 						save()
 						df.drop([i], inplace = True)
 						st.balloons()						
@@ -302,7 +302,7 @@ if x =="Report":
 					if (df100.iloc[i,4]) == "S":
 						df2 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'], "EXCH":df100.iloc[i]['EXCH'], "TRADE": df100.iloc[i]['TRADE'],"ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}						
 						#df5 = df5.append(df2, ignore_index = True)
-						df5 = pd.concat([df2, pd.DataFrame([new_data])], ignore_index=True)
+						df5 = pd.concat([df2, pd.DataFrame([df2])], ignore_index=True)
 						save()					
 						df.drop([i], inplace = True)
 						st.balloons()						
@@ -312,7 +312,7 @@ if x =="Report":
 					if (df100.iloc[i,4]) == "S":
 						df3 = {"DATE" : df100.iloc[i]['DATE'] ,"NAME": df100.iloc[i]['NAME'], "STOCK" : df100.iloc[i]['STOCK'],"EXCH":df100.iloc[i]['EXCH'], "TRADE": df100.iloc[i]['TRADE'],"ENTRY" : df100.iloc[i]['ENTRY'], "QTY" : df100.iloc[i]['QTY'], "STOPLOSS" : df100.iloc[i]['STOPLOSS'], "TARGET" : df100.iloc[i]['TARGET'], "LTP" : df100.iloc[i]['LTP'],"P_L" :df100.iloc[i]['P_L']}
 						#df5 = df5.append(df3, ignore_index = True)
-						df5 = pd.concat([df3, pd.DataFrame([new_data])], ignore_index=True)
+						df5 = pd.concat([df3, pd.DataFrame([df3])], ignore_index=True)
 						save()
 						df.drop([i], inplace = True)
 						st.balloons()						
