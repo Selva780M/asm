@@ -123,7 +123,7 @@ def send_sticker_on_telegram(message):
 sad = "CAACAgIAAxkBAANIYxm-bLBDd1VugpzDrfK0eaKNYSYAAvMAA1advQpqG-vEx_qW_ikE"
 happy = "CAACAgIAAxkBAANFYxmxaQFWhPkw80xf8NVJxapzwBEAAgMBAAJWnb0KAuXReIfl-k8pBA"
 #------------------------------------------
-x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report","Access File"),key=10)
+x = st.sidebar.radio('*_Main Page_*',("Report","Order Placed","Access File"),key=10)
 if x =="Order Placed" :
 	user = st.radio('*_Choose the Stock_*',("Auto","Manual"),horizontal=True,key=1)	
 	if user == "Manual":
