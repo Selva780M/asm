@@ -131,6 +131,7 @@ def algo(stok,spot,qt,OP,expiry_date,T):
 	entry = float(s['LTP'])
 	new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "TRADE" : T ,  "ENTRY" : int(entry), "QTY" : int(qt), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
 	df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
+	stok = ""
 	temp()
 x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report","Access File"),key=10)
 if x =="Order Placed" :
