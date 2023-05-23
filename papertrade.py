@@ -129,7 +129,10 @@ def algo(stok,spot,qt,OP,expiry_date,T):
 	n_call = alice.get_instrument_for_fno(exch="NFO", symbol=stok, expiry_date=expiry_date, is_fut=False,strike=spot, is_CE=OP)
 	s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
 	entry = float(s['LTP'])
-	new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "TRADE" : T ,  "ENTRY" : int(entry), "QTY" : int(qt), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+	if T == "S":
+		new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "TRADE" : T ,  "ENTRY" : int(entry), "QTY" : int(qt), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+	if T == "B":
+		new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "TRADE" : T ,  "ENTRY" : int(entry), "QTY" : int(qt), "STOPLOSS" : round((user_STOP-entry),1), "TARGET" : round((user_TARGET+entry),1)}
 	df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
 	stok = ""
 	temp()
