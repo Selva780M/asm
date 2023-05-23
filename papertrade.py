@@ -127,7 +127,7 @@ if x =="Order Placed" :
 	user = st.radio('*_Choose the Stock_*',("Auto","Manual","Rjalgo"),horizontal=True,key=1)	
 	if user == "Manual":
 		XX = st.radio("*_Select Exchange_*",("NFO","NSE","CDS","MCX"),horizontal=True,key=3)
-		dis = st.radio('*_Option Chain Display_*',("No","Yes"),horizontal=True,key=12)
+		#dis = st.radio('*_Option Chain Display_*',("No","Yes"),horizontal=True,key=12)
 	with st.form("opt_form"):				
 		user_USER = st.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","Hedging","test"),horizontal=True,key=2)
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f" {user_USER} 👋"}</h1>', unsafe_allow_html=True)
@@ -156,10 +156,11 @@ if x =="Order Placed" :
 			Tradd = st.radio("*_Trade_*",("Buy","Sell"), horizontal=True,key=4)
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 	if user =="Rjalgo":
-		MAN = "Dumm"		
-		user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=3)
-		spot_prc = st.number_input('*_Atm Price_*', min_value=1, max_value= 80000, value=19000, step=50, format=None, key=14)
-		ENTRY = st.form_submit_button('👉 *_Order Placed_*')
+		MAN = "Dumm"
+		with col11:
+			user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=3)
+			spot_prc = st.number_input('*_Atm Price_*', min_value=1, max_value= 80000, value=19000, step=50, format=None, key=14)
+			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 		#if dis == "Yes":
 			#st.write(f'<iframe src="https://www.nseindia.com/option-chain" frameborder="0" scrolling="yes" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="1000" width="100%"></iframe>',unsafe_allow_html=True)
 			#st.write(f'<iframe src="https://1lyoptions.com/option-chain" frameborder="0" scrolling="yes" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="1000" width="100%"></iframe>',unsafe_allow_html=True)			
