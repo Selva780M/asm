@@ -123,8 +123,7 @@ sad = "CAACAgIAAxkBAANIYxm-bLBDd1VugpzDrfK0eaKNYSYAAvMAA1advQpqG-vEx_qW_ikE"
 happy = "CAACAgIAAxkBAANFYxmxaQFWhPkw80xf8NVJxapzwBEAAgMBAAJWnb0KAuXReIfl-k8pBA"
 #------------------------------------------
 def algo(stok,spot,qt,OP,expiry_date,T):
-	global df
-	st.write(stok,spot_prc,qt,OP,expiry_date,T)
+	global df	
 	user_STOP = 100
 	user_TARGET = 100
 	n_call = alice.get_instrument_for_fno(exch="NFO", symbol=stok, expiry_date=expiry_date, is_fut=False,strike=spot, is_CE=OP)
@@ -258,9 +257,15 @@ if x =="Order Placed" :
 				B_CE = algo("BANKNIFTY",(spot_prc+100),25,True,expiry_date,"B")
 				B_PE = algo("BANKNIFTY",(spot_prc-100),25,False,expiry_date,"B")
 			if user_STOCK == "NIFTY":
-				algo("NIFTY",spot_prc,50,expiry_date)
+				S_CE = algo("NIFTY",spot_prc,100,True,expiry_date,"S")
+				S_PE = algo("NIFTY",spot_prc,100,False,expiry_date,"S")
+				B_CE = algo("NIFTY",(spot_prc+50),50,True,expiry_date,"B")
+				B_PE = algo("NIFTY",(spot_prc-50),50,False,expiry_date,"B")
 			if user_STOCK == "FINNIFTY":
-				algo("FINNIFTY",spot_prc,40,expiry_date)
+				S_CE = algo("FINNIFTY",spot_prc,80,True,expiry_date,"S")
+				S_PE = algo("FINNIFTY",spot_prc,80,False,expiry_date,"S")
+				B_CE = algo("FINNIFTY",(spot_prc+50),40,True,expiry_date,"B")
+				B_PE = algo("FINNIFTY",(spot_prc-50),40,False,expiry_date,"B")
 		h = st.empty()
 		st.success('*_Your Trade Order Placed Pls Check in Report_*')
 		time.sleep(0.5)
