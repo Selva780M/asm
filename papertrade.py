@@ -123,6 +123,7 @@ sad = "CAACAgIAAxkBAANIYxm-bLBDd1VugpzDrfK0eaKNYSYAAvMAA1advQpqG-vEx_qW_ikE"
 happy = "CAACAgIAAxkBAANFYxmxaQFWhPkw80xf8NVJxapzwBEAAgMBAAJWnb0KAuXReIfl-k8pBA"
 #------------------------------------------
 def algo(stok,spot,qt,OP,expiry_date,T):
+	st.write(stok,spot,qt,OP,expiry_date,T)
 	global df	
 	user_STOP = 100
 	user_TARGET = 100
