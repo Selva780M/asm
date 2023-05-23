@@ -176,11 +176,11 @@ if x =="Order Placed" :
 			user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=7)
 	if user =="Rjalgo":				
 		MAN = "Dumm"
-		with col11:
-			user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=3)							
+		user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=3)
+		with col11:										
 			spot_prc = st.number_input('*_Atm Price_*', min_value=1, max_value= 80000, value=19000, step=50, format=None, key=14)
-			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
-		user_exp = st.selectbox("*_Select Exp Date_*",(Contract(user_STOCK)),key=15)
+			user_exp = st.selectbox("*_Select Exp Date_*",(Contract(user_STOCK)),key=15)
+			ENTRY = st.form_submit_button('👉 *_Order Placed_*')		
 		#if dis == "Yes":
 			#st.write(f'<iframe src="https://www.nseindia.com/option-chain" frameborder="0" scrolling="yes" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="1000" width="100%"></iframe>',unsafe_allow_html=True)
 			#st.write(f'<iframe src="https://1lyoptions.com/option-chain" frameborder="0" scrolling="yes" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="1000" width="100%"></iframe>',unsafe_allow_html=True)			
