@@ -363,15 +363,19 @@ if x =="Report":
 						send_sticker_on_telegram(sad)
 						send_msg_on_telegram(f"Sorry {Na}, Your Trade  {df100.iloc[i]['NAME']}  Completed Lose in Rs.{round(df100.iloc[i]['P_L'],1)}")			
 			with placeholder01.container():
-				col1, col2 = st.columns(2)
+				col1, col2 , col3 = st.columns(3)
 				with col1:
 					n1 = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
 					n5 = n1['LTP']
-					st.subheader(f'*_Nifty- 50 Spot Price :green[{n5}]_* ⏰')								
+					st.subheader(f'*_Nifty- 50 :red[{n5}]_* ⏰')								
 				with col2:
 					b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))						
 					b5 = b1['LTP']
-					st.subheader(f'*_BankNifty Spot Price :green[{b5}]_* ⏰')		
+					st.subheader(f'*_BankNifty :orange[{b5}]_* ⏰')	
+				with col3:
+					b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
+					b5 = b1['LTP']
+					st.subheader(f'*_FINNIFTY :green[{b5}]_* ⏰')
 			with placeholder100.container():
 				st.success('*_Current Position_*')									
 				if len(df100['STOCK']) < 0:
