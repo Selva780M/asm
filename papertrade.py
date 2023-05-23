@@ -122,6 +122,15 @@ def send_sticker_on_telegram(message):
 sad = "CAACAgIAAxkBAANIYxm-bLBDd1VugpzDrfK0eaKNYSYAAvMAA1advQpqG-vEx_qW_ikE"
 happy = "CAACAgIAAxkBAANFYxmxaQFWhPkw80xf8NVJxapzwBEAAgMBAAJWnb0KAuXReIfl-k8pBA"
 #------------------------------------------
+def algo(stok,spot_prc,qt,OP,expiry_date,T):
+	user_STOP = 100
+	user_TARGET = 100
+	n_call = alice.get_instrument_for_fno(exch="NFO", symbol=stok, expiry_date=expiry_date, is_fut=False,strike=spot_prc, OP=True)
+	s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
+	entry = float(s['LTP'])
+	new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "TRADE" : T ,  "ENTRY" : int(entry), "QTY" : int(qt), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+	df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
+	temp()
 x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report","Access File"),key=10)
 if x =="Order Placed" :
 	user = st.radio('*_Choose the Stock_*',("Auto","Manual","Rjalgo"),horizontal=True,key=1)	
@@ -238,6 +247,17 @@ if x =="Order Placed" :
 				#df = df.append(new_data, ignore_index = True)
 				df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
 				temp()
+		if MAN  == "Dumm":
+			expiry_date = expiry[0]
+			if user_STOCK == "BANKNIFTY":
+				S_CE = algo("BANKNIFTY",spot_prc,50,"is_CE",expiry_date,"S")
+				S_PE = algo("BANKNIFTY",spot_prc,50,"is_PE",expiry_date,"S")
+				B_CE = algo("BANKNIFTY",(spot_prc+100),25,"is_CE",expiry_date,"B")
+				B_PE = algo("BANKNIFTY",(spot_prc-100),25,"is_PE",expiry_date,"B")
+			if user_STOCK == "NIFTY":
+				algo("NIFTY",spot_prc,50,expiry_date)
+			if user_STOCK == "FINNIFTY":
+				algo("FINNIFTY",spot_prc,40,expiry_date)
 		h = st.empty()
 		st.success('*_Your Trade Order Placed Pls Check in Report_*')
 		time.sleep(0.5)
