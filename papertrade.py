@@ -81,6 +81,7 @@ def Contract(user_STOCK):
 			idx += 1	
 	all_contract = contract_master[contract_master['Symbol'] == user_STOCK ]
 	expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
+	st.write(expiry)
 	return expiry[0]
 #expiry = Contract()
 #@st.experimental_memo
