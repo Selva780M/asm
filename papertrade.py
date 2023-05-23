@@ -55,7 +55,7 @@ def im():
 	return pm
 
 #Get Expiry-------------------------------------------
-def Contract():
+def Contract(user_STOCK):
 	global user_STOCK
 	placeholder00 = st.empty()
 	success=False
@@ -82,9 +82,8 @@ def Contract():
 			idx += 1	
 	all_contract = contract_master[contract_master['Symbol'] == user_STOCK ]
 	expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
-	return expiry
-expiry = Contract()
-
+	return expiry[0]
+#expiry = Contract()
 #@st.experimental_memo
 def loaddata():
 	placeholder11 = st.empty()
@@ -177,11 +176,11 @@ if x =="Order Placed" :
 		with col11:
 			user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=3)
 			if user_STOCK == "FINNIFTY":
-				finexp = expiry[0]
+				finexp = Contract(user_STOCK)
 			if user_STOCK == "BANKNIFTY":
-				banexp = expiry[0]
+				banexp = Contract(user_STOCK)
 			if user_STOCK == "NIFTY":
-				nifexp = expiry[0]
+				nifexp = Contract(user_STOCK)
 			spot_prc = st.number_input('*_Atm Price_*', min_value=1, max_value= 80000, value=19000, step=50, format=None, key=14)
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 		#if dis == "Yes":
@@ -200,7 +199,7 @@ if x =="Order Placed" :
 				expiry_date = expiry[0]
 				if user_OPTION == "call":
 					call_strike = spot - (50)
-					n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
+					n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=Contract(user_STOCK), is_fut=False,strike=call_strike, is_CE=True)				
 					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
 					entry = float(s['LTP'])	
 					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "TRADE" :"B" ,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1) }
@@ -209,7 +208,7 @@ if x =="Order Placed" :
 					temp()
 				if  user_OPTION == "put":
 					put_strike = spot + (50)
-					n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
+					n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=Contract(user_STOCK), is_fut=False,strike=put_strike, is_CE=False)
 					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_put.name)))
 					entry = float(s['LTP'])	
 					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name, "EXCH" : "NFO" , "TRADE" :"B"  ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
@@ -226,7 +225,7 @@ if x =="Order Placed" :
 				expiry_date = expiry[0]
 				if user_OPTION == "call":
 					call_strike = spot - (100)
-					b_call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=call_strike, is_CE=True)				
+					b_call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=Contract(user_STOCK), is_fut=False,strike=call_strike, is_CE=True)				
 					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_call.name)))
 					entry = float(s['LTP'])	
 					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name, "EXCH" : "NFO" ,"TRADE" :"B" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
@@ -235,7 +234,7 @@ if x =="Order Placed" :
 					temp()
 				if  user_OPTION == "put":
 					put_strike = spot + (100)
-					b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=expiry_date, is_fut=False,strike=put_strike, is_CE=False)
+					b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=Contract(user_STOCK), is_fut=False,strike=put_strike, is_CE=False)
 					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_put.name)))
 					entry = float(s['LTP'])	
 					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name, "EXCH" : "NFO" ,"TRADE" : "B" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
