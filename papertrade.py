@@ -175,11 +175,11 @@ if x =="Order Placed" :
 		MAN = "Dumm"
 		with col11:
 			user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=3)
-			if user_STOCK = "FINNIFTY":
+			if user_STOCK == "FINNIFTY":
 				finexp = expiry[0]
-			if user_STOCK = "BANKNIFTY":
+			if user_STOCK == "BANKNIFTY":
 				banexp = expiry[0]
-			if user_STOCK = "NIFTY":
+			if user_STOCK == "NIFTY":
 				nifexp = expiry[0]
 			spot_prc = st.number_input('*_Atm Price_*', min_value=1, max_value= 80000, value=19000, step=50, format=None, key=14)
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
