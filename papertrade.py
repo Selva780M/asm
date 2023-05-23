@@ -80,9 +80,8 @@ def Contract(user_STOCK):
 			time.sleep(10)
 			idx += 1	
 	all_contract = contract_master[contract_master['Symbol'] == user_STOCK ]
-	expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
-	st.write(expiry)
-	return expiry[0]
+	expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)	
+	return expiry
 #expiry = Contract()
 #@st.experimental_memo
 def loaddata():
@@ -151,7 +150,8 @@ if x =="Order Placed" :
 		MAN = "asn"
 		with col11:
 			user_STOCK = st.radio("*_Stock (Current strike)_*",("NIFTY","BANKNIFTY"), horizontal=True,key=3)
-			user_OPTION = st.radio("*_Option_*",("call","put"), horizontal=True,key=4)			
+			user_OPTION = st.radio("*_Option_*",("call","put"), horizontal=True,key=4)	
+			user_exp = st.selectbox("*_Select Exp Date_*",(Contract(user_STOCK)),key=15)
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 		with col22:
 			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=5)
@@ -178,12 +178,7 @@ if x =="Order Placed" :
 		MAN = "Dumm"
 		with col11:
 			user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=3)
-			if user_STOCK == "FINNIFTY":
-				finexp = Contract(user_STOCK)
-			if user_STOCK == "BANKNIFTY":
-				banexp = Contract(user_STOCK)
-			if user_STOCK == "NIFTY":
-				nifexp = Contract(user_STOCK)
+			user_exp = st.selectbox("*_Select Exp Date_*",(Contract(user_STOCK)),key=15)
 			spot_prc = st.number_input('*_Atm Price_*', min_value=1, max_value= 80000, value=19000, step=50, format=None, key=14)
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 		#if dis == "Yes":
@@ -202,7 +197,7 @@ if x =="Order Placed" :
 				expiry_date = expiry[0]
 				if user_OPTION == "call":
 					call_strike = spot - (50)
-					n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=Contract(user_STOCK), is_fut=False,strike=call_strike, is_CE=True)				
+					n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=user_exp, is_fut=False,strike=call_strike, is_CE=True)				
 					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
 					entry = float(s['LTP'])	
 					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "TRADE" :"B" ,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1) }
@@ -211,7 +206,7 @@ if x =="Order Placed" :
 					temp()
 				if  user_OPTION == "put":
 					put_strike = spot + (50)
-					n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=Contract(user_STOCK), is_fut=False,strike=put_strike, is_CE=False)
+					n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=user_exp, is_fut=False,strike=put_strike, is_CE=False)
 					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_put.name)))
 					entry = float(s['LTP'])	
 					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name, "EXCH" : "NFO" , "TRADE" :"B"  ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
@@ -228,7 +223,7 @@ if x =="Order Placed" :
 				expiry_date = expiry[0]
 				if user_OPTION == "call":
 					call_strike = spot - (100)
-					b_call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=Contract(user_STOCK), is_fut=False,strike=call_strike, is_CE=True)				
+					b_call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=user_exp, is_fut=False,strike=call_strike, is_CE=True)				
 					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_call.name)))
 					entry = float(s['LTP'])	
 					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name, "EXCH" : "NFO" ,"TRADE" :"B" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
@@ -237,7 +232,7 @@ if x =="Order Placed" :
 					temp()
 				if  user_OPTION == "put":
 					put_strike = spot + (100)
-					b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=Contract(user_STOCK), is_fut=False,strike=put_strike, is_CE=False)
+					b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date = user_exp, is_fut=False,strike=put_strike, is_CE=False)
 					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_put.name)))
 					entry = float(s['LTP'])	
 					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name, "EXCH" : "NFO" ,"TRADE" : "B" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
@@ -262,20 +257,20 @@ if x =="Order Placed" :
 				temp()
 		if MAN  == "Dumm":			
 			if user_STOCK == "BANKNIFTY":
-				S_CE = algo("BANKNIFTY",spot_prc,50,True,banexp,"S")
-				S_PE = algo("BANKNIFTY",spot_prc,50,False,banexp,"S")
-				B_CE = algo("BANKNIFTY",(spot_prc+100),25,True,banexp,"B")
-				B_PE = algo("BANKNIFTY",(spot_prc-100),25,False,banexp,"B")
+				S_CE = algo("BANKNIFTY",spot_prc,50,True,user_exp,"S")
+				S_PE = algo("BANKNIFTY",spot_prc,50,False,user_exp,"S")
+				B_CE = algo("BANKNIFTY",(spot_prc+100),25,True,user_exp,"B")
+				B_PE = algo("BANKNIFTY",(spot_prc-100),25,False,user_exp,"B")
 			if user_STOCK == "NIFTY":
-				S_CE = algo("NIFTY",spot_prc,100,True,nifexp,"S")
-				S_PE = algo("NIFTY",spot_prc,100,False,nifexp,"S")
-				B_CE = algo("NIFTY",(spot_prc+50),50,True,nifexp,"B")
-				B_PE = algo("NIFTY",(spot_prc-50),50,False,nifexp,"B")
+				S_CE = algo("NIFTY",spot_prc,100,True,user_exp,"S")
+				S_PE = algo("NIFTY",spot_prc,100,False,user_exp,"S")
+				B_CE = algo("NIFTY",(spot_prc+50),50,True,user_exp,"B")
+				B_PE = algo("NIFTY",(spot_prc-50),50,False,user_exp,"B")
 			if user_STOCK == "FINNIFTY":
-				S_CE = algo("FINNIFTY",spot_prc,80,True,finexp,"S")
-				S_PE = algo("FINNIFTY",spot_prc,80,False,finexp,"S")
-				B_CE = algo("FINNIFTY",(spot_prc+50),40,True,finexp,"B")
-				B_PE = algo("FINNIFTY",(spot_prc-50),40,False,finexp,"B")
+				S_CE = algo("FINNIFTY",spot_prc,80,True,user_exp,"S")
+				S_PE = algo("FINNIFTY",spot_prc,80,False,user_exp,"S")
+				B_CE = algo("FINNIFTY",(spot_prc+50),40,True,user_exp,"B")
+				B_PE = algo("FINNIFTY",(spot_prc-50),40,False,user_exp,"B")
 		h = st.empty()
 		st.success('*_Your Trade Order Placed Pls Check in Report_*')
 		time.sleep(0.5)
