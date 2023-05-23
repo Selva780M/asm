@@ -122,11 +122,11 @@ def send_sticker_on_telegram(message):
 sad = "CAACAgIAAxkBAANIYxm-bLBDd1VugpzDrfK0eaKNYSYAAvMAA1advQpqG-vEx_qW_ikE"
 happy = "CAACAgIAAxkBAANFYxmxaQFWhPkw80xf8NVJxapzwBEAAgMBAAJWnb0KAuXReIfl-k8pBA"
 #------------------------------------------
-def algo(stok,spot_prc,qt,OP,expiry_date,T):
+def algo(stok,spot,qt,OP,expiry_date,T):
 	st.write(stok,spot_prc,qt,OP,expiry_date,T)
 	user_STOP = 100
 	user_TARGET = 100
-	n_call = alice.get_instrument_for_fno(exch="NFO", symbol=stok, expiry_date=expiry_date, is_fut=False,strike=spot_prc, is_CE=T)
+	n_call = alice.get_instrument_for_fno(exch="NFO", symbol=stok, expiry_date=expiry_date, is_fut=False,strike=spot, is_CE=OP)
 	s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
 	entry = float(s['LTP'])
 	new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "TRADE" : T ,  "ENTRY" : int(entry), "QTY" : int(qt), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
