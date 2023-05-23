@@ -178,7 +178,12 @@ if x =="Order Placed" :
 		MAN = "Dumm"
 		with col11:
 			user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=3)
-			user_exp = st.selectbox("*_Select Exp Date_*",(Contract(user_STOCK)),key=15)
+			try:
+				user_exp = st.selectbox("*_Select Exp Date_*",(Contract(user_STOCK)),key=15)
+			except:
+				a = Contract(user_STOCK)
+				resul = a[0]
+				user_exp = resul
 			spot_prc = st.number_input('*_Atm Price_*', min_value=1, max_value= 80000, value=19000, step=50, format=None, key=14)
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 		#if dis == "Yes":
