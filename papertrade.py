@@ -79,7 +79,7 @@ def Contract():
 				success=False
 			time.sleep(10)
 			idx += 1	
-	all_contract = contract_master[contract_master['Symbol'] =='NIFTY']
+	all_contract = contract_master[contract_master['Symbol'] == user_STOCK ]
 	expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)
 	return expiry
 expiry = Contract()
@@ -175,6 +175,12 @@ if x =="Order Placed" :
 		MAN = "Dumm"
 		with col11:
 			user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=3)
+			if user_STOCK = "FINNIFTY":
+				finexp = expiry[0]
+			if user_STOCK = "BANKNIFTY":
+				banexp = expiry[0]
+			if user_STOCK = "NIFTY":
+				nifexp = expiry[0]
 			spot_prc = st.number_input('*_Atm Price_*', min_value=1, max_value= 80000, value=19000, step=50, format=None, key=14)
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 		#if dis == "Yes":
@@ -251,23 +257,22 @@ if x =="Order Placed" :
 				#df = df.append(new_data, ignore_index = True)
 				df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
 				temp()
-		if MAN  == "Dumm":
-			expiry_date = expiry[0]
+		if MAN  == "Dumm":			
 			if user_STOCK == "BANKNIFTY":
-				S_CE = algo("BANKNIFTY",spot_prc,50,True,expiry_date,"S")
-				S_PE = algo("BANKNIFTY",spot_prc,50,False,expiry_date,"S")
-				B_CE = algo("BANKNIFTY",(spot_prc+100),25,True,expiry_date,"B")
-				B_PE = algo("BANKNIFTY",(spot_prc-100),25,False,expiry_date,"B")
+				S_CE = algo("BANKNIFTY",spot_prc,50,True,banexp,"S")
+				S_PE = algo("BANKNIFTY",spot_prc,50,False,banexp,"S")
+				B_CE = algo("BANKNIFTY",(spot_prc+100),25,True,banexp,"B")
+				B_PE = algo("BANKNIFTY",(spot_prc-100),25,False,banexp,"B")
 			if user_STOCK == "NIFTY":
-				S_CE = algo("NIFTY",spot_prc,100,True,expiry_date,"S")
-				S_PE = algo("NIFTY",spot_prc,100,False,expiry_date,"S")
-				B_CE = algo("NIFTY",(spot_prc+50),50,True,expiry_date,"B")
-				B_PE = algo("NIFTY",(spot_prc-50),50,False,expiry_date,"B")
+				S_CE = algo("NIFTY",spot_prc,100,True,nifexp,"S")
+				S_PE = algo("NIFTY",spot_prc,100,False,nifexp,"S")
+				B_CE = algo("NIFTY",(spot_prc+50),50,True,nifexp,"B")
+				B_PE = algo("NIFTY",(spot_prc-50),50,False,nifexp,"B")
 			if user_STOCK == "FINNIFTY":
-				S_CE = algo("FINNIFTY",spot_prc,80,True,expiry_date,"S")
-				S_PE = algo("FINNIFTY",spot_prc,80,False,expiry_date,"S")
-				B_CE = algo("FINNIFTY",(spot_prc+50),40,True,expiry_date,"B")
-				B_PE = algo("FINNIFTY",(spot_prc-50),40,False,expiry_date,"B")
+				S_CE = algo("FINNIFTY",spot_prc,80,True,finexp,"S")
+				S_PE = algo("FINNIFTY",spot_prc,80,False,finexp,"S")
+				B_CE = algo("FINNIFTY",(spot_prc+50),40,True,finexp,"B")
+				B_PE = algo("FINNIFTY",(spot_prc-50),40,False,finexp,"B")
 		h = st.empty()
 		st.success('*_Your Trade Order Placed Pls Check in Report_*')
 		time.sleep(0.5)
