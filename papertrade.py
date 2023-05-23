@@ -155,6 +155,10 @@ if x =="Order Placed" :
 				user_STOCK = st.selectbox("*_Select Stock_*",(loaddata()))
 			Tradd = st.radio("*_Trade_*",("Buy","Sell"), horizontal=True,key=4)
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
+		with col22:		
+			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=5)
+			user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=50, value=10, step=5, format=None,key=6)
+			user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=7)
 	if user =="Rjalgo":
 		MAN = "Dumm"
 		with col11:
@@ -164,10 +168,7 @@ if x =="Order Placed" :
 		#if dis == "Yes":
 			#st.write(f'<iframe src="https://www.nseindia.com/option-chain" frameborder="0" scrolling="yes" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="1000" width="100%"></iframe>',unsafe_allow_html=True)
 			#st.write(f'<iframe src="https://1lyoptions.com/option-chain" frameborder="0" scrolling="yes" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="1000" width="100%"></iframe>',unsafe_allow_html=True)			
-		with col22:		
-			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=5)
-			user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=50, value=10, step=5, format=None,key=6)
-			user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=7)
+		
 	if ENTRY:		
 		if user_STOCK == "NIFTY":			
 			try:
