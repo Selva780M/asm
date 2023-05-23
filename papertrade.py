@@ -156,12 +156,11 @@ if x =="Order Placed" :
 			Tradd = st.radio("*_Trade_*",("Buy","Sell"), horizontal=True,key=4)
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 	if user =="Rjalgo":
-		MAN = "Dumm"
-		user_USER = st.radio('*_Strategy_*',("Rjalgo-Hedging"),horizontal=True,key=13)
+		MAN = "Dumm"		
 		user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=3)
 		spot_prc = st.number_input('*_Atm Price_*', min_value=1, max_value= 80000, value=19000, step=50, format=None, key=14)
-		
-		if dis == "Yes":
+		ENTRY = st.form_submit_button('👉 *_Order Placed_*')
+			if dis == "Yes":
 			#st.write(f'<iframe src="https://www.nseindia.com/option-chain" frameborder="0" scrolling="yes" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="1000" width="100%"></iframe>',unsafe_allow_html=True)
 			st.write(f'<iframe src="https://1lyoptions.com/option-chain" frameborder="0" scrolling="yes" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="1000" width="100%"></iframe>',unsafe_allow_html=True)			
 		with col22:		
