@@ -55,8 +55,7 @@ def im():
 	return pm
 
 #Get Expiry-------------------------------------------
-def Contract(user_STOCK):
-	global user_STOCK
+def Contract(user_STOCK):	
 	placeholder00 = st.empty()
 	success=False
 	try:
