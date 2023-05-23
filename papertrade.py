@@ -56,6 +56,7 @@ def im():
 
 #Get Expiry-------------------------------------------
 def Contract():
+	global user_STOCK
 	placeholder00 = st.empty()
 	success=False
 	try:
