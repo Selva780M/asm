@@ -123,6 +123,7 @@ sad = "CAACAgIAAxkBAANIYxm-bLBDd1VugpzDrfK0eaKNYSYAAvMAA1advQpqG-vEx_qW_ikE"
 happy = "CAACAgIAAxkBAANFYxmxaQFWhPkw80xf8NVJxapzwBEAAgMBAAJWnb0KAuXReIfl-k8pBA"
 #------------------------------------------
 def algo(stok,spot_prc,qt,OP,expiry_date,T):
+	st.write(stok,spot_prc,qt,OP,expiry_date,T)
 	user_STOP = 100
 	user_TARGET = 100
 	n_call = alice.get_instrument_for_fno(exch="NFO", symbol=stok, expiry_date=expiry_date, is_fut=False,strike=spot_prc, is_CE=T)
