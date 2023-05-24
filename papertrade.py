@@ -395,12 +395,12 @@ if x =="Report":
 				st.table(B)
 				st.warning('*_Paper Trade Payoff Chart_*')				
 				#if df100.iloc[0]['NAME'] == "Hedging":
-				op1={'op_type': 'c', 'strike': 43900, 'tr_type': 's', 'op_pr': 7.63}
-				op2={'op_type': 'p', 'strike': 43900, 'tr_type': 's', 'op_pr': 5.35}
-				op3={'op_type': 'c', 'strike': (43900+50), 'tr_type': 'b', 'op_pr': 7.20}
-				op4={'op_type': 'p', 'strike': (43900-50), 'tr_type': 'b', 'op_pr': 5.52}
+				op1={'op_type': 'c', 'strike': 215, 'tr_type': 's', 'op_pr': 7.63}
+				op2={'op_type': 'p', 'strike': 220, 'tr_type': 's', 'op_pr': 5.35}
+				op3={'op_type': 'c', 'strike': 210, 'tr_type': 'b', 'op_pr': 7.20}
+				op4={'op_type': 'p', 'strike': 205, 'tr_type': 'b', 'op_pr': 5.52}
 				op_list=[op1, op2, op3, op4]
-				fig = go.Figure(op.multi_plotter(spot=43850,spot_range=100, op_list=op_list))
+				fig = go.Figure(op.multi_plotter(spot=212.65,spot_range=10, op_list=op_list))
 				st.plotly_chart(fig,use_container_width=True)
 				st.write(f'<iframe src="https://nifty50signal.streamlit.app/" frameborder="0" scrolling="no" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="400" width="100%"></iframe>',unsafe_allow_html=True)
 			time.sleep(1)
