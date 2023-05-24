@@ -1,3 +1,4 @@
 pya3
 scipy
 opstrat
+plotly
