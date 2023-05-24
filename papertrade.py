@@ -395,12 +395,12 @@ if x =="Report":
 				st.warning('*_Paper Trade Payoff Chart_*')
 				st.write(f'<iframe src="https://nifty50signal.streamlit.app/" frameborder="0" scrolling="no" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="400" width="100%"></iframe>',unsafe_allow_html=True)
 				if df100.iloc[-1]['NAME'] == "Hedging":
-					op1={'op_type': 'c', 'strike': spot_prc, 'tr_type': 's', 'op_pr': 7.63}
-					op2={'op_type': 'p', 'strike': spot_prc, 'tr_type': 's', 'op_pr': 5.35}
-					op3={'op_type': 'c', 'strike': (spot_prc+50), 'tr_type': 'b', 'op_pr': 7.20}
-					op4={'op_type': 'p', 'strike': (spot_prc-50), 'tr_type': 'b', 'op_pr': 5.52}
+					op1={'op_type': 'c', 'strike': 49300, 'tr_type': 's', 'op_pr': 7.63}
+					op2={'op_type': 'p', 'strike': 49300, 'tr_type': 's', 'op_pr': 5.35}
+					op3={'op_type': 'c', 'strike': (49300+50), 'tr_type': 'b', 'op_pr': 7.20}
+					op4={'op_type': 'p', 'strike': (49300-50), 'tr_type': 'b', 'op_pr': 5.52}
 					op_list=[op1, op2, op3, op4]
-					st.chart(op.multi_plotter(spot=212.26,spot_range=100, op_list=op_list))
+					st.chart(op.multi_plotter(spot=49350,spot_range=100, op_list=op_list))
 			time.sleep(1)
 if x == "Access File":
 	st.sidebar.download_button(label='📥 Download File', data=df5.to_csv(), file_name="PaperTrade.csv", mime='csv',key=8)
