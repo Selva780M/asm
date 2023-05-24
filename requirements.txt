@@ -1,2 +1,3 @@
 pya3
+scipy
 opstrat
