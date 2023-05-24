@@ -395,13 +395,13 @@ if x =="Report":
 				st.table(B)
 				st.warning('*_Paper Trade Payoff Chart_*')
 				st.write(f'<iframe src="https://nifty50signal.streamlit.app/" frameborder="0" scrolling="no" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="400" width="100%"></iframe>',unsafe_allow_html=True)
-				if df100.iloc[0]['NAME'] == "Hedging":
-					op1={'op_type': 'c', 'strike': 49300, 'tr_type': 's', 'op_pr': 7.63}
-					op2={'op_type': 'p', 'strike': 49300, 'tr_type': 's', 'op_pr': 5.35}
-					op3={'op_type': 'c', 'strike': (49300+50), 'tr_type': 'b', 'op_pr': 7.20}
-					op4={'op_type': 'p', 'strike': (49300-50), 'tr_type': 'b', 'op_pr': 5.52}
-					op_list=[op1, op2, op3, op4]
-					st.plotly_chart(op.multi_plotter(spot=43850,spot_range=100, op_list=op_list))
+				#if df100.iloc[0]['NAME'] == "Hedging":
+				op1={'op_type': 'c', 'strike': 49300, 'tr_type': 's', 'op_pr': 7.63}
+				op2={'op_type': 'p', 'strike': 49300, 'tr_type': 's', 'op_pr': 5.35}
+				op3={'op_type': 'c', 'strike': (49300+50), 'tr_type': 'b', 'op_pr': 7.20}
+				op4={'op_type': 'p', 'strike': (49300-50), 'tr_type': 'b', 'op_pr': 5.52}
+				op_list=[op1, op2, op3, op4]
+				st.plotly_chart(op.multi_plotter(spot=43850,spot_range=100, op_list=op_list))
 			time.sleep(1)
 if x == "Access File":
 	st.sidebar.download_button(label='📥 Download File', data=df5.to_csv(), file_name="PaperTrade.csv", mime='csv',key=8)
