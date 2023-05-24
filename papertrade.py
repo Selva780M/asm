@@ -380,8 +380,8 @@ if x =="Report":
 					st.subheader(f'*_BankNifty :orange[{b5}]_* ⏰')	
 				with col3:
 					b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
-					b5 = b1['LTP']
-					st.subheader(f'*_FINNIFTY :green[{b5}]_* ⏰')
+					b6 = b1['LTP']
+					st.subheader(f'*_FINNIFTY :green[{b6}]_* ⏰')
 			with placeholder100.container():
 				st.success('*_Current Position_*')									
 				if len(df100['STOCK']) < 0:
