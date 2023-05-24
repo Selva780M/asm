@@ -395,7 +395,7 @@ if x =="Report":
 				st.table(B)
 				st.warning('*_Paper Trade Payoff Chart_*')
 				st.write(f'<iframe src="https://nifty50signal.streamlit.app/" frameborder="0" scrolling="no" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="400" width="100%"></iframe>',unsafe_allow_html=True)
-				if df100.iloc[-1]['NAME'] == "Hedging":
+				if df100.iloc[0]['NAME'] == "Hedging":
 					op1={'op_type': 'c', 'strike': 49300, 'tr_type': 's', 'op_pr': 7.63}
 					op2={'op_type': 'p', 'strike': 49300, 'tr_type': 's', 'op_pr': 5.35}
 					op3={'op_type': 'c', 'strike': (49300+50), 'tr_type': 'b', 'op_pr': 7.20}
