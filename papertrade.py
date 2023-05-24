@@ -390,19 +390,18 @@ if x =="Report":
 					A = df100.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
 					st.table(A)
 			with placeholder101.container():
-				st.info('*_Paper Trade Result_*')
-				#st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
+				st.info('*_Paper Trade Result_*')				
 				B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
 				st.table(B)
 				st.warning('*_Paper Trade Payoff Chart_*')				
-				#if df100.iloc[0]['NAME'] == "Hedging":
-				op1={'op_type': 'c', 'strike': 215, 'tr_type': 's', 'op_pr': 7.63}
-				op2={'op_type': 'p', 'strike': 220, 'tr_type': 's', 'op_pr': 5.35}
-				op3={'op_type': 'c', 'strike': 210, 'tr_type': 'b', 'op_pr': 7.20}
-				op4={'op_type': 'p', 'strike': 205, 'tr_type': 'b', 'op_pr': 5.52}
-				op_list = [op1, op2, op3, op4]
-				fig = op.multi_plotter(spot=212.65,spot_range=10, op_list=op_list)
-				st.pyplot(fig,use_container_width=True)
+				if (df100.iloc[1,1]) in int:
+					op1={'op_type': 'c', 'strike': df100.iloc[0,1], 'tr_type': 's', 'op_pr':df100.iloc[0,9]}
+					op2={'op_type': 'p', 'strike': df100.iloc[1,1], 'tr_type': 's', 'op_pr': df100.iloc[1,9]}
+					op3={'op_type': 'c', 'strike': df100.iloc[2,1], 'tr_type': 'b', 'op_pr': df100.iloc[2,9]}
+					op4={'op_type': 'p', 'strike': df100.iloc[3,1], 'tr_type': 'b', 'op_pr': df100.iloc[3,9]}
+					op_list = [op1, op2, op3, op4]
+					fig = op.multi_plotter(spot=b5,spot_range=100, op_list=op_list)
+					st.pyplot(fig,use_container_width=True)
 				st.write(f'<iframe src="https://nifty50signal.streamlit.app/" frameborder="0" scrolling="no" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="400" width="100%"></iframe>',unsafe_allow_html=True)
 			time.sleep(1)
 if x == "Access File":
