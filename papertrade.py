@@ -402,7 +402,7 @@ if x =="Report":
 					op3={'op_type': 'c', 'strike': df100.iloc[2,1], 'tr_type': 'b', 'op_pr': df100.iloc[2,9]}
 					op4={'op_type': 'p', 'strike': df100.iloc[3,1], 'tr_type': 'b', 'op_pr': df100.iloc[3,9]}
 					op_list = [op1, op2, op3, op4]
-					fig = op.multi_plotter(spot=b5,spot_range=50, op_list=op_list)
+					fig = op.multi_plotter(spot=float(b5),spot_range=3, op_list=op_list)
 					st.pyplot(fig,use_container_width=True)
 				st.write(f'<iframe src="https://nifty50signal.streamlit.app/" frameborder="0" scrolling="no" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="400" width="100%"></iframe>',unsafe_allow_html=True)
 			time.sleep(1)
