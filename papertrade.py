@@ -401,7 +401,8 @@ if x =="Report":
 				op3={'op_type': 'c', 'strike': (49300+50), 'tr_type': 'b', 'op_pr': 7.20}
 				op4={'op_type': 'p', 'strike': (49300-50), 'tr_type': 'b', 'op_pr': 5.52}
 				op_list=[op1, op2, op3, op4]
-				st.plotly_chart(op.multi_plotter(spot=43850,spot_range=100, op_list=op_list))
+				fig = go.Figure(op.multi_plotter(spot=43850,spot_range=100, op_list=op_list))
+				st.plotly_chart(fig.show())				
 			time.sleep(1)
 if x == "Access File":
 	st.sidebar.download_button(label='📥 Download File', data=df5.to_csv(), file_name="PaperTrade.csv", mime='csv',key=8)
