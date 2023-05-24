@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 from pytz import timezone 
 import time
 import requests
+import opstrat
 day = datetime.now(timezone("Asia/Kolkata"))
 DATE = day.strftime('%d-%m-%Y %H:%M:%S')
 alice = Aliceblue(user_id='627742',api_key='BPk1mFAXB9ByTFFQnm87HhieLFo3Fy5J3PCaae2g252DiLCNB9BK7hF0LpSg3d9fNO698r32IAsEt0lWm3hmuZMWW9tJC6r6A7xGkZWGmY1Hcdys1q9ITC1pRjYaklRQ')
@@ -181,9 +182,7 @@ if x =="Order Placed" :
 			spot_prc = st.number_input('*_Atm Price_*', min_value=1, max_value= 80000, value=19000, step=50, format=None, key=14)
 			user_exp = st.selectbox("*_Select Exp Date_*",(Contract(user_STOCK)),key=15)
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')		
-		#if dis == "Yes":
-			#st.write(f'<iframe src="https://www.nseindia.com/option-chain" frameborder="0" scrolling="yes" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="1000" width="100%"></iframe>',unsafe_allow_html=True)
-			#st.write(f'<iframe src="https://1lyoptions.com/option-chain" frameborder="0" scrolling="yes" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="1000" width="100%"></iframe>',unsafe_allow_html=True)			
+			
 		
 	if ENTRY:
 		if MAN == "asn":
@@ -270,7 +269,7 @@ if x =="Order Placed" :
 				S_CE = algo("FINNIFTY",spot_prc,80,True,user_exp,"S")
 				S_PE = algo("FINNIFTY",spot_prc,80,False,user_exp,"S")
 				B_CE = algo("FINNIFTY",(spot_prc+50),40,True,user_exp,"B")
-				B_PE = algo("FINNIFTY",(spot_prc-50),40,False,user_exp,"B")
+				B_PE = algo("FINNIFTY",(spot_prc-50),40,False,user_exp,"B")			
 		h = st.empty()
 		st.success('*_Your Trade Order Placed Pls Check in Report_*')
 		time.sleep(0.5)
@@ -393,11 +392,15 @@ if x =="Report":
 				#st.write(f'<h1 style="color:#33ff33;font-size:40px;">{f"Complete Trade"}</h1>', unsafe_allow_html=True)
 				B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
 				st.table(B)
-				st.warning('*_Paper Trade Chart_*')
-				chart_data = df100[["NAME","P_L"]]
-				chart_data = chart_data.set_index('NAME')
+				st.warning('*_Paper Trade Payoff Chart_*')
 				st.write(f'<iframe src="https://nifty50signal.streamlit.app/" frameborder="0" scrolling="no" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="400" width="100%"></iframe>',unsafe_allow_html=True)
-				st.bar_chart(chart_data)
+				if user_STOCK == "BANKNIFTY":
+					op1={'op_type': 'c', 'strike': spot_prc, 'tr_type': 's', 'op_pr': 7.63}
+					op2={'op_type': 'p', 'strike': spot_prc, 'tr_type': 's', 'op_pr': 5.35}
+					op3={'op_type': 'c', 'strike': (spot_prc+50), 'tr_type': 'b', 'op_pr': 7.20}
+					op4={'op_type': 'p', 'strike': (spot_prc-50), 'tr_type': 'b', 'op_pr': 5.52}
+					op_list=[op1, op2, op3, op4]
+					st.chart(op.multi_plotter(spot=212.26,spot_range=100, op_list=op_list))
 			time.sleep(1)
 if x == "Access File":
 	st.sidebar.download_button(label='📥 Download File', data=df5.to_csv(), file_name="PaperTrade.csv", mime='csv',key=8)
