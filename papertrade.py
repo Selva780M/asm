@@ -393,39 +393,38 @@ if x =="Report":
 				B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
 				st.table(B)
 				st.warning('*_Paper Trade Payoff Chart_*')				
-				with st.form("opt_form"):
-					user_STOCK1 = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=14)				
-					if (df100.iloc[0,1]) > 0 :
-						if user_STOCK1 == "FINNIFTY":
-							b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
-							b5 = b1['LTP']
-							op1={'op_type': 'c', 'strike': df100.iloc[0,1], 'tr_type': 's', 'op_pr':df100.iloc[0,9]}
-							op2={'op_type': 'p', 'strike': df100.iloc[1,1], 'tr_type': 's', 'op_pr': df100.iloc[1,9]}
-							op3={'op_type': 'c', 'strike': df100.iloc[2,1], 'tr_type': 'b', 'op_pr': df100.iloc[2,9]}
-							op4={'op_type': 'p', 'strike': df100.iloc[3,1], 'tr_type': 'b', 'op_pr': df100.iloc[3,9]}
-							op_list = [op1, op2, op3, op4]
-							fig = op.multi_plotter(spot=float(b5),spot_range=0.1, op_list=op_list)
-							st.pyplot(fig,use_container_width=True)
-						if user_STOCK1 == "BANKNIFTY":
-							b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))						
-							b5 = b1['LTP']
-							op1={'op_type': 'c', 'strike': df100.iloc[0,1], 'tr_type': 's', 'op_pr':df100.iloc[0,9]}
-							op2={'op_type': 'p', 'strike': df100.iloc[1,1], 'tr_type': 's', 'op_pr': df100.iloc[1,9]}
-							op3={'op_type': 'c', 'strike': df100.iloc[2,1], 'tr_type': 'b', 'op_pr': df100.iloc[2,9]}
-							op4={'op_type': 'p', 'strike': df100.iloc[3,1], 'tr_type': 'b', 'op_pr': df100.iloc[3,9]}
-							op_list = [op1, op2, op3, op4]
-							fig = op.multi_plotter(spot=float(b5),spot_range=0.5, op_list=op_list)
-							st.pyplot(fig,use_container_width=True)
-						if user_STOCK1 == "NIFTY":
-							b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))						
-							b5 = b1['LTP']
-							op1={'op_type': 'c', 'strike': df100.iloc[0,1], 'tr_type': 's', 'op_pr':df100.iloc[0,9]}
-							op2={'op_type': 'p', 'strike': df100.iloc[1,1], 'tr_type': 's', 'op_pr': df100.iloc[1,9]}
-							op3={'op_type': 'c', 'strike': df100.iloc[2,1], 'tr_type': 'b', 'op_pr': df100.iloc[2,9]}
-							op4={'op_type': 'p', 'strike': df100.iloc[3,1], 'tr_type': 'b', 'op_pr': df100.iloc[3,9]}
-							op_list = [op1, op2, op3, op4]
-							fig = op.multi_plotter(spot=float(b5),spot_range=0.5, op_list=op_list)
-							st.pyplot(fig,use_container_width=True)
+				#user_STOCK1 = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=14)				
+				if (df100.iloc[0,1]) > 0 :
+					if user_STOCK == "FINNIFTY":
+						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
+						b5 = b1['LTP']
+						op1={'op_type': 'c', 'strike': df100.iloc[0,1], 'tr_type': 's', 'op_pr':df100.iloc[0,9]}
+						op2={'op_type': 'p', 'strike': df100.iloc[1,1], 'tr_type': 's', 'op_pr': df100.iloc[1,9]}
+						op3={'op_type': 'c', 'strike': df100.iloc[2,1], 'tr_type': 'b', 'op_pr': df100.iloc[2,9]}
+						op4={'op_type': 'p', 'strike': df100.iloc[3,1], 'tr_type': 'b', 'op_pr': df100.iloc[3,9]}
+						op_list = [op1, op2, op3, op4]
+						fig = op.multi_plotter(spot=float(b5),spot_range=0.1, op_list=op_list)
+						st.pyplot(fig,use_container_width=True)
+					if user_STOCK1 == "BANKNIFTY":
+						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))						
+						b5 = b1['LTP']
+						op1={'op_type': 'c', 'strike': df100.iloc[0,1], 'tr_type': 's', 'op_pr':df100.iloc[0,9]}
+						op2={'op_type': 'p', 'strike': df100.iloc[1,1], 'tr_type': 's', 'op_pr': df100.iloc[1,9]}
+						op3={'op_type': 'c', 'strike': df100.iloc[2,1], 'tr_type': 'b', 'op_pr': df100.iloc[2,9]}
+						op4={'op_type': 'p', 'strike': df100.iloc[3,1], 'tr_type': 'b', 'op_pr': df100.iloc[3,9]}
+						op_list = [op1, op2, op3, op4]
+						fig = op.multi_plotter(spot=float(b5),spot_range=0.5, op_list=op_list)
+						st.pyplot(fig,use_container_width=True)
+					if user_STOCK1 == "NIFTY":
+						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))						
+						b5 = b1['LTP']
+						op1={'op_type': 'c', 'strike': df100.iloc[0,1], 'tr_type': 's', 'op_pr':df100.iloc[0,9]}
+						op2={'op_type': 'p', 'strike': df100.iloc[1,1], 'tr_type': 's', 'op_pr': df100.iloc[1,9]}
+						op3={'op_type': 'c', 'strike': df100.iloc[2,1], 'tr_type': 'b', 'op_pr': df100.iloc[2,9]}
+						op4={'op_type': 'p', 'strike': df100.iloc[3,1], 'tr_type': 'b', 'op_pr': df100.iloc[3,9]}
+						op_list = [op1, op2, op3, op4]
+						fig = op.multi_plotter(spot=float(b5),spot_range=0.5, op_list=op_list)
+						st.pyplot(fig,use_container_width=True)
 				st.write(f'<iframe src="https://nifty50signal.streamlit.app/" frameborder="0" scrolling="no" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="400" width="100%"></iframe>',unsafe_allow_html=True)
 			time.sleep(1)
 if x == "Access File":
