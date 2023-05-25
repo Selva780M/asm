@@ -139,27 +139,26 @@ def algo(stok,spot,qt,OP,expiry_date,T):
 	df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
 	stok = ""
 	temp()
-x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report","Access File"),key=10)
+x = st.sidebar.radio('*_Main Page_*',("Order Placed","Report","Access File"),key=1)
 if x =="Order Placed" :
-	user = st.radio('*_Choose the Stock_*',("Auto","Manual","Rjalgo"),horizontal=True,key=1)	
+	user = st.radio('*_Choose the Stock_*',("Auto","Manual","Rjalgo"),horizontal=True,key=2)	
 	if user == "Manual":
-		XX = st.radio("*_Select Exchange_*",("NFO","NSE","CDS","MCX"),horizontal=True,key=3)
-		#dis = st.radio('*_Option Chain Display_*',("No","Yes"),horizontal=True,key=12)	
+		XX = st.radio("*_Select Exchange_*",("NFO","NSE","CDS","MCX"),horizontal=True,key=3)		
 	with st.form("opt_form"):				
-		user_USER = st.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","Hedging","test"),horizontal=True,key=2)
+		user_USER = st.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","Hedging","test"),horizontal=True,key=4)
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f" {user_USER} 👋"}</h1>', unsafe_allow_html=True)
 		col11, col22, col33 = st.columns(3)				
 	if user == "Auto":
 		MAN = "asn"
 		with col11:
-			user_STOCK = st.radio("*_Stock (Current strike)_*",("NIFTY","BANKNIFTY"), horizontal=True,key=3)
-			user_OPTION = st.radio("*_Option_*",("call","put"), horizontal=True,key=4)	
-			user_exp = st.selectbox("*_Select Exp Date_*",(Contract(user_STOCK)),key=15)
+			user_STOCK = st.radio("*_Stock (Current strike)_*",("NIFTY","BANKNIFTY"), horizontal=True,key=5)
+			user_OPTION = st.radio("*_Option_*",("call","put"), horizontal=True,key=6)	
+			user_exp = st.selectbox("*_Select Exp Date_*",(Contract(user_STOCK)),key=7)
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 		with col22:
-			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=5)
-			user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=50, value=10, step=5, format=None,key=6)
-			user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=7)	
+			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=8)
+			user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=50, value=10, step=5, format=None,key=9)
+			user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=10)	
 	if user == "Manual":
 		MAN = "AAUTO"
 		with col11:			
@@ -174,15 +173,15 @@ if x =="Order Placed" :
 			Tradd = st.radio("*_Trade_*",("Buy","Sell"), horizontal=True,key=4)
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 		with col22:		
-			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=5)
-			user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=50, value=10, step=5, format=None,key=6)
-			user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=7)
+			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=8)
+			user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=50, value=10, step=5, format=None,key=9)
+			user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=10)
 	if user =="Rjalgo":				
 		MAN = "Dumm"
-		user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=3)
+		user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=5)
 		with col11:										
-			spot_prc = st.number_input('*_Atm Price_*', min_value=1, max_value= 80000, value=19000, step=50, format=None, key=14)
-			user_exp = st.selectbox("*_Select Exp Date_*",(Contract(user_STOCK)),key=15)
+			spot_prc = st.number_input('*_Atm Price_*', min_value=1, max_value= 80000, value=19000, step=50, format=None, key=11)
+			user_exp = st.selectbox("*_Select Exp Date_*",(Contract(user_STOCK)),key=12)
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')		
 			
 		
@@ -395,7 +394,7 @@ if x =="Report":
 				st.table(B)
 				st.warning('*_Paper Trade Payoff Chart_*')				
 				with st.form("opt_form"):
-					user_STOCK1 = st.radio("*_Stock (Current strike)_*",("NIFTY 50","NIFTY BANK","NIFTY FIN SERVICE"), horizontal=True,key=16)
+					user_STOCK1 = st.radio("*_Stock (Current strike)_*",("NIFTY 50","NIFTY BANK","NIFTY FIN SERVICE"), horizontal=True,key=13)
 					ENTRY1 = st.form_submit_button('👉 *_Order Placed_*')
 					if ENTRY1 :
 						if (df100.iloc[0,1]) > 0 :
@@ -411,12 +410,12 @@ if x =="Report":
 				st.write(f'<iframe src="https://nifty50signal.streamlit.app/" frameborder="0" scrolling="no" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="400" width="100%"></iframe>',unsafe_allow_html=True)
 			time.sleep(1)
 if x == "Access File":
-	st.sidebar.download_button(label='📥 Download File', data=df5.to_csv(), file_name="PaperTrade.csv", mime='csv',key=8)
+	st.sidebar.download_button(label='📥 Download File', data=df5.to_csv(), file_name="PaperTrade.csv", mime='csv',key=14)
 	with st.form("opt_form"):		
 		st.success('*_Access Current Position File_*')		
 		col1, col2, col3 = st.columns(3)
 		with col1:
-			num = st.number_input('*_Enter Row No_*', min_value=0, max_value=1000, value=len(df.index)-1, step=1, format=None,key=9)
+			num = st.number_input('*_Enter Row No_*', min_value=0, max_value=1000, value=len(df.index)-1, step=1, format=None,key=15)
 			cr = st.form_submit_button('*_👉Clear Row_*')
 		with col3:
 			cl  = st.form_submit_button('*_👉Clear ALL_*')	
