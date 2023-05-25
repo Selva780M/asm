@@ -395,7 +395,7 @@ if x =="Report":
 				st.table(B)
 				st.warning('*_Paper Trade Payoff Chart_*')				
 				with st.form("opt_form"):
-					user_STOCK1 = st.radio("*_Stock (Current strike)_*",("NIFTY 50","NIFTY BANK","NIFTY FIN SERVICE"), horizontal=True,key=18)
+					user_STOCK1 = st.radio("*_Stock (Current strike)_*",("NIFTY 50","NIFTY BANK","NIFTY FIN SERVICE"), horizontal=True,key=16)
 					ENTRY1 = st.form_submit_button('👉 *_Order Placed_*')
 					if ENTRY1 :
 						if (df100.iloc[0,1]) > 0 :
