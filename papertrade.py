@@ -406,7 +406,7 @@ if x =="Report":
 						op_list = [op1, op2, op3, op4]
 						fig = op.multi_plotter(spot=float(b5),spot_range=0.1, op_list=op_list)
 						st.pyplot(fig,use_container_width=True)
-					if user_STOCK1 == "BANKNIFTY":
+					if user_STOCK == "BANKNIFTY":
 						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))						
 						b5 = b1['LTP']
 						op1={'op_type': 'c', 'strike': df100.iloc[0,1], 'tr_type': 's', 'op_pr':df100.iloc[0,9]}
@@ -416,7 +416,7 @@ if x =="Report":
 						op_list = [op1, op2, op3, op4]
 						fig = op.multi_plotter(spot=float(b5),spot_range=0.5, op_list=op_list)
 						st.pyplot(fig,use_container_width=True)
-					if user_STOCK1 == "NIFTY":
+					if user_STOCK == "NIFTY":
 						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))						
 						b5 = b1['LTP']
 						op1={'op_type': 'c', 'strike': df100.iloc[0,1], 'tr_type': 's', 'op_pr':df100.iloc[0,9]}
