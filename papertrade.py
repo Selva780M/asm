@@ -281,7 +281,8 @@ if x =="Report":
 	placeholder12 = st.sidebar.empty()
 	placeholder13 = st.sidebar.empty()
 	placeholder100 = st.empty()
-	placeholder101 = st.empty()	
+	placeholder101 = st.empty()
+	user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=11)
 	if (len(df5['STOCK']) > -1) | (len(df['STOCK']) > -1):
 		while True:
 			temp()
