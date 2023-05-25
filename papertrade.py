@@ -282,8 +282,11 @@ if x =="Report":
 	placeholder13 = st.sidebar.empty()
 	placeholder100 = st.empty()
 	placeholder101 = st.empty()
-	user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=11)
-	sprange = st.number_input('*_Spot Range_*', min_value=0.1, max_value=100.0, value=0.1, step=0.1, format=None,key=17)
+	col01, col02 = st.columns(2)
+	with col01:
+		user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=11)
+	with col02:
+		sprange = st.number_input('*_Spot Range_*', min_value=0.1, max_value=100.0, value=0.5, step=0.1, format=None,key=17)
 	if (len(df5['STOCK']) > -1) | (len(df['STOCK']) > -1):
 		while True:
 			temp()
@@ -427,7 +430,7 @@ if x =="Report":
 						op_list = [op1, op2, op3, op4]
 						fig = op.multi_plotter(spot=float(b5),spot_range=float(sprange),op_list=op_list)
 						st.pyplot(fig,use_container_width=True)
-				st.write(f'<iframe src="https://nifty50signal.streamlit.app/" frameborder="0" scrolling="no" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="400" width="100%"></iframe>',unsafe_allow_html=True)
+				#st.write(f'<iframe src="https://nifty50signal.streamlit.app/" frameborder="0" scrolling="no" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="400" width="100%"></iframe>',unsafe_allow_html=True)
 			time.sleep(1)
 if x == "Access File":
 	st.sidebar.download_button(label='📥 Download File', data=df5.to_csv(), file_name="PaperTrade.csv", mime='csv',key=15)
