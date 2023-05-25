@@ -178,10 +178,10 @@ if x =="Order Placed" :
 			user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=10)
 	if user =="Rjalgo":				
 		MAN = "Dumm"
-		user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=5)
+		user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=11)
 		with col11:										
-			spot_prc = st.number_input('*_Atm Price_*', min_value=1, max_value= 80000, value=19000, step=50, format=None, key=11)
-			user_exp = st.selectbox("*_Select Exp Date_*",(Contract(user_STOCK)),key=12)
+			spot_prc = st.number_input('*_Atm Price_*', min_value=1, max_value= 80000, value=19000, step=50, format=None, key=12)
+			user_exp = st.selectbox("*_Select Exp Date_*",(Contract(user_STOCK)),key=13)
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')		
 			
 		
@@ -393,9 +393,9 @@ if x =="Report":
 				B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
 				st.table(B)
 				st.warning('*_Paper Trade Payoff Chart_*')				
-				user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=5)				
+				user_STOCK1 = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=14)				
 				if (df100.iloc[0,1]) > 0 :
-					if user_STOCK == "FINNIFTY":
+					if user_STOCK1 == "FINNIFTY":
 						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
 						b5 = b1['LTP']
 						op1={'op_type': 'c', 'strike': df100.iloc[0,1], 'tr_type': 's', 'op_pr':df100.iloc[0,9]}
@@ -403,9 +403,9 @@ if x =="Report":
 						op3={'op_type': 'c', 'strike': df100.iloc[2,1], 'tr_type': 'b', 'op_pr': df100.iloc[2,9]}
 						op4={'op_type': 'p', 'strike': df100.iloc[3,1], 'tr_type': 'b', 'op_pr': df100.iloc[3,9]}
 						op_list = [op1, op2, op3, op4]
-						fig = op.multi_plotter(spot=float(b5),spot_range=0.5, op_list=op_list)
+						fig = op.multi_plotter(spot=float(b5),spot_range=0.1, op_list=op_list)
 						st.pyplot(fig,use_container_width=True)
-					if user_STOCK == "BANKNIFTY":
+					if user_STOCK1 == "BANKNIFTY":
 						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))						
 						b5 = b1['LTP']
 						op1={'op_type': 'c', 'strike': df100.iloc[0,1], 'tr_type': 's', 'op_pr':df100.iloc[0,9]}
@@ -415,7 +415,7 @@ if x =="Report":
 						op_list = [op1, op2, op3, op4]
 						fig = op.multi_plotter(spot=float(b5),spot_range=0.5, op_list=op_list)
 						st.pyplot(fig,use_container_width=True)
-					if user_STOCK == "NIFTY":
+					if user_STOCK1 == "NIFTY":
 						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))						
 						b5 = b1['LTP']
 						op1={'op_type': 'c', 'strike': df100.iloc[0,1], 'tr_type': 's', 'op_pr':df100.iloc[0,9]}
@@ -428,12 +428,12 @@ if x =="Report":
 				st.write(f'<iframe src="https://nifty50signal.streamlit.app/" frameborder="0" scrolling="no" webkitAllowFullScreen="true" mozallowfullscreen="true" allowFullScreen="true" height="400" width="100%"></iframe>',unsafe_allow_html=True)
 			time.sleep(1)
 if x == "Access File":
-	st.sidebar.download_button(label='📥 Download File', data=df5.to_csv(), file_name="PaperTrade.csv", mime='csv',key=14)
+	st.sidebar.download_button(label='📥 Download File', data=df5.to_csv(), file_name="PaperTrade.csv", mime='csv',key=15)
 	with st.form("opt_form"):		
 		st.success('*_Access Current Position File_*')		
 		col1, col2, col3 = st.columns(3)
 		with col1:
-			num = st.number_input('*_Enter Row No_*', min_value=0, max_value=1000, value=len(df.index)-1, step=1, format=None,key=15)
+			num = st.number_input('*_Enter Row No_*', min_value=0, max_value=1000, value=len(df.index)-1, step=1, format=None,key=16)
 			cr = st.form_submit_button('*_👉Clear Row_*')
 		with col3:
 			cl  = st.form_submit_button('*_👉Clear ALL_*')	
