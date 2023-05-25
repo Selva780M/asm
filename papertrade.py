@@ -394,7 +394,7 @@ if x =="Report":
 				B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
 				st.table(B)
 				st.warning('*_Paper Trade Payoff Chart_*')				
-				with st.form("opt_form"):
+				with st.form("opt_form11"):
 					user_STOCK1 = st.radio("*_Stock (Current strike)_*",("NIFTY 50","NIFTY BANK","NIFTY FIN SERVICE"), horizontal=True,key=18)
 				if (df100.iloc[0,1]) > 0 :
 					b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES",user_STOCK1))						
