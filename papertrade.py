@@ -39,26 +39,25 @@ def info():
 			st.header('*_👋  :blue[_BOT Paper Trade_] :sunglasses:_*')
 		with con20:
 			st.subheader(f'*_🙏 :green[_{Na}_]👉⏰_*')
-	while ido > 1:
-		with placeholder01.container():
-			col1, col2 , col3 = st.columns(3)
-			with col1:
-				n1 = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
-				n5 = n1['LTP']
-				st.subheader(f'*_Nifty- 50 :red[{n5}]_* ⏰')								
-			with col2:
-				b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))						
-				b5 = b1['LTP']
-				st.subheader(f'*_BankNifty :orange[{b5}]_* ⏰')	
-			with col3:
-				b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
-				b6 = b1['LTP']
-				st.subheader(f'*_FINNIFTY :green[{b6}]_* ⏰')
-		time.sleep(1)
+	#while ido > 1:
+	with placeholder01.container():
+		col1, col2 , col3 = st.columns(3)
+		with col1:
+			n1 = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
+			n5 = n1['LTP']
+			st.subheader(f'*_Nifty- 50 :red[{n5}]_* ⏰')								
+		with col2:
+			b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))						
+			b5 = b1['LTP']
+			st.subheader(f'*_BankNifty :orange[{b5}]_* ⏰')	
+		with col3:
+			b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
+			b6 = b1['LTP']
+			st.subheader(f'*_FINNIFTY :green[{b6}]_* ⏰')
+	#time.sleep(1)
 info()
 #--------------------------------------------
 def main():
-
 	def col(val):
 		try:
 			if val > 0:
