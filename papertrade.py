@@ -19,8 +19,7 @@ try:
 except:
 	st.error('Pls Login first aliceblue account after continue....')
 
-def info():
-	ido = 5
+def info():	
 	Investment = int(300000)
 	Na = str('Mr.Selvakumar')
 	st.sidebar.markdown(f""" *_Date:_* {DATE}""")
@@ -32,8 +31,7 @@ def info():
 		with con10:
 			st.header('*_👋  :blue[_BOT Paper Trade_] :sunglasses:_*')
 		with con20:
-			st.subheader(f'*_🙏 :green[_{Na}_]👉⏰_*')
-	#while ido > 1:
+			st.subheader(f'*_🙏 :green[_{Na}_]👉⏰_*')	
 	with placeholder01.container():
 		col1, col2 , col3 = st.columns(3)
 		with col1:
@@ -47,8 +45,7 @@ def info():
 		with col3:
 			b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
 			b6 = b1['LTP']
-			st.subheader(f'*_FINNIFTY :green[{b6}]_* ⏰')
-	#time.sleep(1)
+			st.subheader(f'*_FINNIFTY :green[{b6}]_* ⏰')	
 info()
 #--------------------------------------------
 def main():
@@ -77,7 +74,6 @@ def main():
 		except:
 			pm = round(0.0,1)
 		return pm
-
 	#Get Expiry-------------------------------------------
 	def Contract(user_STOCK):	
 		placeholder00 = st.empty()
@@ -309,6 +305,7 @@ def main():
 			sprange = st.number_input('*_Spot Range_*', min_value=0.1, max_value=100.0, value=0.5, step=0.1, format=None,key=17)
 		if (len(df5['STOCK']) > -1) | (len(df['STOCK']) > -1):
 			while True:
+				global Investment
 				temp()
 				em = []
 				tr = []
