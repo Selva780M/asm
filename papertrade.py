@@ -49,7 +49,7 @@ def info():
 info()
 #--------------------------------------------
 def main():
-	global Investment
+	Investment = int(300000)
 	df = pd.read_csv('./token.csv')
 	df5 = pd.read_csv('./trade.csv')
 	def temp():
@@ -305,7 +305,6 @@ def main():
 			sprange = st.number_input('*_Spot Range_*', min_value=0.1, max_value=100.0, value=0.5, step=0.1, format=None,key=17)
 		if (len(df5['STOCK']) > -1) | (len(df['STOCK']) > -1):
 			while True:
-				global Investment
 				temp()
 				em = []
 				tr = []
