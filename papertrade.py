@@ -50,12 +50,13 @@ def info():
 				b6 = b1['LTP']
 				st.subheader(f'*_FINNIFTY :green[{b6}]_* ⏰')
 		time.sleep(1)
-info()					
+					
 try:
 	alice.get_session_id()
 except:
 	st.error('Pls Login first aliceblue account after continue....')
 	sleep(1)
+info()
 #--------------------------------------------
 def col(val):
 	try:
