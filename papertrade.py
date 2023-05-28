@@ -52,6 +52,7 @@ def info():
 info()
 #--------------------------------------------
 def main():
+	global Investment
 	df = pd.read_csv('./token.csv')
 	df5 = pd.read_csv('./trade.csv')
 	def temp():
