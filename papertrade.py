@@ -49,7 +49,7 @@ def info():
 				b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
 				b6 = b1['LTP']
 				st.subheader(f'*_FINNIFTY :green[{b6}]_* ⏰')
-		time.sleep(0.3)
+		time.sleep(1)
 info()					
 try:
 	alice.get_session_id()
