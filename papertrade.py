@@ -20,18 +20,37 @@ def temp():
 def save():
 	df5.to_csv('trade.csv',index = False)
 #------------------------------------------------------
-Investment = int(300000)
-Na = str('Mr.Selvakumar')
-st.sidebar.markdown(f""" *_Date:_* {DATE}""")
-st.sidebar.markdown(f""" *_Your Investment Rs.{Investment}/-_* """)
-placeholder1 = st.empty()	
-with placeholder1.container():
-	con10, con20  = st.columns(2)
-	with con10:
-		st.header('*_👋  :blue[_BOT Paper Trade_] :sunglasses:_*')
-	with con20:
-		st.subheader(f'*_🙏 :green[_{Na}_]👉⏰_*')
-		
+def info():
+	ido = 5
+	Investment = int(300000)
+	Na = str('Mr.Selvakumar')
+	st.sidebar.markdown(f""" *_Date:_* {DATE}""")
+	st.sidebar.markdown(f""" *_Your Investment Rs.{Investment}/-_* """)
+	placeholder1 = st.empty()
+	placeholder01 = st.empty()
+	with placeholder1.container():
+		con10, con20  = st.columns(2)
+		with con10:
+			st.header('*_👋  :blue[_BOT Paper Trade_] :sunglasses:_*')
+		with con20:
+			st.subheader(f'*_🙏 :green[_{Na}_]👉⏰_*')
+	while ido > 1:
+		with placeholder01.container():
+			col1, col2 , col3 = st.columns(3)
+			with col1:
+				n1 = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
+				n5 = n1['LTP']
+				st.subheader(f'*_Nifty- 50 :red[{n5}]_* ⏰')								
+			with col2:
+				b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))						
+				b5 = b1['LTP']
+				st.subheader(f'*_BankNifty :orange[{b5}]_* ⏰')	
+			with col3:
+				b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
+				b6 = b1['LTP']
+				st.subheader(f'*_FINNIFTY :green[{b6}]_* ⏰')
+		time.sleep(0.3)
+info()					
 try:
 	alice.get_session_id()
 except:
@@ -276,8 +295,7 @@ if x =="Order Placed" :
 		time.sleep(0.5)
 		h.empty()
 		pass		
-if x =="Report":
-	placeholder01 = st.empty()
+if x =="Report":	
 	placeholder12 = st.sidebar.empty()
 	placeholder13 = st.sidebar.empty()
 	placeholder100 = st.empty()
@@ -372,20 +390,7 @@ if x =="Report":
 						st.balloons()						
 						send_sticker_on_telegram(sad)
 						send_msg_on_telegram(f"Sorry {Na}, Your Trade  {df100.iloc[i]['NAME']}  Completed Lose in Rs.{round(df100.iloc[i]['P_L'],1)}")			
-			with placeholder01.container():
-				col1, col2 , col3 = st.columns(3)
-				with col1:
-					n1 = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
-					n5 = n1['LTP']
-					st.subheader(f'*_Nifty- 50 :red[{n5}]_* ⏰')								
-				with col2:
-					b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))						
-					b5 = b1['LTP']
-					st.subheader(f'*_BankNifty :orange[{b5}]_* ⏰')	
-				with col3:
-					b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
-					b6 = b1['LTP']
-					st.subheader(f'*_FINNIFTY :green[{b6}]_* ⏰')
+			
 			with placeholder100.container():
 				st.success('*_Current Position_*')									
 				if len(df100['STOCK']) < 0:
