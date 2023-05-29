@@ -434,8 +434,7 @@ if x == "Access File":
 
 if x =="pay-off Chart" :
 	def pay():
-		global df100
-		df = df100 
+		global df		 
 		placeholder100 = st.empty()
 		with placeholder100.container():
 			st.success('*_pay-off Chart_*')
