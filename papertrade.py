@@ -170,8 +170,7 @@ def main():
 			with col11:
 				user_STOCK = st.radio("*_Stock (Current strike)_*",("NIFTY","BANKNIFTY"), horizontal=True,key=5)
 				user_OPTION = st.radio("*_Option_*",("call","put"), horizontal=True,key=6)	
-				user_exp = st.selectbox("*_Select Exp Date_*",(Contract(user_STOCK)),key=7)
-				user_exp = st.selectbox("*_Select Exp Date_*",(Contract(user_STOCK)),key=13)
+				user_exp = st.selectbox("*_Select Exp Date_*",(Contract(user_STOCK)),key=7)				
 				ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 			with col22:
 				user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=8)
