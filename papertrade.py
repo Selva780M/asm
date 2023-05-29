@@ -298,14 +298,8 @@ if x =="Order Placed" :
 if x =="Report":
 	placeholder01 = st.empty()
 	placeholder12 = st.sidebar.empty()
-	placeholder13 = st.sidebar.empty()
-	placeholder100 = st.empty()
+	placeholder13 = st.sidebar.empty()	
 	placeholder101 = st.empty()	
-	col01, col02 = st.columns(2)
-	with col01:
-		user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=11)
-	with col02:
-		sprange = st.number_input('*_Spot Range_*', min_value=0.1, max_value=100.0, value=0.5, step=0.1, format=None,key=17)
 	if (len(df5['STOCK']) > -1) | (len(df['STOCK']) > -1):
 		while True:
 			temp()
@@ -438,8 +432,14 @@ if x == "Access File":
 		st.table(A)	
 
 if x =="pay-off Chart" :
+	placeholder100 = st.empty()
 	with placeholder100.container():
 		st.success('*_pay-off Chart_*')
+		col01, col02 = st.columns(2)
+		with col01:
+			user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=11)
+		with col02:
+			sprange = st.number_input('*_Spot Range_*', min_value=0.1, max_value=100.0, value=0.5, step=0.1, format=None,key=17)
 		if len(df100['STOCK']) < 0:
 			st.title("No Position Order")					
 		else:
