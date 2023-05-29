@@ -488,8 +488,8 @@ if x == "payoff-chart":
 					op_list = [op1, op2, op3, op4]
 					fig = op.multi_plotter(spot=float(b5),spot_range=float(sprange),op_list=op_list)
 					st.pyplot(fig,use_container_width=True)
-				except Exception as e:
-					st.title(f'Not Pay-off Chart and Error on {e}')
+			except Exception as e:
+				st.title(f'Not Pay-off Chart and Error on {e}')
 	
 	
 	
