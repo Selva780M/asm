@@ -147,8 +147,8 @@ if x =="Order Placed" :
 		col11, col22, col33 = st.columns(3)				
 	if user == "Auto":
 		MAN = "asn"
-		with col11:
-			user_STOCK = st.radio("*_Stock (Current strike)_*",("NIFTY","BANKNIFTY"), horizontal=True,key=5)
+		user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=5)
+		with col11:			
 			user_OPTION = st.radio("*_Option_*",("call","put"), horizontal=True,key=6)	
 			user_exp = st.selectbox("*_Select Exp Date_*",(Contract(user_STOCK)),key=7)				
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
@@ -226,6 +226,31 @@ if x =="Order Placed" :
 				if  user_OPTION == "put":
 					put_strike = spot + (100)
 					b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date = user_exp, is_fut=False,strike=put_strike, is_CE=False)
+					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_put.name)))
+					entry = float(s['LTP'])	
+					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name, "EXCH" : "NFO" ,"TRADE" : "B" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
+					#df = df.append(new_data, ignore_index = True)
+					df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
+					temp()	
+			if user_STOCK == "FINNIFTY":
+				try:
+					b = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))
+					b_ltp = b['LTP']
+				except:
+					st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
+				spot = round((float(b_ltp)) / 100) * 100
+				if user_OPTION == "call":
+					call_strike = spot - (100)
+					b_call = alice.get_instrument_for_fno(exch="NFO", symbol="FINNIFTY", expiry_date=user_exp, is_fut=False,strike=call_strike, is_CE=True)				
+					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_call.name)))
+					entry = float(s['LTP'])	
+					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name, "EXCH" : "NFO" ,"TRADE" :"B" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+					#df = df.append(new_data, ignore_index = True)
+					df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
+					temp()
+				if  user_OPTION == "put":
+					put_strike = spot + (100)
+					b_put = alice.get_instrument_for_fno(exch="NFO", symbol="FINNIFTY", expiry_date = user_exp, is_fut=False,strike=put_strike, is_CE=False)
 					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_put.name)))
 					entry = float(s['LTP'])	
 					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name, "EXCH" : "NFO" ,"TRADE" : "B" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
