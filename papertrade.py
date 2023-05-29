@@ -434,7 +434,7 @@ if x == "Access File":
 
 if x =="pay-off Chart" :
 	def pay():
-		df = pd.read_csv('token.csv', index_col=0) 
+		df = pd.read_csv('token.csv') 
 		placeholder100 = st.empty()
 		with placeholder100.container():
 			st.success('*_pay-off Chart_*')
@@ -487,8 +487,8 @@ if x =="pay-off Chart" :
 							op_list = [op1, op2, op3, op4]
 							fig = op.multi_plotter(spot=float(b5),spot_range=float(sprange),op_list=op_list)
 							st.pyplot(fig,use_container_width=True)
-				except :
-						st.title("Not Pay-off Chart")
+				except Exception as e:
+						st.title(f'Not Pay-off Chart and Error on {e}')
 	pay()	
 	
 	
