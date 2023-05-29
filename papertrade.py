@@ -442,7 +442,7 @@ if x =="pay-off Chart" :
 			user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=11)
 		with col02:
 			sprange = st.number_input('*_Spot Range_*', min_value=0.1, max_value=100.0, value=0.5, step=0.1, format=None,key=17)
-		if len(df100['STOCK']) < 0:
+		if len(df['STOCK']) < 0:
 			st.title("No Position Order")					
 		else:
 			gb = GridOptionsBuilder.from_dataframe(df)
