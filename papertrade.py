@@ -462,7 +462,7 @@ if x == "payoff-chart":
 					b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
 					b5 = b1['LTP']
 					op_list = []
-					for i in range(df10.index):
+					for i in range(0,df10.index):
 						op[i] = {'op_type': 'c', 'strike': df10.iloc[i,2], 'tr_type': 's', 'op_pr': df10.iloc[i,10]}
 						op_list.append(op[i])
 					#op2={'op_type': 'p', 'strike': df10.iloc[1,2], 'tr_type': 's', 'op_pr': df10.iloc[1,10]}
