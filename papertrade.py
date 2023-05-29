@@ -21,7 +21,7 @@ except:
 	st.error('Pls Login first aliceblue account after continue....')
 
 #---------------------------------------------------------------------------
-df = pd.read_csv('./token.csv')
+df = pd.read_csv('./token.csv',index_col=0)
 df5 = pd.read_csv('./trade.csv')
 def temp():
 	df.to_csv('token.csv',index = False)
