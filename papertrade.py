@@ -145,7 +145,7 @@ if x =="Order Placed" :
 	if user == "Manual":
 		XX = st.radio("*_Select Exchange_*",("NFO","NSE","CDS","MCX"),horizontal=True,key=3)		
 	with st.form("opt_form"):				
-		user_USER = st.radio('*_Strategy_*',("Price action","ORB Day","ORB 930","BTST","STBT","Hedging","test"),horizontal=True,key=4)
+		user_USER = st.radio('*_Strategy_*',("Price action","Hedging","9.30"),horizontal=True,key=4)
 		st.sidebar.write(f'<h1 style="color:#33ff33;font-size:30px;">{f" {user_USER} 👋"}</h1>', unsafe_allow_html=True)
 		col11, col22, col33 = st.columns(3)				
 	if user == "Auto":
