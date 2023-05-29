@@ -23,10 +23,13 @@ except:
 #---------------------------------------------------------------------------
 df = pd.read_csv('./token.csv')
 df5 = pd.read_csv('./trade.csv')
+df10 = pd.read_csv('./pay.csv')
 def temp():
 	df.to_csv('token.csv',index = False)
 def save():
 	df5.to_csv('trade.csv',index = False)
+def save1():
+	df10.to_csv('pay.csv',index = False)
 Investment = int(300000)
 Na = str('Mr.Selvakumar')
 st.sidebar.markdown(f""" *_Date:_* {DATE}""")
@@ -304,6 +307,7 @@ if x =="Report":
 	if (len(df5['STOCK']) > -1) | (len(df['STOCK']) > -1):
 		while True:
 			temp()
+			save1()
 			with placeholder01.container():
 				col1, col2 , col3 = st.columns(3)
 				with col1:
@@ -432,6 +436,7 @@ if x == "Access File":
 		A = df.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET"], formatter="{:.2f}").applymap(col)
 		st.table(A)
 if x == "payoff-chart":	
+	df100 = pd.read_csv('./pay.csv')
 	placeholder100 = st.empty()
 	with placeholder100.container():
 		st.success('*_payoff-chart_*')									
