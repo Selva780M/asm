@@ -456,37 +456,36 @@ if x =="pay-off Chart" :
 				selected = grid_response['selected_rows'] 
 				df = pd.DataFrame(selected) #Pass the selected rows to a new dataframe df
 				try:
-					if len(df['STOCK']) > 0 :
-						if user_STOCK == "FINNIFTY":
-							b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
-							b5 = b1['LTP']
-							op1={'op_type': 'c', 'strike': df.iloc[0,1], 'tr_type': 's', 'op_pr':df.iloc[0,9]}
-							op2={'op_type': 'p', 'strike': df.iloc[1,1], 'tr_type': 's', 'op_pr': df.iloc[1,9]}
-							op3={'op_type': 'c', 'strike': df.iloc[2,1], 'tr_type': 'b', 'op_pr': df.iloc[2,9]}
-							op4={'op_type': 'p', 'strike': df.iloc[3,1], 'tr_type': 'b', 'op_pr': df.iloc[3,9]}
-							op_list = [op1, op2, op3, op4]
-							fig = op.multi_plotter(spot=float(b5),spot_range=float(sprange), op_list=op_list)
-							st.pyplot(fig,use_container_width=True)
-						if user_STOCK == "BANKNIFTY":
-							b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))						
-							b5 = b1['LTP']
-							op1={'op_type': 'c', 'strike': df.iloc[0,1], 'tr_type': 's', 'op_pr': df.iloc[0,9]}
-							op2={'op_type': 'p', 'strike': df.iloc[1,1], 'tr_type': 's', 'op_pr': df.iloc[1,9]}
-							op3={'op_type': 'c', 'strike': df.iloc[2,1], 'tr_type': 'b', 'op_pr': df.iloc[2,9]}
-							op4={'op_type': 'p', 'strike': df.iloc[3,1], 'tr_type': 'b', 'op_pr': df.iloc[3,9]}
-							op_list = [op1, op2, op3, op4]
-							fig = op.multi_plotter(spot=float(b5), spot_range=float(sprange),op_list=op_list)
-							st.pyplot(fig,use_container_width=True)
-						if user_STOCK == "NIFTY":
-							b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))						
-							b5 = b1['LTP']
-							op1={'op_type': 'c', 'strike': df.iloc[0,1], 'tr_type': 's', 'op_pr':df.iloc[0,9]}
-							op2={'op_type': 'p', 'strike': df.iloc[1,1], 'tr_type': 's', 'op_pr': df.iloc[1,9]}
-							op3={'op_type': 'c', 'strike': df.iloc[2,1], 'tr_type': 'b', 'op_pr': df.iloc[2,9]}
-							op4={'op_type': 'p', 'strike': df.iloc[3,1], 'tr_type': 'b', 'op_pr': df.iloc[3,9]}
-							op_list = [op1, op2, op3, op4]
-							fig = op.multi_plotter(spot=float(b5),spot_range=float(sprange),op_list=op_list)
-							st.pyplot(fig,use_container_width=True)
+					if user_STOCK == "FINNIFTY":
+						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
+						b5 = b1['LTP']
+						op1={'op_type': 'c', 'strike': df.iloc[0,1], 'tr_type': 's', 'op_pr':df.iloc[0,9]}
+						op2={'op_type': 'p', 'strike': df.iloc[1,1], 'tr_type': 's', 'op_pr': df.iloc[1,9]}
+						op3={'op_type': 'c', 'strike': df.iloc[2,1], 'tr_type': 'b', 'op_pr': df.iloc[2,9]}
+						op4={'op_type': 'p', 'strike': df.iloc[3,1], 'tr_type': 'b', 'op_pr': df.iloc[3,9]}
+						op_list = [op1, op2, op3, op4]
+						fig = op.multi_plotter(spot=float(b5),spot_range=float(sprange), op_list=op_list)
+						st.pyplot(fig,use_container_width=True)
+					if user_STOCK == "BANKNIFTY":
+						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))						
+						b5 = b1['LTP']
+						op1={'op_type': 'c', 'strike': df.iloc[0,1], 'tr_type': 's', 'op_pr': df.iloc[0,9]}
+						op2={'op_type': 'p', 'strike': df.iloc[1,1], 'tr_type': 's', 'op_pr': df.iloc[1,9]}
+						op3={'op_type': 'c', 'strike': df.iloc[2,1], 'tr_type': 'b', 'op_pr': df.iloc[2,9]}
+						op4={'op_type': 'p', 'strike': df.iloc[3,1], 'tr_type': 'b', 'op_pr': df.iloc[3,9]}
+						op_list = [op1, op2, op3, op4]
+						fig = op.multi_plotter(spot=float(b5), spot_range=float(sprange),op_list=op_list)
+						st.pyplot(fig,use_container_width=True)
+					if user_STOCK == "NIFTY":
+						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))						
+						b5 = b1['LTP']
+						op1={'op_type': 'c', 'strike': df.iloc[0,1], 'tr_type': 's', 'op_pr':df.iloc[0,9]}
+						op2={'op_type': 'p', 'strike': df.iloc[1,1], 'tr_type': 's', 'op_pr': df.iloc[1,9]}
+						op3={'op_type': 'c', 'strike': df.iloc[2,1], 'tr_type': 'b', 'op_pr': df.iloc[2,9]}
+						op4={'op_type': 'p', 'strike': df.iloc[3,1], 'tr_type': 'b', 'op_pr': df.iloc[3,9]}
+						op_list = [op1, op2, op3, op4]
+						fig = op.multi_plotter(spot=float(b5),spot_range=float(sprange),op_list=op_list)
+						st.pyplot(fig,use_container_width=True)
 				except Exception as e:
 						st.title(f'Not Pay-off Chart and Error on {e}')
 	pay()	
