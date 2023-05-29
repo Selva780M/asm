@@ -456,7 +456,7 @@ if x =="pay-off Chart" :
 				selected = grid_response['selected_rows'] 
 				df = pd.DataFrame(selected) #Pass the selected rows to a new dataframe df
 				try:
-					if (df.iloc[0,1]) > 0 :
+					if len(df['STOCK']) > 0 :
 						if user_STOCK == "FINNIFTY":
 							b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
 							b5 = b1['LTP']
