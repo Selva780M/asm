@@ -415,7 +415,7 @@ if x =="Report":
 						gb.configure_side_bar() #Add a sidebar
 						gb.configure_selection('multiple', use_checkbox=True, groupSelectsChildren="Group checkbox select children") #Enable multi-row selection
 						gridOptions = gb.build()
-						grid_response = AgGrid(df100,gridOptions=gridOptions,data_return_mode='AS_INPUT',update_mode='MODEL_CHANGED',fit_columns_on_grid_load=False,theme='blue',enable_enterprise_modules=True,height=350,width='100%',reload_data=True)
+						grid_response = AgGrid(df100,gridOptions=gridOptions,data_return_mode='AS_INPUT',update_mode='MODEL_CHANGED',fit_columns_on_grid_load=False,theme='alpine',enable_enterprise_modules=True,height=350,width='100%',reload_data=True)
 						data = grid_response['data']
 						selected = grid_response['selected_rows'] 
 						df100 = pd.DataFrame(selected) #Pass the selected rows to a new dataframe df						
