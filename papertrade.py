@@ -269,12 +269,12 @@ if x =="Order Placed" :
 		time.sleep(0.5)
 		h.empty()
 		pass		
-if x =="Report":	
+if x =="Report":
+	placeholder01 = st.empty()
 	placeholder12 = st.sidebar.empty()
 	placeholder13 = st.sidebar.empty()
 	placeholder100 = st.empty()
-	placeholder101 = st.empty()
-	placeholder01 = st.empty()
+	placeholder101 = st.empty()	
 	col01, col02 = st.columns(2)
 	with col01:
 		user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=11)
