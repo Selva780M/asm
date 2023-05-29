@@ -464,7 +464,8 @@ if x == "payoff-chart":
 					op_list = []
 					for i in range(0,len(df10.index)):
 						sb = df10.iloc[i,3]
-						i = {'op_type': str(sb[-2]), 'strike': int(sb[-7:-2]), 'tr_type': df10.iloc[i,5], 'op_pr': int(df10.iloc[i,10])}						
+						sbm = sb[-2]
+						i = {'op_type': str(sbm.lower()), 'strike': int(sb[-7:-2]), 'tr_type': df10.iloc[i,5], 'op_pr': int(df10.iloc[i,10])}						
 						op_list.append(i)
 					st.write(op_list)
 					st.write(df10.dtypes)
