@@ -299,6 +299,7 @@ if x =="Report":
 	placeholder01 = st.empty()
 	placeholder12 = st.sidebar.empty()
 	placeholder13 = st.sidebar.empty()	
+	placeholder100 = st.empty()
 	placeholder101 = st.empty()	
 	if (len(df5['STOCK']) > -1) | (len(df['STOCK']) > -1):
 		while True:
@@ -432,6 +433,7 @@ if x == "Access File":
 		st.table(A)	
 
 if x =="pay-off Chart" :
+	global df100
 	placeholder100 = st.empty()
 	with placeholder100.container():
 		st.success('*_pay-off Chart_*')
