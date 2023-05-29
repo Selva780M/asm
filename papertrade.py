@@ -433,7 +433,7 @@ if x == "Access File":
 		st.table(A)	
 
 if x =="pay-off Chart" :
-	global df100
+	global df
 	placeholder100 = st.empty()
 	with placeholder100.container():
 		st.success('*_pay-off Chart_*')
@@ -445,44 +445,44 @@ if x =="pay-off Chart" :
 		if len(df100['STOCK']) < 0:
 			st.title("No Position Order")					
 		else:
-			gb = GridOptionsBuilder.from_dataframe(df100)
+			gb = GridOptionsBuilder.from_dataframe(df)
 			gb.configure_pagination(paginationAutoPageSize=True) #Add pagination
 			gb.configure_side_bar() #Add a sidebar
 			gb.configure_selection('multiple', use_checkbox=True, groupSelectsChildren="Group checkbox select children") #Enable multi-row selection
 			gridOptions = gb.build()
-			grid_response = AgGrid(df100,gridOptions=gridOptions,data_return_mode='AS_INPUT',update_mode='MODEL_CHANGED',fit_columns_on_grid_load=False,theme='alpine',enable_enterprise_modules=True,height=350,width='100%',reload_data=True)
+			grid_response = AgGrid(df,gridOptions=gridOptions,data_return_mode='AS_INPUT',update_mode='MODEL_CHANGED',fit_columns_on_grid_load=False,theme='alpine',enable_enterprise_modules=True,height=350,width='100%',reload_data=True)
 			data = grid_response['data']
 			selected = grid_response['selected_rows'] 
-			df100 = pd.DataFrame(selected) #Pass the selected rows to a new dataframe df
+			df = pd.DataFrame(selected) #Pass the selected rows to a new dataframe df
 			try:
-				if (df100.iloc[0,1]) > 0 :
+				if (df.iloc[0,1]) > 0 :
 					if user_STOCK == "FINNIFTY":
 						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
 						b5 = b1['LTP']
-						op1={'op_type': 'c', 'strike': df100.iloc[0,1], 'tr_type': 's', 'op_pr':df100.iloc[0,9]}
-						op2={'op_type': 'p', 'strike': df100.iloc[1,1], 'tr_type': 's', 'op_pr': df100.iloc[1,9]}
-						op3={'op_type': 'c', 'strike': df100.iloc[2,1], 'tr_type': 'b', 'op_pr': df100.iloc[2,9]}
-						op4={'op_type': 'p', 'strike': df100.iloc[3,1], 'tr_type': 'b', 'op_pr': df100.iloc[3,9]}
+						op1={'op_type': 'c', 'strike': df.iloc[0,1], 'tr_type': 's', 'op_pr':df.iloc[0,9]}
+						op2={'op_type': 'p', 'strike': df.iloc[1,1], 'tr_type': 's', 'op_pr': df.iloc[1,9]}
+						op3={'op_type': 'c', 'strike': df.iloc[2,1], 'tr_type': 'b', 'op_pr': df.iloc[2,9]}
+						op4={'op_type': 'p', 'strike': df.iloc[3,1], 'tr_type': 'b', 'op_pr': df.iloc[3,9]}
 						op_list = [op1, op2, op3, op4]
 						fig = op.multi_plotter(spot=float(b5),spot_range=float(sprange), op_list=op_list)
 						st.pyplot(fig,use_container_width=True)
 					if user_STOCK == "BANKNIFTY":
 						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))						
 						b5 = b1['LTP']
-						op1={'op_type': 'c', 'strike': df100.iloc[0,1], 'tr_type': 's', 'op_pr':df100.iloc[0,9]}
-						op2={'op_type': 'p', 'strike': df100.iloc[1,1], 'tr_type': 's', 'op_pr': df100.iloc[1,9]}
-						op3={'op_type': 'c', 'strike': df100.iloc[2,1], 'tr_type': 'b', 'op_pr': df100.iloc[2,9]}
-						op4={'op_type': 'p', 'strike': df100.iloc[3,1], 'tr_type': 'b', 'op_pr': df100.iloc[3,9]}
+						op1={'op_type': 'c', 'strike': df.iloc[0,1], 'tr_type': 's', 'op_pr': df.iloc[0,9]}
+						op2={'op_type': 'p', 'strike': df.iloc[1,1], 'tr_type': 's', 'op_pr': df.iloc[1,9]}
+						op3={'op_type': 'c', 'strike': df.iloc[2,1], 'tr_type': 'b', 'op_pr': df.iloc[2,9]}
+						op4={'op_type': 'p', 'strike': df.iloc[3,1], 'tr_type': 'b', 'op_pr': df.iloc[3,9]}
 						op_list = [op1, op2, op3, op4]
 						fig = op.multi_plotter(spot=float(b5), spot_range=float(sprange),op_list=op_list)
 						st.pyplot(fig,use_container_width=True)
 					if user_STOCK == "NIFTY":
 						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))						
 						b5 = b1['LTP']
-						op1={'op_type': 'c', 'strike': df100.iloc[0,1], 'tr_type': 's', 'op_pr':df100.iloc[0,9]}
-						op2={'op_type': 'p', 'strike': df100.iloc[1,1], 'tr_type': 's', 'op_pr': df100.iloc[1,9]}
-						op3={'op_type': 'c', 'strike': df100.iloc[2,1], 'tr_type': 'b', 'op_pr': df100.iloc[2,9]}
-						op4={'op_type': 'p', 'strike': df100.iloc[3,1], 'tr_type': 'b', 'op_pr': df100.iloc[3,9]}
+						op1={'op_type': 'c', 'strike': df.iloc[0,1], 'tr_type': 's', 'op_pr':df.iloc[0,9]}
+						op2={'op_type': 'p', 'strike': df.iloc[1,1], 'tr_type': 's', 'op_pr': df.iloc[1,9]}
+						op3={'op_type': 'c', 'strike': df.iloc[2,1], 'tr_type': 'b', 'op_pr': df.iloc[2,9]}
+						op4={'op_type': 'p', 'strike': df.iloc[3,1], 'tr_type': 'b', 'op_pr': df.iloc[3,9]}
 						op_list = [op1, op2, op3, op4]
 						fig = op.multi_plotter(spot=float(b5),spot_range=float(sprange),op_list=op_list)
 						st.pyplot(fig,use_container_width=True)
