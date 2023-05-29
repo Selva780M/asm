@@ -434,7 +434,8 @@ if x == "Access File":
 
 if x =="pay-off Chart" :
 	def pay():
-		global df		 
+		global df
+		st.write(df.dtypes)
 		placeholder100 = st.empty()
 		with placeholder100.container():
 			st.success('*_pay-off Chart_*')
