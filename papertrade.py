@@ -291,7 +291,7 @@ if x =="Order Placed" :
 				S_CE = algo("FINNIFTY",spot_prc,80,True,user_exp,"s")
 				S_PE = algo("FINNIFTY",spot_prc,80,False,user_exp,"s")
 				B_CE = algo("FINNIFTY",(spot_prc+50),40,True,user_exp,"b")
-				B_PE = algo("FINNIFTY",(spot_prc-50),40,False,user_exp,"s")			
+				B_PE = algo("FINNIFTY",(spot_prc-50),40,False,user_exp,"b")			
 		h = st.empty()
 		st.success('*_Your Trade Order Placed Pls Check in Report_*')
 		time.sleep(0.5)
