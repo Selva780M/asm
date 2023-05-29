@@ -293,19 +293,19 @@ if x =="Report":
 		while True:
 			temp()
 			with placeholder01.container():
-			col1, col2 , col3 = st.columns(3)
-			with col1:
-				n1 = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
-				n5 = n1['LTP']
-				st.subheader(f'*_Nifty- 50 :red[{n5}]_* ⏰')								
-			with col2:
-				b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))						
-				b5 = b1['LTP']
-				st.subheader(f'*_BankNifty :orange[{b5}]_* ⏰')	
-			with col3:
-				b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
-				b6 = b1['LTP']
-				st.subheader(f'*_FINNIFTY :green[{b6}]_* ⏰')
+				col1, col2 , col3 = st.columns(3)
+				with col1:
+					n1 = alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))
+					n5 = n1['LTP']
+					st.subheader(f'*_Nifty- 50 :red[{n5}]_* ⏰')								
+				with col2:
+					b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))						
+					b5 = b1['LTP']
+					st.subheader(f'*_BankNifty :orange[{b5}]_* ⏰')	
+				with col3:
+					b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
+					b6 = b1['LTP']
+					st.subheader(f'*_FINNIFTY :green[{b6}]_* ⏰')
 			em = []
 			tr = []
 			try:
