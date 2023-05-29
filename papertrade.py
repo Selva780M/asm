@@ -433,61 +433,63 @@ if x == "Access File":
 		st.table(A)	
 
 if x =="pay-off Chart" :
-	global df
-	placeholder100 = st.empty()
-	with placeholder100.container():
-		st.success('*_pay-off Chart_*')
-		col01, col02 = st.columns(2)
-		with col01:
-			user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=11)
-		with col02:
-			sprange = st.number_input('*_Spot Range_*', min_value=0.1, max_value=100.0, value=0.5, step=0.1, format=None,key=17)
-		if len(df['STOCK']) < 0:
-			st.title("No Position Order")					
-		else:
-			gb = GridOptionsBuilder.from_dataframe(df)
-			gb.configure_pagination(paginationAutoPageSize=True) #Add pagination
-			gb.configure_side_bar() #Add a sidebar
-			gb.configure_selection('multiple', use_checkbox=True, groupSelectsChildren="Group checkbox select children") #Enable multi-row selection
-			gridOptions = gb.build()
-			grid_response = AgGrid(df,gridOptions=gridOptions,data_return_mode='AS_INPUT',update_mode='MODEL_CHANGED',fit_columns_on_grid_load=False,theme='alpine',enable_enterprise_modules=True,height=350,width='100%',reload_data=True)
-			data = grid_response['data']
-			selected = grid_response['selected_rows'] 
-			df = pd.DataFrame(selected) #Pass the selected rows to a new dataframe df
-			try:
-				if (df.iloc[0,1]) > 0 :
-					if user_STOCK == "FINNIFTY":
-						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
-						b5 = b1['LTP']
-						op1={'op_type': 'c', 'strike': df.iloc[0,1], 'tr_type': 's', 'op_pr':df.iloc[0,9]}
-						op2={'op_type': 'p', 'strike': df.iloc[1,1], 'tr_type': 's', 'op_pr': df.iloc[1,9]}
-						op3={'op_type': 'c', 'strike': df.iloc[2,1], 'tr_type': 'b', 'op_pr': df.iloc[2,9]}
-						op4={'op_type': 'p', 'strike': df.iloc[3,1], 'tr_type': 'b', 'op_pr': df.iloc[3,9]}
-						op_list = [op1, op2, op3, op4]
-						fig = op.multi_plotter(spot=float(b5),spot_range=float(sprange), op_list=op_list)
-						st.pyplot(fig,use_container_width=True)
-					if user_STOCK == "BANKNIFTY":
-						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))						
-						b5 = b1['LTP']
-						op1={'op_type': 'c', 'strike': df.iloc[0,1], 'tr_type': 's', 'op_pr': df.iloc[0,9]}
-						op2={'op_type': 'p', 'strike': df.iloc[1,1], 'tr_type': 's', 'op_pr': df.iloc[1,9]}
-						op3={'op_type': 'c', 'strike': df.iloc[2,1], 'tr_type': 'b', 'op_pr': df.iloc[2,9]}
-						op4={'op_type': 'p', 'strike': df.iloc[3,1], 'tr_type': 'b', 'op_pr': df.iloc[3,9]}
-						op_list = [op1, op2, op3, op4]
-						fig = op.multi_plotter(spot=float(b5), spot_range=float(sprange),op_list=op_list)
-						st.pyplot(fig,use_container_width=True)
-					if user_STOCK == "NIFTY":
-						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))						
-						b5 = b1['LTP']
-						op1={'op_type': 'c', 'strike': df.iloc[0,1], 'tr_type': 's', 'op_pr':df.iloc[0,9]}
-						op2={'op_type': 'p', 'strike': df.iloc[1,1], 'tr_type': 's', 'op_pr': df.iloc[1,9]}
-						op3={'op_type': 'c', 'strike': df.iloc[2,1], 'tr_type': 'b', 'op_pr': df.iloc[2,9]}
-						op4={'op_type': 'p', 'strike': df.iloc[3,1], 'tr_type': 'b', 'op_pr': df.iloc[3,9]}
-						op_list = [op1, op2, op3, op4]
-						fig = op.multi_plotter(spot=float(b5),spot_range=float(sprange),op_list=op_list)
-						st.pyplot(fig,use_container_width=True)
-			except :
-					st.title("Not Pay-off Chart")
+	def pay():
+		global df
+		placeholder100 = st.empty()
+		with placeholder100.container():
+			st.success('*_pay-off Chart_*')
+			col01, col02 = st.columns(2)
+			with col01:
+				user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=11)
+			with col02:
+				sprange = st.number_input('*_Spot Range_*', min_value=0.1, max_value=100.0, value=0.5, step=0.1, format=None,key=17)
+			if len(df['STOCK']) < 0:
+				st.title("No Position Order")					
+			else:
+				gb = GridOptionsBuilder.from_dataframe(df)
+				gb.configure_pagination(paginationAutoPageSize=True) #Add pagination
+				gb.configure_side_bar() #Add a sidebar
+				gb.configure_selection('multiple', use_checkbox=True, groupSelectsChildren="Group checkbox select children") #Enable multi-row selection
+				gridOptions = gb.build()
+				grid_response = AgGrid(df,gridOptions=gridOptions,data_return_mode='AS_INPUT',update_mode='MODEL_CHANGED',fit_columns_on_grid_load=False,theme='alpine',enable_enterprise_modules=True,height=350,width='100%',reload_data=True)
+				data = grid_response['data']
+				selected = grid_response['selected_rows'] 
+				df = pd.DataFrame(selected) #Pass the selected rows to a new dataframe df
+				try:
+					if (df.iloc[0,1]) > 0 :
+						if user_STOCK == "FINNIFTY":
+							b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
+							b5 = b1['LTP']
+							op1={'op_type': 'c', 'strike': df.iloc[0,1], 'tr_type': 's', 'op_pr':df.iloc[0,9]}
+							op2={'op_type': 'p', 'strike': df.iloc[1,1], 'tr_type': 's', 'op_pr': df.iloc[1,9]}
+							op3={'op_type': 'c', 'strike': df.iloc[2,1], 'tr_type': 'b', 'op_pr': df.iloc[2,9]}
+							op4={'op_type': 'p', 'strike': df.iloc[3,1], 'tr_type': 'b', 'op_pr': df.iloc[3,9]}
+							op_list = [op1, op2, op3, op4]
+							fig = op.multi_plotter(spot=float(b5),spot_range=float(sprange), op_list=op_list)
+							st.pyplot(fig,use_container_width=True)
+						if user_STOCK == "BANKNIFTY":
+							b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY BANK"))						
+							b5 = b1['LTP']
+							op1={'op_type': 'c', 'strike': df.iloc[0,1], 'tr_type': 's', 'op_pr': df.iloc[0,9]}
+							op2={'op_type': 'p', 'strike': df.iloc[1,1], 'tr_type': 's', 'op_pr': df.iloc[1,9]}
+							op3={'op_type': 'c', 'strike': df.iloc[2,1], 'tr_type': 'b', 'op_pr': df.iloc[2,9]}
+							op4={'op_type': 'p', 'strike': df.iloc[3,1], 'tr_type': 'b', 'op_pr': df.iloc[3,9]}
+							op_list = [op1, op2, op3, op4]
+							fig = op.multi_plotter(spot=float(b5), spot_range=float(sprange),op_list=op_list)
+							st.pyplot(fig,use_container_width=True)
+						if user_STOCK == "NIFTY":
+							b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY 50"))						
+							b5 = b1['LTP']
+							op1={'op_type': 'c', 'strike': df.iloc[0,1], 'tr_type': 's', 'op_pr':df.iloc[0,9]}
+							op2={'op_type': 'p', 'strike': df.iloc[1,1], 'tr_type': 's', 'op_pr': df.iloc[1,9]}
+							op3={'op_type': 'c', 'strike': df.iloc[2,1], 'tr_type': 'b', 'op_pr': df.iloc[2,9]}
+							op4={'op_type': 'p', 'strike': df.iloc[3,1], 'tr_type': 'b', 'op_pr': df.iloc[3,9]}
+							op_list = [op1, op2, op3, op4]
+							fig = op.multi_plotter(spot=float(b5),spot_range=float(sprange),op_list=op_list)
+							st.pyplot(fig,use_container_width=True)
+				except :
+						st.title("Not Pay-off Chart")
+	pay()	
 	
 	
 	
