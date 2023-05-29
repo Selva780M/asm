@@ -29,7 +29,7 @@ def temp():
 def save():
 	df5.to_csv('trade.csv',index = False)
 def save1():
-	df10.to_csv('pay.csv',index = False)
+	df100.to_csv('pay.csv',index = False)
 Investment = int(300000)
 Na = str('Mr.Selvakumar')
 st.sidebar.markdown(f""" *_Date:_* {DATE}""")
