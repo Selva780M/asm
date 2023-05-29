@@ -52,8 +52,6 @@ info()
 #--------------------------------------------
 def main():
 	Investment = int(300000)
-	df = pd.read_csv('./token.csv')
-	df5 = pd.read_csv('./trade.csv')
 	def temp():
 		df.to_csv('token.csv',index = False)
 	def save():
@@ -205,6 +203,8 @@ def main():
 
 
 		if ENTRY:
+			df = pd.read_csv('./token.csv')
+			df5 = pd.read_csv('./trade.csv')
 			if MAN == "asn":
 				if user_STOCK == "NIFTY":			
 					try:
