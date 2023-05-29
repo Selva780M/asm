@@ -4,6 +4,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_page_config(layout="wide")
 import pandas as pd
 import numpy as np
+from st_aggrid import GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode
 from datetime import datetime, timedelta
 from pytz import timezone 
 import time
@@ -409,6 +410,16 @@ if x =="Report":
 					if len(df100['STOCK']) < 0:
 						st.title("No Position Order")					
 					else:
+						gb = GridOptionsBuilder.from_dataframe(df100)
+						gb.configure_pagination(paginationAutoPageSize=True) #Add pagination
+						gb.configure_side_bar() #Add a sidebar
+						gb.configure_selection('multiple', use_checkbox=True, groupSelectsChildren="Group checkbox select children") #Enable multi-row selection
+						gridOptions = gb.build()
+						grid_response = AgGrid(data,gridOptions=gridOptions,data_return_mode='AS_INPUT',update_mode='MODEL_CHANGED',fit_columns_on_grid_load=False,theme='blue',enable_enterprise_modules=True,height=350,width='100%',reload_data=True)
+						data = grid_response['data']
+						selected = grid_response['selected_rows'] 
+						df100 = pd.DataFrame(selected) #Pass the selected rows to a new dataframe df
+						temp()
 						A = df100.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
 						st.table(A)
 			with placeholder101.container():
