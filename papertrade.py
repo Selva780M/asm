@@ -130,8 +130,8 @@ def algo(stok,spot,qt,OP,expiry_date,T):
 	user_STOP = 100
 	user_TARGET = 100
 	n_call = alice.get_instrument_for_fno(exch="NFO", symbol=stok, expiry_date=expiry_date, is_fut=False,strike=spot, is_CE=OP)
-	s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
-	entry = float(s['LTP'])
+	so = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
+	entry = float(so['LTP'])
 	if T == "s":
 		new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "TRADE" : T ,  "ENTRY" : int(entry), "QTY" : int(qt), "STOPLOSS" : round((entry + user_STOP),1), "TARGET" : round((entry - user_TARGET),1)}
 	if T == "b":
@@ -465,11 +465,7 @@ if x == "payoff-chart":
 					for i in range(0,len(df10.index)):
 						sb = df10.iloc[i,3]
 						i = {'op_type': sb[-2], 'strike': sb[-7:-2], 'tr_type': df10.iloc[i,5], 'op_pr': df10.iloc[i,10]}						
-						op_list.append(i)						
-					#op2={'op_type': 'p', 'strike': df10.iloc[1,2], 'tr_type': 's', 'op_pr': df10.iloc[1,10]}
-					#op3={'op_type': 'c', 'strike': df10.iloc[2,2], 'tr_type': 'b', 'op_pr': df10.iloc[2,10]}
-					#op4={'op_type': 'p', 'strike': df10.iloc[3,2], 'tr_type': 'b', 'op_pr': df10.iloc[3,10]}
-					#op_list = [op1, op2, op3, op4]
+						op_list.append(i)
 					fig = op.multi_plotter(spot=float(b5),spot_range=float(sprange), op_list = op_list)
 					st.pyplot(fig,use_container_width=True)
 				if user_STOCK == "BANKNIFTY":
