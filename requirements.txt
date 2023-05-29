@@ -2,3 +2,4 @@ pya3
 scipy
 opstrat
 plotly
+streamlit-aggrid
