@@ -142,8 +142,9 @@ def main():
 	happy = "CAACAgIAAxkBAANFYxmxaQFWhPkw80xf8NVJxapzwBEAAgMBAAJWnb0KAuXReIfl-k8pBA"
 	#------------------------------------------
 	def algo(stok,spot,qt,OP,expiry_date,T):
-		st.write(stok,spot,qt,OP,expiry_date,T)
-		global df	
+		df = pd.read_csv('./token.csv')
+		df5 = pd.read_csv('./trade.csv')
+		st.write(stok,spot,qt,OP,expiry_date,T)			
 		user_STOP = 100
 		user_TARGET = 100
 		n_call = alice.get_instrument_for_fno(exch="NFO", symbol=stok, expiry_date=expiry_date, is_fut=False,strike=spot, is_CE=OP)
