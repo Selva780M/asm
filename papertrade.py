@@ -197,7 +197,7 @@ if x =="Order Placed" :
 					n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=user_exp, is_fut=False,strike=call_strike, is_CE=True)				
 					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_call.name)))
 					entry = float(s['LTP'])	
-					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "TRADE" :"B" ,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1) }
+					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_call.name, "EXCH" : "NFO" , "TRADE" :"b" ,  "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1) }
 					#df = df.append(new_data, ignore_index = True)
 					df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
 					temp()
@@ -206,7 +206,7 @@ if x =="Order Placed" :
 					n_put = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=user_exp, is_fut=False,strike=put_strike, is_CE=False)
 					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',n_put.name)))
 					entry = float(s['LTP'])	
-					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name, "EXCH" : "NFO" , "TRADE" :"B"  ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : n_put.name, "EXCH" : "NFO" , "TRADE" :"b"  ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
 					#df = df.append(new_data, ignore_index = True)
 					df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
 					temp()
@@ -222,7 +222,7 @@ if x =="Order Placed" :
 					b_call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=user_exp, is_fut=False,strike=call_strike, is_CE=True)				
 					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_call.name)))
 					entry = float(s['LTP'])	
-					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name, "EXCH" : "NFO" ,"TRADE" :"B" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name, "EXCH" : "NFO" ,"TRADE" :"b" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
 					#df = df.append(new_data, ignore_index = True)
 					df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
 					temp()
@@ -231,7 +231,7 @@ if x =="Order Placed" :
 					b_put = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date = user_exp, is_fut=False,strike=put_strike, is_CE=False)
 					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_put.name)))
 					entry = float(s['LTP'])	
-					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name, "EXCH" : "NFO" ,"TRADE" : "B" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
+					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name, "EXCH" : "NFO" ,"TRADE" : "b" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
 					#df = df.append(new_data, ignore_index = True)
 					df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
 					temp()	
@@ -247,7 +247,7 @@ if x =="Order Placed" :
 					b_call = alice.get_instrument_for_fno(exch="NFO", symbol="FINNIFTY", expiry_date=user_exp, is_fut=False,strike=call_strike, is_CE=True)				
 					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_call.name)))
 					entry = float(s['LTP'])	
-					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name, "EXCH" : "NFO" ,"TRADE" :"B" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_call.name, "EXCH" : "NFO" ,"TRADE" :"b" , "ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
 					#df = df.append(new_data, ignore_index = True)
 					df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
 					temp()
@@ -256,7 +256,7 @@ if x =="Order Placed" :
 					b_put = alice.get_instrument_for_fno(exch="NFO", symbol="FINNIFTY", expiry_date = user_exp, is_fut=False,strike=put_strike, is_CE=False)
 					s = (alice.get_scrip_info(alice.get_instrument_by_symbol('NFO',b_put.name)))
 					entry = float(s['LTP'])	
-					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name, "EXCH" : "NFO" ,"TRADE" : "B" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
+					new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : b_put.name, "EXCH" : "NFO" ,"TRADE" : "b" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1) , "TARGET" : round((entry + user_TARGET),1) }
 					#df = df.append(new_data, ignore_index = True)
 					df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
 					temp()	
@@ -267,12 +267,12 @@ if x =="Order Placed" :
 			except:
 				st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
 			if Tradd =="Buy":
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : user_STOCK, "EXCH" : XX , "TRADE" : "B" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : user_STOCK, "EXCH" : XX , "TRADE" : "b" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry - user_STOP),1), "TARGET" : round((entry + user_TARGET),1)}
 				#df = df.append(new_data, ignore_index = True)
 				df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
 				temp()
 			if Tradd =="Sell":
-				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : user_STOCK, "EXCH" : XX , "TRADE" : "S" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry + user_STOP),1), "TARGET" : round((entry - user_TARGET),1)}
+				new_data = {"DATE" : DATE ,"NAME": user_USER, "STOCK" : user_STOCK, "EXCH" : XX , "TRADE" : "s" ,"ENTRY" : int(entry), "QTY" : int(user_LOT), "STOPLOSS" : round((entry + user_STOP),1), "TARGET" : round((entry - user_TARGET),1)}
 				#df = df.append(new_data, ignore_index = True)
 				df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
 				temp()
@@ -463,8 +463,8 @@ if x == "payoff-chart":
 					b5 = b1['LTP']
 					op_list = []
 					for i in range(0,len(df10.index)):
-						s = df10.iloc[i,3]
-						i = {'op_type': s[-2], 'strike': s[-7:-2], 'tr_type': df10.iloc[i,5], 'op_pr': df10.iloc[i,10]}						
+						sb = df10.iloc[i,3]
+						i = {'op_type': sb[-2], 'strike': sb[-7:-2], 'tr_type': df10.iloc[i,5], 'op_pr': df10.iloc[i,10]}						
 						op_list.append(i)						
 					#op2={'op_type': 'p', 'strike': df10.iloc[1,2], 'tr_type': 's', 'op_pr': df10.iloc[1,10]}
 					#op3={'op_type': 'c', 'strike': df10.iloc[2,2], 'tr_type': 'b', 'op_pr': df10.iloc[2,10]}
