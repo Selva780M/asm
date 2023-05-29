@@ -463,7 +463,7 @@ if x == "payoff-chart":
 					b5 = b1['LTP']
 					op_list = []
 					for i in range(0,len(df10.index)):
-						f'str(op+{i})' = {'op_type': 'c', 'strike': df10.iloc[i,2], 'tr_type': 's', 'op_pr': df10.iloc[i,10]}
+						str(op+{i}) = {'op_type': 'c', 'strike': df10.iloc[i,2], 'tr_type': 's', 'op_pr': df10.iloc[i,10]}
 						op_list.append(op+str(i)
 					#op2={'op_type': 'p', 'strike': df10.iloc[1,2], 'tr_type': 's', 'op_pr': df10.iloc[1,10]}
 					#op3={'op_type': 'c', 'strike': df10.iloc[2,2], 'tr_type': 'b', 'op_pr': df10.iloc[2,10]}
