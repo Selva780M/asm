@@ -101,7 +101,7 @@ def main():
 				idx += 1	
 		all_contract = contract_master[contract_master['Symbol'] == user_STOCK ]
 		expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)	
-		return expiry
+		#return expiry
 	expiry = Contract()
 	#@st.experimental_memo
 	def loaddata():
@@ -171,6 +171,7 @@ def main():
 				user_STOCK = st.radio("*_Stock (Current strike)_*",("NIFTY","BANKNIFTY"), horizontal=True,key=5)
 				user_OPTION = st.radio("*_Option_*",("call","put"), horizontal=True,key=6)	
 				user_exp = st.selectbox("*_Select Exp Date_*",(Contract(user_STOCK)),key=7)
+				user_exp = st.selectbox("*_Select Exp Date_*",(Contract(user_STOCK)),key=13)
 				ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 			with col22:
 				user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=8)
@@ -211,7 +212,7 @@ def main():
 					except:
 						st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
 					spot = round((float(n_ltp)) / 50) * 50
-					expiry_date = expiry[0]
+					#expiry_date = expiry[0]
 					if user_OPTION == "call":
 						call_strike = spot - (50)
 						n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=user_exp, is_fut=False,strike=call_strike, is_CE=True)				
