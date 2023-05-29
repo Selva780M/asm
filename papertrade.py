@@ -278,20 +278,20 @@ if x =="Order Placed" :
 				temp()
 		if MAN  == "Dumm":			
 			if user_STOCK == "BANKNIFTY":
-				S_CE = algo("BANKNIFTY",spot_prc,50,True,user_exp,"S")
-				S_PE = algo("BANKNIFTY",spot_prc,50,False,user_exp,"S")
-				B_CE = algo("BANKNIFTY",(spot_prc+100),25,True,user_exp,"B")
-				B_PE = algo("BANKNIFTY",(spot_prc-100),25,False,user_exp,"B")
+				S_CE = algo("BANKNIFTY",spot_prc,50,True,user_exp,"s")
+				S_PE = algo("BANKNIFTY",spot_prc,50,False,user_exp,"s")
+				B_CE = algo("BANKNIFTY",(spot_prc+100),25,True,user_exp,"b")
+				B_PE = algo("BANKNIFTY",(spot_prc-100),25,False,user_exp,"b")
 			if user_STOCK == "NIFTY":
-				S_CE = algo("NIFTY",spot_prc,100,True,user_exp,"S")
-				S_PE = algo("NIFTY",spot_prc,100,False,user_exp,"S")
-				B_CE = algo("NIFTY",(spot_prc+50),50,True,user_exp,"B")
-				B_PE = algo("NIFTY",(spot_prc-50),50,False,user_exp,"B")
+				S_CE = algo("NIFTY",spot_prc,100,True,user_exp,"s")
+				S_PE = algo("NIFTY",spot_prc,100,False,user_exp,"s")
+				B_CE = algo("NIFTY",(spot_prc+50),50,True,user_exp,"b")
+				B_PE = algo("NIFTY",(spot_prc-50),50,False,user_exp,"b")
 			if user_STOCK == "FINNIFTY":
-				S_CE = algo("FINNIFTY",spot_prc,80,True,user_exp,"S")
-				S_PE = algo("FINNIFTY",spot_prc,80,False,user_exp,"S")
-				B_CE = algo("FINNIFTY",(spot_prc+50),40,True,user_exp,"B")
-				B_PE = algo("FINNIFTY",(spot_prc-50),40,False,user_exp,"B")			
+				S_CE = algo("FINNIFTY",spot_prc,80,True,user_exp,"s")
+				S_PE = algo("FINNIFTY",spot_prc,80,False,user_exp,"s")
+				B_CE = algo("FINNIFTY",(spot_prc+50),40,True,user_exp,"b")
+				B_PE = algo("FINNIFTY",(spot_prc-50),40,False,user_exp,"s")			
 		h = st.empty()
 		st.success('*_Your Trade Order Placed Pls Check in Report_*')
 		time.sleep(0.5)
@@ -463,10 +463,9 @@ if x == "payoff-chart":
 					b5 = b1['LTP']
 					op_list = []
 					for i in range(0,len(df10.index)):
-						i = {'op_type': 'c', 'strike': df10.iloc[i,2], 'tr_type': 's', 'op_pr': df10.iloc[i,10]}
-						st.write(i)
-						op_list.append(i)
-						st.write(op_list)
+						s = df10.iloc[i,3]
+						i = {'op_type': s[-2], 'strike': s[-7:-2], 'tr_type': df10.iloc[i,5], 'op_pr': df10.iloc[i,10]}						
+						op_list.append(i)						
 					#op2={'op_type': 'p', 'strike': df10.iloc[1,2], 'tr_type': 's', 'op_pr': df10.iloc[1,10]}
 					#op3={'op_type': 'c', 'strike': df10.iloc[2,2], 'tr_type': 'b', 'op_pr': df10.iloc[2,10]}
 					#op4={'op_type': 'p', 'strike': df10.iloc[3,2], 'tr_type': 'b', 'op_pr': df10.iloc[3,10]}
