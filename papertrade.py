@@ -461,10 +461,10 @@ if x == "payoff-chart":
 					if user_STOCK == "FINNIFTY":
 						b1= alice.get_scrip_info(alice.get_instrument_by_symbol("INDICES","NIFTY FIN SERVICE"))						
 						b5 = b1['LTP']
-						op1={'op_type': 'c', 'strike': df10.iloc[0,1], 'tr_type': 's', 'op_pr': int(df10.iloc[0,10])}
-						op2={'op_type': 'p', 'strike': df10.iloc[1,1], 'tr_type': 's', 'op_pr': int(df10.iloc[1,10])}
-						op3={'op_type': 'c', 'strike': df10.iloc[2,1], 'tr_type': 'b', 'op_pr': int(df10.iloc[2,10])}
-						op4={'op_type': 'p', 'strike': df10.iloc[3,1], 'tr_type': 'b', 'op_pr': int(df10.iloc[3,10])}
+						op1={'op_type': 'c', 'strike': df10.iloc[0,2], 'tr_type': 's', 'op_pr': int(df10.iloc[0,10])}
+						op2={'op_type': 'p', 'strike': df10.iloc[1,2], 'tr_type': 's', 'op_pr': int(df10.iloc[1,10])}
+						op3={'op_type': 'c', 'strike': df10.iloc[2,2], 'tr_type': 'b', 'op_pr': int(df10.iloc[2,10])}
+						op4={'op_type': 'p', 'strike': df10.iloc[3,2], 'tr_type': 'b', 'op_pr': int(df10.iloc[3,10])}
 						op_list = [op1, op2, op3, op4]
 						fig = op.multi_plotter(spot=float(b5),spot_range=float(sprange), op_list=op_list)
 						st.pyplot(fig,use_container_width=True)
