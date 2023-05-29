@@ -434,7 +434,8 @@ if x == "Access File":
 
 if x =="pay-off Chart" :
 	def pay():
-		df = pd.read_csv('token.csv') 
+		global df100
+		df = df100 
 		placeholder100 = st.empty()
 		with placeholder100.container():
 			st.success('*_pay-off Chart_*')
