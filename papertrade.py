@@ -203,9 +203,9 @@ def main():
 				ENTRY = st.form_submit_button('👉 *_Order Placed_*')		
 
 
-		if ENTRY:
-			df = pd.read_csv('./token.csv')
-			df5 = pd.read_csv('./trade.csv')
+		df = pd.read_csv('./token.csv')
+		df5 = pd.read_csv('./trade.csv')
+		if ENTRY:			
 			if MAN == "asn":
 				if user_STOCK == "NIFTY":			
 					try:
