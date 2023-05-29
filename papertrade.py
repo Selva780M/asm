@@ -26,7 +26,6 @@ def temp():
 	df.to_csv('token.csv',index = False)
 def save():
 	df5.to_csv('trade.csv',index = False)
-
 Investment = int(300000)
 Na = str('Mr.Selvakumar')
 st.sidebar.markdown(f""" *_Date:_* {DATE}""")
@@ -85,8 +84,6 @@ def Contract(user_STOCK):
 	all_contract = contract_master[contract_master['Symbol'] == user_STOCK ]
 	expiry = all_contract['Expiry Date'].sort_values().drop_duplicates().reset_index(drop = True)	
 	return expiry
-#expiry = Contract()
-#@st.experimental_memo
 def loaddata():
 	placeholder11 = st.empty()
 	try:
@@ -183,10 +180,7 @@ if x =="Order Placed" :
 		with col11:										
 			spot_prc = st.number_input('*_Atm Price_*', min_value=1, max_value= 80000, value=19000, step=50, format=None, key=12)
 			user_exp = st.selectbox("*_Select Exp Date_*",(Contract(user_STOCK)),key=13)
-			ENTRY = st.form_submit_button('👉 *_Order Placed_*')		
-
-	df = pd.read_csv('./token.csv')
-	df5 = pd.read_csv('./trade.csv')
+			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 	if ENTRY:			
 		if MAN == "asn":
 			if user_STOCK == "NIFTY":			
@@ -195,8 +189,7 @@ if x =="Order Placed" :
 					n_ltp = n['LTP']
 				except:
 					st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
-				spot = round((float(n_ltp)) / 50) * 50
-				#expiry_date = expiry[0]
+				spot = round((float(n_ltp)) / 50) * 50				
 				if user_OPTION == "call":
 					call_strike = spot - (50)
 					n_call = alice.get_instrument_for_fno(exch="NFO", symbol="NIFTY", expiry_date=user_exp, is_fut=False,strike=call_strike, is_CE=True)				
@@ -221,8 +214,7 @@ if x =="Order Placed" :
 					b_ltp = b['LTP']
 				except:
 					st.warning('*_Sorry, Market Open Time ⏰ Only Working..!!_*')
-				spot = round((float(b_ltp)) / 100) * 100			
-				expiry_date = expiry[0]
+				spot = round((float(b_ltp)) / 100) * 100
 				if user_OPTION == "call":
 					call_strike = spot - (100)
 					b_call = alice.get_instrument_for_fno(exch="NFO", symbol="BANKNIFTY", expiry_date=user_exp, is_fut=False,strike=call_strike, is_CE=True)				
