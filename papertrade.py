@@ -389,12 +389,12 @@ if x =="Report":
 						send_sticker_on_telegram(sad)
 						send_msg_on_telegram(f"Sorry {Na}, Your Trade  {df100.iloc[i]['NAME']}  Completed Lose in Rs.{round(df100.iloc[i]['P_L'],1)}")			
 				with placeholder100.container():
-				st.success('*_Current Position_*')									
-				if len(df100['STOCK']) < 0:
-					st.title("No Position Order")					
-				else:
-					A = df100.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
-					st.table(A)
+					st.success('*_Current Position_*')									
+					if len(df100['STOCK']) < 0:
+						st.title("No Position Order")					
+					else:
+						A = df100.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
+						st.table(A)
 			with placeholder101.container():
 				st.info('*_Paper Trade Result_*')				
 				B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
