@@ -23,7 +23,6 @@ except:
 #---------------------------------------------------------------------------
 df = pd.read_csv('./token.csv')
 df5 = pd.read_csv('./trade.csv')
-df10 = pd.read_csv('./pay.csv')
 def temp():
 	df.to_csv('token.csv',index = False)
 def save():
@@ -306,8 +305,7 @@ if x =="Report":
 	placeholder101 = st.empty()	
 	if (len(df5['STOCK']) > -1) | (len(df['STOCK']) > -1):
 		while True:
-			temp()
-			save1()
+			temp()			
 			with placeholder01.container():
 				col1, col2 , col3 = st.columns(3)
 				with col1:
@@ -411,6 +409,7 @@ if x =="Report":
 					else:
 						A = df100.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
 						st.table(A)
+						save1()
 				with placeholder101.container():
 					st.info('*_Paper Trade Result_*')				
 					B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
