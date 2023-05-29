@@ -419,8 +419,8 @@ if x =="Report":
 						data = grid_response['data']
 						selected = grid_response['selected_rows'] 
 						df100 = pd.DataFrame(selected) #Pass the selected rows to a new dataframe df						
-						A = df100.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
-						st.table(A)
+						#A = df100.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)
+						#st.table(A)
 			with placeholder101.container():
 				st.info('*_Paper Trade Result_*')				
 				B = df5.style.format(subset=["ENTRY","QTY","STOPLOSS","TARGET","LTP","P_L" ], formatter="{:.2f}").applymap(col)					
