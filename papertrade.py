@@ -173,9 +173,9 @@ if x =="Order Placed" :
 			Tradd = st.radio("*_Trade_*",("Buy","Sell"), horizontal=True,key=17)
 			ENTRY = st.form_submit_button('👉 *_Order Placed_*')
 		with col22:		
-			user_LOT = st.number_input('*_Qty_*', min_value=25, max_value=1000, value=25, step=25, format=None, key=8)
-			user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=50, value=10, step=5, format=None,key=9)
-			user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=50, value=10, step=5, format=None, key=10)
+			user_LOT = st.number_input('*_Qty_*', min_value=1, max_value=1000, value=2, step=5, format=None, key=8)
+			user_STOP = st.number_input('*_Stoploss_*', min_value=1, max_value=1000, value=10, step=5, format=None,key=9)
+			user_TARGET = st.number_input('*_Target_*', min_value=1, max_value=1000, value=10, step=5, format=None, key=10)
 	if user =="Rjalgo":				
 		MAN = "Dumm"
 		user_STOCK = st.radio("*_Stock (Current strike)_*",("FINNIFTY","BANKNIFTY","NIFTY"), horizontal=True,key=11)
