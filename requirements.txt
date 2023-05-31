@@ -3,3 +3,4 @@ scipy
 opstrat
 plotly
 streamlit-aggrid
+pyotp
