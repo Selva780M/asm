@@ -1,6 +1,6 @@
 from pya3 import *
 import streamlit as st
-st.set_option('deprecation.showPyplotGlobalUse', False)
+#st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_page_config(layout="wide")
 import pandas as pd
 import numpy as np
